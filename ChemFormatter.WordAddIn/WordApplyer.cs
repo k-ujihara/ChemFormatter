@@ -17,14 +17,62 @@ namespace ChemFormatter.WordAddIn
         {
             var text = Globals.ThisAddIn.Application.Selection.Text;
             text = Utility.Normalize(text);
-            var commands = RDigitQuery.MakeRDigitCommand(text);
+            var commands = RDigitQuery.MakeCommand(text);
             if (commands == null)
                 return;
 
+            Apply(commands);
+        }
+
+        public static void ButtonChemFormular_Click(object sender, RibbonControlEventArgs e)
+        {
+            var text = Globals.ThisAddIn.Application.Selection.Text;
+            text = Utility.Normalize(text);
+            var commands = ChemFormulaQuery.MakeCommand(text);
+            Apply(commands);
+        }
+
+        public static void Apply(List<PCommand> commands)
+        {
             var save = KeepSelection();
             try
             {
-                Apply(commands);
+                var app = Globals.ThisAddIn.Application;
+                var start = app.Selection.Start;
+                using (var saver = new AutoCorrectSaver())
+                {
+                    foreach (var command in commands)
+                    {
+                        switch (command)
+                        {
+                            case ReplaceStringCommand rsc:
+                                SelectAndAction(start, rsc, () => 
+                                {
+                                    var diff = rsc.Replacement.Length - rsc.Length;
+                                    save.End += diff;
+                                    app.Selection.TypeText(rsc.Replacement);
+                                });
+                                break;
+                            case SubscriptCommand sbsc:
+                                SelectAndAction(start, sbsc, () => ApplyScript(ScriptMode.Subscript));
+                                break;
+                            case ChangeScriptCommand ssc:
+                                SelectAndAction(start, ssc, () =>
+                                {
+                                    ScriptMode next;
+                                    if (app.Selection.Font.Subscript == (int)Office.MsoTriState.msoTrue)
+                                        next = ScriptMode.Superscript;
+                                    else if (app.Selection.Font.Superscript == (int)Office.MsoTriState.msoTrue)
+                                        next = ScriptMode.Normal;
+                                    else
+                                        next = ScriptMode.Subscript;
+
+                                    ApplyScript(next);
+                                });
+                                break;
+                        }
+                    }
+                }
             }
             finally
             {
@@ -32,48 +80,29 @@ namespace ChemFormatter.WordAddIn
             }
         }
 
-        public static void Apply(List<PCommand> commands)
+        private static void ApplyScript(ScriptMode next)
         {
             var app = Globals.ThisAddIn.Application;
-            var start = app.Selection.Start;
-            using (var saver = new AutoCorrectSaver())
+            switch (next)
             {
-                foreach (var command in commands)
-                {
-                    switch (command)
-                    {
-                        case ChangeScriptCommand ssc:
-                            if (ssc.Length == 0)
-                                break;
-
-                            app.Selection.SetRange(start + ssc.Start, start + ssc.Start + 1);
-                            ScriptMode next;
-                            if (app.Selection.Font.Subscript == (int)Office.MsoTriState.msoTrue)
-                                next = ScriptMode.Superscript;
-                            else if (app.Selection.Font.Superscript == (int)Office.MsoTriState.msoTrue)
-                                next = ScriptMode.Normal;
-                            else
-                                next = ScriptMode.Subscript;
-
-                            app.Selection.SetRange(start + ssc.Start, start + ssc.Start + ssc.Length);
-                            switch (next)
-                            {
-                                case ScriptMode.Superscript:
-                                    app.Selection.Font.Superscript = (int)Office.MsoTriState.msoTrue;
-                                    break;
-                                case ScriptMode.Normal:
-                                    app.Selection.Font.Subscript = (int)Office.MsoTriState.msoFalse;
-                                    app.Selection.Font.Superscript = (int)Office.MsoTriState.msoFalse;
-                                    break;
-                                case ScriptMode.Subscript:
-                                default:
-                                    app.Selection.Font.Subscript = (int)Office.MsoTriState.msoTrue;
-                                    break;
-                            }
-                            break;
-                    }
-                }
+                case ScriptMode.Superscript:
+                    app.Selection.Font.Superscript = (int)Office.MsoTriState.msoTrue;
+                    break;
+                case ScriptMode.Normal:
+                    app.Selection.Font.Subscript = (int)Office.MsoTriState.msoFalse;
+                    app.Selection.Font.Superscript = (int)Office.MsoTriState.msoFalse;
+                    break;
+                case ScriptMode.Subscript:
+                default:
+                    app.Selection.Font.Subscript = (int)Office.MsoTriState.msoTrue;
+                    break;
             }
+        }
+
+        private static void SelectAndAction(int start, ApplyFormatCommand command, System.Action action)
+        {
+            Globals.ThisAddIn.Application.Selection.SetRange(start + command.Start, start + command.Start + command.Length);
+            action();
         }
 
         public static SelectionKeeper KeepSelection()

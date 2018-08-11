@@ -9,9 +9,9 @@ namespace ChemFormatter
 {
     public static class RDigitQuery
     {
-        static Regex ReRDigit = new Regex(@"[\)\}\]A-Za-z](?<subdigit>\d+(\-\d+)?)", RegexOptions.Compiled);
+        static Regex ReRDigit = new Regex(@"[A-Za-z](?<subdigit>\d+(\-\d+)?)", RegexOptions.Compiled);
 
-        public static List<PCommand> MakeRDigitCommand(string text)
+        public static List<PCommand> MakeCommand(string text)
         {
             var commands = new List<PCommand>();
 
@@ -19,10 +19,9 @@ namespace ChemFormatter
             foreach (Match match in matches)
             {
                 var g = match.Groups["subdigit"];
-                commands.Add(new SubscriptCommand(g.Index, g.Length));
+                commands.Add(new ChangeScriptCommand(g.Index, g.Length));
             }
-            if (commands.Count == 0)
-                return null;
+
             return commands;
         }
     }

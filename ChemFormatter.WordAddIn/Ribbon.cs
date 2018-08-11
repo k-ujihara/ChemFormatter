@@ -33,7 +33,8 @@ namespace ChemFormatter.WordAddIn
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ribbon));
             this.tabAddIns = this.Factory.CreateRibbonTab();
             this.groupChemFormatter = this.Factory.CreateRibbonGroup();
-            this.buttonRDigitChanger = this.Factory.CreateRibbonButton();
+			this.buttonRDigitChanger = this.Factory.CreateRibbonButton();
+            this.buttonChemFormula = this.Factory.CreateRibbonButton();
             this.tabAddIns.SuspendLayout();
             this.groupChemFormatter.SuspendLayout();
             this.SuspendLayout();
@@ -48,6 +49,7 @@ namespace ChemFormatter.WordAddIn
             // groupChemFormatter
             // 
             this.groupChemFormatter.Items.Add(this.buttonRDigitChanger);
+            this.groupChemFormatter.Items.Add(this.buttonChemFormula);
             this.groupChemFormatter.Label = "ChemFormatter";
             this.groupChemFormatter.Name = "groupChemFormatter";
 
@@ -55,11 +57,20 @@ namespace ChemFormatter.WordAddIn
             // buttonRDigitChanger
             // 
             this.buttonRDigitChanger.Image = CommonResourceManager.GetImage(RDigitChangerImage);
-			this.buttonRDigitChanger.Label = "Sub-digits Changer";
+            this.buttonRDigitChanger.Label = "Sub-digits Changer";
             this.buttonRDigitChanger.Name = "buttonRDigitChanger";
             this.buttonRDigitChanger.Click += new RibbonControlEventHandler((sender, e) => Applyer.ButtonRDigitChanger_Click(sender, e));
             this.buttonRDigitChanger.ShowLabel = true;
             this.buttonRDigitChanger.ShowImage = true;
+            // 
+            // buttonChemFormula
+            // 
+            this.buttonChemFormula.Image = CommonResourceManager.GetImage(ChemFormulaImage);
+            this.buttonChemFormula.Label = "Chem Formula";
+            this.buttonChemFormula.Name = "buttonChemFormula";
+            this.buttonChemFormula.Click += new RibbonControlEventHandler((sender, e) => Applyer.ButtonChemFormular_Click(sender, e));
+            this.buttonChemFormula.ShowLabel = true;
+            this.buttonChemFormula.ShowImage = true;
             // 
             // Ribbon
             // 
@@ -77,6 +88,7 @@ namespace ChemFormatter.WordAddIn
         internal RibbonTab tabAddIns;
         internal RibbonGroup groupChemFormatter;
         internal RibbonButton buttonRDigitChanger;
+        internal RibbonButton buttonChemFormula;
     }
 
     partial class ThisRibbonCollection

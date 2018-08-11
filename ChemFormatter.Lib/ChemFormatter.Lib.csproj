@@ -73,12 +73,16 @@
     <Compile Include="CommonResourceManager.cs" />
     <Compile Include="PCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ChemFormulaQuery.cs" />
     <Compile Include="RDigitQuery.cs" />
     <Compile Include="ScriptMode.cs" />
     <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\RDigitChanger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ChemFormula.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

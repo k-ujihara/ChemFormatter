@@ -7,11 +7,14 @@ using System.Threading.Tasks;
 
 namespace ChemFormatter
 {
-    public enum POperator
+    public class ReplaceStringCommand : ApplyFormatCommand
     {
-        None = 0,
-        Subscript,
-        Superscript,
+        public string Replacement { get; set; }
+
+        public ReplaceStringCommand(int start, int length, string replacement) : base(start, length)
+        {
+            this.Replacement = replacement;
+        }
     }
 
     public class ChangeScriptCommand : ApplyFormatCommand

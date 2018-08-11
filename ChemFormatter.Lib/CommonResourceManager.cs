@@ -9,6 +9,7 @@ namespace ChemFormatter
     public static class CommonResourceManager
     {
         public const string RDigitChangerImage = "RDigitChanger.png";
+        public const string ChemFormulaImage = "ChemFormula.png";
 
         public static System.Drawing.Image GetImage(string name)
         {

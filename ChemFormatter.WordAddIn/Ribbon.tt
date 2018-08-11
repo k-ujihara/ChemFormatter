@@ -8,6 +8,7 @@
 <# 
 string ribbonType = "Microsoft.Word.Document";
 var RDigitChangerEnabled = true;
+var ChemFormulaEnabled = true;
 #>
 
 <#@ include file="..\Ribbon.ttinclude" #>
