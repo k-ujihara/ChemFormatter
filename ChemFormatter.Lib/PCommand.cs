@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ChemFormatter
+﻿namespace ChemFormatter
 {
     public class ReplaceStringCommand : ApplyFormatCommand
     {
@@ -15,6 +8,11 @@ namespace ChemFormatter
         {
             this.Replacement = replacement;
         }
+    }
+
+    public class ItalicCommand : ApplyFormatCommand
+    {
+        public ItalicCommand(int start, int length) : base(start, length) { }
     }
 
     public class ChangeScriptCommand : ApplyFormatCommand

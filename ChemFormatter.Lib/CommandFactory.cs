@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace ChemFormatter
 {
@@ -13,6 +9,17 @@ namespace ChemFormatter
         static Regex ReSubscript { get; } = new Regex(@"[\)\}\]A-Za-z](?<subdigit>\d+(\-\d+)?)", RegexOptions.Compiled);
         static Regex ReIon { get; } = new Regex(@"[\)\}\]A-Za-z0-9](?<superscript>[2-7]?[\+\-])", RegexOptions.Compiled);
         static Regex ReTripleBond { get; } = new Regex(@"\#", RegexOptions.Compiled);
+        const string DefaultItalicPrefixes = "syn|anti|meso|racemi|cis|trans|rel|l|d|dl|i|endo|exo|sec|tert|n|s|t|o|m|p|vic|gem|cisoid|transoid|r|t|c|ent|gache|erythro|threo";
+        static Regex ReItalicPrefix = new Regex(@"(?<prefix>" + DefaultItalicPrefixes + @")\-", RegexOptions.Compiled);
+
+        public static void AddChemNameCommands(List<PCommand> commands, string text)
+        {
+            foreach (Match match in ReItalicPrefix.Matches(text))
+            {
+                var g = match.Groups["prefix"];
+                commands.Add(new ItalicCommand(g.Index, g.Length));
+            }
+        }
 
         public static void AddRDigitCommands(List<PCommand> commands, string text)
         {

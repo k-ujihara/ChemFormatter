@@ -37,6 +37,14 @@ namespace ChemFormatter.WordAddIn
             Apply(commands);
         }
 
+        public static void ButtonChemName_Click(object sender, RibbonControlEventArgs e)
+        {
+            var text = Globals.ThisAddIn.Application.Selection.Text;
+            text = Utility.Normalize(text);
+            var commands = ChemNameQuery.MakeCommand(text);
+            Apply(commands);
+        }
+
         public static void Apply(List<PCommand> commands)
         {
             var save = KeepSelection();
@@ -53,16 +61,19 @@ namespace ChemFormatter.WordAddIn
                             case ReplaceStringCommand rsc:
                                 SelectAndAction(start, rsc, () => 
                                 {
-                                    var diff = rsc.Replacement.Length - rsc.Length;
-                                    save.End += diff;
+                                    // adjust saved selection range 
+                                    save.End += (rsc.Replacement.Length - rsc.Length);
                                     app.Selection.TypeText(rsc.Replacement);
                                 });
                                 break;
+                            case ItalicCommand ic:
+                                SelectAndAction(start, ic, () => app.Selection.Font.Italic = (int)Office.MsoTriState.msoTrue);
+                                break;
                             case SubscriptCommand sbsc:
-                                SelectAndAction(start, sbsc, () => ApplyScript(ScriptMode.Subscript));
+                                SelectAndAction(start, sbsc, () => app.Selection.Font.Subscript = (int)Office.MsoTriState.msoTrue);
                                 break;
                             case SuperscriptCommand spsc:
-                                SelectAndAction(start, spsc, () => ApplyScript(ScriptMode.Superscript));
+                                SelectAndAction(start, spsc, () => app.Selection.Font.Superscript = (int)Office.MsoTriState.msoTrue);
                                 break;
                             case ChangeScriptCommand ssc:
                                 SelectAndAction(start, ssc, () =>
@@ -75,7 +86,20 @@ namespace ChemFormatter.WordAddIn
                                     else
                                         next = ScriptMode.Subscript;
 
-                                    ApplyScript(next);
+                                    switch (next)
+                                    {
+                                        case ScriptMode.Superscript:
+                                            app.Selection.Font.Superscript = (int)Office.MsoTriState.msoTrue;
+                                            break;
+                                        case ScriptMode.Normal:
+                                            app.Selection.Font.Subscript = (int)Office.MsoTriState.msoFalse;
+                                            app.Selection.Font.Superscript = (int)Office.MsoTriState.msoFalse;
+                                            break;
+                                        case ScriptMode.Subscript:
+                                        default:
+                                            app.Selection.Font.Subscript = (int)Office.MsoTriState.msoTrue;
+                                            break;
+                                    }
                                 });
                                 break;
                         }
@@ -85,25 +109,6 @@ namespace ChemFormatter.WordAddIn
             finally
             {
                 RestoreSelection(save);
-            }
-        }
-
-        private static void ApplyScript(ScriptMode next)
-        {
-            var app = Globals.ThisAddIn.Application;
-            switch (next)
-            {
-                case ScriptMode.Superscript:
-                    app.Selection.Font.Superscript = (int)Office.MsoTriState.msoTrue;
-                    break;
-                case ScriptMode.Normal:
-                    app.Selection.Font.Subscript = (int)Office.MsoTriState.msoFalse;
-                    app.Selection.Font.Superscript = (int)Office.MsoTriState.msoFalse;
-                    break;
-                case ScriptMode.Subscript:
-                default:
-                    app.Selection.Font.Subscript = (int)Office.MsoTriState.msoTrue;
-                    break;
             }
         }
 

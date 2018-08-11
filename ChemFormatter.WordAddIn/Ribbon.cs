@@ -33,6 +33,7 @@ namespace ChemFormatter.WordAddIn
 			this.buttonRDigitChanger = this.Factory.CreateRibbonButton();
 			this.buttonChemFormula = this.Factory.CreateRibbonButton();
 			this.buttonIonFormula = this.Factory.CreateRibbonButton();
+			this.buttonChemName = this.Factory.CreateRibbonButton();
             this.tabAddIns.SuspendLayout();
             this.groupChemFormatter.SuspendLayout();
             this.SuspendLayout();
@@ -49,6 +50,7 @@ namespace ChemFormatter.WordAddIn
             this.groupChemFormatter.Items.Add(this.buttonRDigitChanger);
             this.groupChemFormatter.Items.Add(this.buttonChemFormula);
             this.groupChemFormatter.Items.Add(this.buttonIonFormula);
+            this.groupChemFormatter.Items.Add(this.buttonChemName);
             this.groupChemFormatter.Label = "ChemFormatter";
             this.groupChemFormatter.Name = "groupChemFormatter";
 
@@ -80,6 +82,15 @@ namespace ChemFormatter.WordAddIn
             this.buttonIonFormula.ShowLabel = true;
             this.buttonIonFormula.ShowImage = true;
             // 
+            // buttonChemName
+            // 
+            this.buttonChemName.Image = CommonResourceManager.GetImage(CommonResourceManager.ChemNameImage);
+            this.buttonChemName.Label = "Chem Name";
+            this.buttonChemName.Name = "buttonChemName";
+            this.buttonChemName.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler((sender, e) => Applyer.ButtonChemName_Click(sender, e));
+            this.buttonChemName.ShowLabel = true;
+            this.buttonChemName.ShowImage = true;
+            // 
             // Ribbon
             // 
             this.Name = "Ribbon";
@@ -98,6 +109,7 @@ namespace ChemFormatter.WordAddIn
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonRDigitChanger;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonChemFormula;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonIonFormula;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonChemName;
     }
 	
     partial class ThisRibbonCollection

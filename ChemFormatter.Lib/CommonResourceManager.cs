@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChemFormatter
 {
@@ -11,13 +7,17 @@ namespace ChemFormatter
         public const string RDigitChangerImage = "RDigitChanger.png";
         public const string ChemFormulaImage = "ChemFormula.png";
         public const string IonFormulaImage = "IonFormula.png";
+        public const string ChemNameImage = "ChemName.png";
 
         public static System.Drawing.Image GetImage(string name)
         {
             using (var stream = typeof(CommonResourceManager).Assembly.GetManifestResourceStream($"{nameof(ChemFormatter)}.Resources.{name}"))
             {
                 if (stream == null)
-                    throw new Exception($"Missing resource: {name}");
+                {
+                    System.Diagnostics.Trace.TraceError($"Missing resource: {name}");
+                    return null;
+                }
                 return System.Drawing.Image.FromStream(stream);
             }
         }

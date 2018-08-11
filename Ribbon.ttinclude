@@ -1,34 +1,37 @@
-<#+ 	
-	class RibbonButtonInfo
-	{
-		public RibbonButtonInfo(string name, string handler, string label, string image)
-		{
-			this.Name = name;
-			this.Handler = handler;
-			this.Label = label;
-			this.Image = image;
-		}
+<#+     
+    class RibbonButtonInfo
+    {
+        public RibbonButtonInfo(string name, string handler, string label, string image)
+        {
+            this.Name = name;
+            this.Handler = handler;
+            this.Label = label;
+            this.Image = image;
+        }
 
-		public string Name { get; set; }
-		public string Handler { get; set; }
-		public string Label { get; set; }
-		public string Image { get; set; }
-	}
+        public string Name { get; set; }
+        public string Handler { get; set; }
+        public string Label { get; set; }
+        public string Image { get; set; }
+    }
 
-	string ribbonType;
-	bool RDigitChangerEnabled = false;
-	bool ChemFormulaEnabled = false;
-	bool IonFormulaEnabled = false;
+    string ribbonType;
+    bool RDigitChangerEnabled = false;
+    bool ChemFormulaEnabled = false;
+    bool IonFormulaEnabled = false;
+    bool ChemNameEnabled = false;
 
-	public void WriteRibbonClass()
-	{
-		var ribbonButtons = new List<RibbonButtonInfo>();
-		if (RDigitChangerEnabled)
-			ribbonButtons.Add(new RibbonButtonInfo("buttonRDigitChanger", "Applyer.ButtonRDigitChanger_Click(sender, e)", "Sub-digits Changer", "CommonResourceManager.RDigitChangerImage"));
-		if (ChemFormulaEnabled)
-			ribbonButtons.Add(new RibbonButtonInfo("buttonChemFormula", "Applyer.ButtonChemFormular_Click(sender, e)", "Chem Formula", "CommonResourceManager.ChemFormulaImage"));
-		if (IonFormulaEnabled)
-			ribbonButtons.Add(new RibbonButtonInfo("buttonIonFormula", "Applyer.ButtonIonFormular_Click(sender, e)", "Ion Formula", "CommonResourceManager.IonFormulaImage"));
+    public void WriteRibbonClass()
+    {
+        var ribbonButtons = new List<RibbonButtonInfo>();
+        if (RDigitChangerEnabled)
+            ribbonButtons.Add(new RibbonButtonInfo("buttonRDigitChanger", "Applyer.ButtonRDigitChanger_Click(sender, e)", "Sub-digits Changer", "CommonResourceManager.RDigitChangerImage"));
+        if (ChemFormulaEnabled)
+            ribbonButtons.Add(new RibbonButtonInfo("buttonChemFormula", "Applyer.ButtonChemFormular_Click(sender, e)", "Chem Formula", "CommonResourceManager.ChemFormulaImage"));
+        if (IonFormulaEnabled)
+            ribbonButtons.Add(new RibbonButtonInfo("buttonIonFormula", "Applyer.ButtonIonFormular_Click(sender, e)", "Ion Formula", "CommonResourceManager.IonFormulaImage"));
+        if (ChemNameEnabled)
+            ribbonButtons.Add(new RibbonButtonInfo("buttonChemName", "Applyer.ButtonChemName_Click(sender, e)", "Chem Name", "CommonResourceManager.ChemNameImage"));
 #>
     public class Ribbon : Microsoft.Office.Tools.Ribbon.RibbonBase
     {
@@ -59,7 +62,7 @@
             this.tabAddIns = this.Factory.CreateRibbonTab();
             this.groupChemFormatter = this.Factory.CreateRibbonGroup();
 <#+ foreach (var e in ribbonButtons) { #>
-			this.<#= e.Name #> = this.Factory.CreateRibbonButton();
+            this.<#= e.Name #> = this.Factory.CreateRibbonButton();
 <#+ } #>
             this.tabAddIns.SuspendLayout();
             this.groupChemFormatter.SuspendLayout();
@@ -84,13 +87,18 @@
             // 
             // <#= e.Name #>
             // 
-            this.<#= e.Name #>.Image = CommonResourceManager.GetImage(<#= e.Image #>);
+            {
+                var im = CommonResourceManager.GetImage(<#= e.Image #>);
+                if (im != null)
+                    this.<#= e.Name #>.Image = im;
+            }
             this.<#= e.Name #>.Label = "<#= e.Label #>";
             this.<#= e.Name #>.Name = "<#= e.Name #>";
             this.<#= e.Name #>.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler((sender, e) => <#= e.Handler #>);
             this.<#= e.Name #>.ShowLabel = true;
             this.<#= e.Name #>.ShowImage = true;
 <#+ } #>
+
             // 
             // Ribbon
             // 
@@ -111,7 +119,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton <#= e.Name #>;
 <#+ } #>
     }
-	
+    
     partial class ThisRibbonCollection
     {
         internal Ribbon Ribbon
@@ -120,6 +128,6 @@
         }
     }
 <#+ 
-	}
+    }
 #>
 

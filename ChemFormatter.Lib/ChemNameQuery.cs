@@ -2,14 +2,13 @@
 
 namespace ChemFormatter
 {
-    public static class ChemFormulaQuery
-    {
+    public static class ChemNameQuery
+    {        
         public static List<PCommand> MakeCommand(string text)
         {
             var commands = new List<PCommand>();
 
-            CommandFactory.AddSubscriptCommands(commands, text);
-            CommandFactory.AddTripleBondCommands(commands, text);
+            CommandFactory.AddChemNameCommands(commands, text);
 
             return commands;
         }

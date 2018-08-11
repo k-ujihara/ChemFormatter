@@ -14,6 +14,7 @@ namespace ChemFormatter.WordAddIn
 	RDigitChangerEnabled = true;
 	ChemFormulaEnabled = true;
 	IonFormulaEnabled = true;
+	ChemNameEnabled = true;
 
 	WriteRibbonClass();
 #>
