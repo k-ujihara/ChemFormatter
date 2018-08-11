@@ -15,6 +15,7 @@ namespace ChemFormatter.WordAddIn
 	ChemFormulaEnabled = true;
 	IonFormulaEnabled = true;
 	ChemNameEnabled = true;
+	JournalReferenceEnabled = true;
 
 	WriteRibbonClass();
 #>

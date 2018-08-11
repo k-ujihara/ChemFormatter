@@ -15,6 +15,11 @@
         public ItalicCommand(int start, int length) : base(start, length) { }
     }
 
+    public class BoldCommand : ApplyFormatCommand
+    {
+        public BoldCommand(int start, int length) : base(start, length) { }
+    }
+
     public class SmallCapitalCommand : ApplyFormatCommand
     {
         public SmallCapitalCommand(int start, int length) : base(start, length) { }

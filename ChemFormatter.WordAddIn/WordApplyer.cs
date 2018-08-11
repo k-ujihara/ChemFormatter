@@ -46,6 +46,14 @@ namespace ChemFormatter.WordAddIn
             Apply(commands);
         }
 
+        public static void ButtonJournalReference_Click(object sender, RibbonControlEventArgs e)
+        {
+            var text = Globals.ThisAddIn.Application.Selection.Text;
+            text = Utility.Normalize(text);
+            var commands = JournalReferenceQuery.MakeCommand(text);
+            Apply(commands);
+        }
+        
         public static void Apply(List<PCommand> commands)
         {
             var save = KeepSelection();
@@ -64,6 +72,9 @@ namespace ChemFormatter.WordAddIn
                                 break;
                             case ItalicCommand ic:
                                 SelectAndAction(start, ic, () => app.Selection.Font.Italic = (int)Office.MsoTriState.msoTrue);
+                                break;
+                            case BoldCommand ic:
+                                SelectAndAction(start, ic, () => app.Selection.Font.Bold = (int)Office.MsoTriState.msoTrue);
                                 break;
                             case SmallCapitalCommand ic:
                                 SelectAndAction(start, ic, () =>

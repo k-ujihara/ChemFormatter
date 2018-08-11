@@ -27,6 +27,8 @@ namespace ChemFormatter
             int i = (int)c;
             switch (i)
             {
+                case 0x2013: // en-dash
+                    return '-';
                 case 0x2019: //Zenkaku "'"
                     return '\'';
                 case 0x3000: // ZenkakuSpace

@@ -20,6 +20,7 @@
     bool ChemFormulaEnabled = false;
     bool IonFormulaEnabled = false;
     bool ChemNameEnabled = false;
+    bool JournalReferenceEnabled = true;
 
     public void WriteRibbonClass()
     {
@@ -32,6 +33,8 @@
             ribbonButtons.Add(new RibbonButtonInfo("buttonIonFormula", "Applyer.ButtonIonFormular_Click(sender, e)", "Ion Formula", "CommonResourceManager.IonFormulaImage"));
         if (ChemNameEnabled)
             ribbonButtons.Add(new RibbonButtonInfo("buttonChemName", "Applyer.ButtonChemName_Click(sender, e)", "Chem Name", "CommonResourceManager.ChemNameImage"));
+        if (JournalReferenceEnabled)
+            ribbonButtons.Add(new RibbonButtonInfo("buttonJournalReference", "Applyer.ButtonJournalReference_Click(sender, e)", "Journal Ref", "CommonResourceManager.JournalReferenceImage"));
 #>
     public class Ribbon : Microsoft.Office.Tools.Ribbon.RibbonBase
     {

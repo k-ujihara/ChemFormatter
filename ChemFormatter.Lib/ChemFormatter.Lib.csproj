@@ -70,6 +70,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JournalReferenceQuery.cs" />
     <Compile Include="ChemNameQuery.cs" />
     <Compile Include="CommandFactory.cs" />
     <Compile Include="IonFormulaQuery.cs" />
@@ -95,6 +96,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\ChemName.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Journal.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
