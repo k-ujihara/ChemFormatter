@@ -18,9 +18,6 @@ namespace ChemFormatter.WordAddIn
             var text = Globals.ThisAddIn.Application.Selection.Text;
             text = Utility.Normalize(text);
             var commands = RDigitQuery.MakeCommand(text);
-            if (commands == null)
-                return;
-
             Apply(commands);
         }
 
@@ -29,6 +26,14 @@ namespace ChemFormatter.WordAddIn
             var text = Globals.ThisAddIn.Application.Selection.Text;
             text = Utility.Normalize(text);
             var commands = ChemFormulaQuery.MakeCommand(text);
+            Apply(commands);
+        }
+
+        public static void ButtonIonFormular_Click(object sender, RibbonControlEventArgs e)
+        {
+            var text = Globals.ThisAddIn.Application.Selection.Text;
+            text = Utility.Normalize(text);
+            var commands = IonFormulaQuery.MakeCommand(text);
             Apply(commands);
         }
 
@@ -55,6 +60,9 @@ namespace ChemFormatter.WordAddIn
                                 break;
                             case SubscriptCommand sbsc:
                                 SelectAndAction(start, sbsc, () => ApplyScript(ScriptMode.Subscript));
+                                break;
+                            case SuperscriptCommand spsc:
+                                SelectAndAction(start, spsc, () => ApplyScript(ScriptMode.Superscript));
                                 break;
                             case ChangeScriptCommand ssc:
                                 SelectAndAction(start, ssc, () =>

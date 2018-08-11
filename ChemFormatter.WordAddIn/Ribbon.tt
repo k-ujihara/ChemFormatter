@@ -5,10 +5,16 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
 
-<# 
-string ribbonType = "Microsoft.Word.Document";
-var RDigitChangerEnabled = true;
-var ChemFormulaEnabled = true;
-#>
-
 <#@ include file="..\Ribbon.ttinclude" #>
+
+namespace ChemFormatter.WordAddIn
+{
+<# 
+	ribbonType = "Microsoft.Word.Document";
+	RDigitChangerEnabled = true;
+	ChemFormulaEnabled = true;
+	IonFormulaEnabled = true;
+
+	WriteRibbonClass();
+#>
+}

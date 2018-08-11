@@ -1,11 +1,38 @@
-using Microsoft.Office.Tools.Ribbon;
-using static ChemFormatter.CommonResourceManager;
+<#+ 	
+	class RibbonButtonInfo
+	{
+		public RibbonButtonInfo(string name, string handler, string label, string image)
+		{
+			this.Name = name;
+			this.Handler = handler;
+			this.Label = label;
+			this.Image = image;
+		}
 
-namespace ChemFormatter.WordAddIn
-{
-    public class Ribbon : RibbonBase
+		public string Name { get; set; }
+		public string Handler { get; set; }
+		public string Label { get; set; }
+		public string Image { get; set; }
+	}
+
+	string ribbonType;
+	bool RDigitChangerEnabled = false;
+	bool ChemFormulaEnabled = false;
+	bool IonFormulaEnabled = false;
+
+	public void WriteRibbonClass()
+	{
+		var ribbonButtons = new List<RibbonButtonInfo>();
+		if (RDigitChangerEnabled)
+			ribbonButtons.Add(new RibbonButtonInfo("buttonRDigitChanger", "Applyer.ButtonRDigitChanger_Click(sender, e)", "Sub-digits Changer", "CommonResourceManager.RDigitChangerImage"));
+		if (ChemFormulaEnabled)
+			ribbonButtons.Add(new RibbonButtonInfo("buttonChemFormula", "Applyer.ButtonChemFormular_Click(sender, e)", "Chem Formula", "CommonResourceManager.ChemFormulaImage"));
+		if (IonFormulaEnabled)
+			ribbonButtons.Add(new RibbonButtonInfo("buttonIonFormula", "Applyer.ButtonIonFormular_Click(sender, e)", "Ion Formula", "CommonResourceManager.IonFormulaImage"));
+#>
+    public class Ribbon : Microsoft.Office.Tools.Ribbon.RibbonBase
     {
-        private void Ribbon_Load(object sender, RibbonUIEventArgs e)
+        private void Ribbon_Load(object sender, Microsoft.Office.Tools.Ribbon.RibbonUIEventArgs e)
         {
         }
 
@@ -31,61 +58,46 @@ namespace ChemFormatter.WordAddIn
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ribbon));
             this.tabAddIns = this.Factory.CreateRibbonTab();
             this.groupChemFormatter = this.Factory.CreateRibbonGroup();
-<# if (RDigitChangerEnabled) { #>
-			this.buttonRDigitChanger = this.Factory.CreateRibbonButton();
-<# } #>
-<# if (ChemFormulaEnabled) { #>
-            this.buttonChemFormula = this.Factory.CreateRibbonButton();
-<# } #>
+<#+ foreach (var e in ribbonButtons) { #>
+			this.<#= e.Name #> = this.Factory.CreateRibbonButton();
+<#+ } #>
             this.tabAddIns.SuspendLayout();
             this.groupChemFormatter.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabAddIns
             // 
-            this.tabAddIns.ControlId.ControlIdType = RibbonControlIdType.Office;
+            this.tabAddIns.ControlId.ControlIdType = Microsoft.Office.Tools.Ribbon.RibbonControlIdType.Office;
             this.tabAddIns.Groups.Add(this.groupChemFormatter);
             this.tabAddIns.Label = "TabAddIns";
             this.tabAddIns.Name = "tabAddIns";
             // 
             // groupChemFormatter
             // 
-            this.groupChemFormatter.Items.Add(this.buttonRDigitChanger);
-<# if (ChemFormulaEnabled) { #>
-            this.groupChemFormatter.Items.Add(this.buttonChemFormula);
-<# } #>
+<#+ foreach (var e in ribbonButtons) { #>
+            this.groupChemFormatter.Items.Add(this.<#= e.Name #>);
+<#+ } #>
             this.groupChemFormatter.Label = "ChemFormatter";
             this.groupChemFormatter.Name = "groupChemFormatter";
 
-<# if (RDigitChangerEnabled) { #>
+<#+ foreach (var e in ribbonButtons) { #>
             // 
-            // buttonRDigitChanger
+            // <#= e.Name #>
             // 
-            this.buttonRDigitChanger.Image = CommonResourceManager.GetImage(RDigitChangerImage);
-            this.buttonRDigitChanger.Label = "Sub-digits Changer";
-            this.buttonRDigitChanger.Name = "buttonRDigitChanger";
-            this.buttonRDigitChanger.Click += new RibbonControlEventHandler((sender, e) => Applyer.ButtonRDigitChanger_Click(sender, e));
-            this.buttonRDigitChanger.ShowLabel = true;
-            this.buttonRDigitChanger.ShowImage = true;
-<# } #>
-<# if (ChemFormulaEnabled) { #>
-            // 
-            // buttonChemFormula
-            // 
-            this.buttonChemFormula.Image = CommonResourceManager.GetImage(ChemFormulaImage);
-            this.buttonChemFormula.Label = "Chem Formula";
-            this.buttonChemFormula.Name = "buttonChemFormula";
-            this.buttonChemFormula.Click += new RibbonControlEventHandler((sender, e) => Applyer.ButtonChemFormular_Click(sender, e));
-            this.buttonChemFormula.ShowLabel = true;
-            this.buttonChemFormula.ShowImage = true;
-<# } #>
+            this.<#= e.Name #>.Image = CommonResourceManager.GetImage(<#= e.Image #>);
+            this.<#= e.Name #>.Label = "<#= e.Label #>";
+            this.<#= e.Name #>.Name = "<#= e.Name #>";
+            this.<#= e.Name #>.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler((sender, e) => <#= e.Handler #>);
+            this.<#= e.Name #>.ShowLabel = true;
+            this.<#= e.Name #>.ShowImage = true;
+<#+ } #>
             // 
             // Ribbon
             // 
             this.Name = "Ribbon";
             this.RibbonType = "<#= ribbonType #>";
             this.Tabs.Add(this.tabAddIns);
-            this.Load += new RibbonUIEventHandler(this.Ribbon_Load);
+            this.Load += new Microsoft.Office.Tools.Ribbon.RibbonUIEventHandler(this.Ribbon_Load);
             this.tabAddIns.ResumeLayout(false);
             this.tabAddIns.PerformLayout();
             this.groupChemFormatter.ResumeLayout(false);
@@ -93,16 +105,13 @@ namespace ChemFormatter.WordAddIn
             this.ResumeLayout(false);
         }
 
-        internal RibbonTab tabAddIns;
-        internal RibbonGroup groupChemFormatter;
-<# if (RDigitChangerEnabled) { #>
-        internal RibbonButton buttonRDigitChanger;
-<# } #>
-<# if (ChemFormulaEnabled) { #>
-        internal RibbonButton buttonChemFormula;
-<# } #>
+        internal Microsoft.Office.Tools.Ribbon.RibbonTab tabAddIns;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup groupChemFormatter;
+<#+ foreach (var e in ribbonButtons) { #>
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton <#= e.Name #>;
+<#+ } #>
     }
-
+	
     partial class ThisRibbonCollection
     {
         internal Ribbon Ribbon
@@ -110,4 +119,7 @@ namespace ChemFormatter.WordAddIn
             get { return this.GetRibbon<Ribbon>(); }
         }
     }
-}
+<#+ 
+	}
+#>
+

@@ -188,10 +188,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Ribbon.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>Ribbon.tt</DependentUpon>
       <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="WordApplyer.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

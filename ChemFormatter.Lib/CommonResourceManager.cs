@@ -10,6 +10,7 @@ namespace ChemFormatter
     {
         public const string RDigitChangerImage = "RDigitChanger.png";
         public const string ChemFormulaImage = "ChemFormula.png";
+        public const string IonFormulaImage = "IonFormula.png";
 
         public static System.Drawing.Image GetImage(string name)
         {

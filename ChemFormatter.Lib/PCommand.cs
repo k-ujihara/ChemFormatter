@@ -27,6 +27,11 @@ namespace ChemFormatter
         public SubscriptCommand(int start, int length) : base(start, length) { }
     }
 
+    public class SuperscriptCommand : ApplyFormatCommand
+    {
+        public SuperscriptCommand(int start, int length) : base(start, length) { }
+    }
+
     public class ApplyFormatCommand : PCommand
     {
         public int Start { get; set; }
