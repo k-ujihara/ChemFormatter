@@ -8,7 +8,7 @@ namespace ChemFormatter
         {
             var commands = new List<PCommand>();
 
-            CommandFactory.AddChemNameCommands(commands, text);
+            CommandFactory.AddChemPrefixCommands(commands, text);
 
             return commands;
         }

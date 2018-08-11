@@ -8,6 +8,7 @@ using Office = Microsoft.Office.Core;
 using Microsoft.Office.Tools.Word;
 using Microsoft.Office.Tools.Ribbon;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace ChemFormatter.WordAddIn
 {
@@ -59,15 +60,17 @@ namespace ChemFormatter.WordAddIn
                         switch (command)
                         {
                             case ReplaceStringCommand rsc:
-                                SelectAndAction(start, rsc, () => 
-                                {
-                                    // adjust saved selection range 
-                                    save.End += (rsc.Replacement.Length - rsc.Length);
-                                    app.Selection.TypeText(rsc.Replacement);
-                                });
+                                SelectAndAction(start, rsc, () => ReplaceText(save, rsc.Replacement));
                                 break;
                             case ItalicCommand ic:
                                 SelectAndAction(start, ic, () => app.Selection.Font.Italic = (int)Office.MsoTriState.msoTrue);
+                                break;
+                            case SmallCapitalCommand ic:
+                                SelectAndAction(start, ic, () =>
+                                {
+                                    app.Selection.Font.SmallCaps = (int)Office.MsoTriState.msoTrue;
+                                    ReplaceText(save, app.Selection.Text.ToLower(CultureInfo.InvariantCulture));
+                                });
                                 break;
                             case SubscriptCommand sbsc:
                                 SelectAndAction(start, sbsc, () => app.Selection.Font.Subscript = (int)Office.MsoTriState.msoTrue);
@@ -110,6 +113,15 @@ namespace ChemFormatter.WordAddIn
             {
                 RestoreSelection(save);
             }
+        }
+
+        private static SelectionKeeper ReplaceText(SelectionKeeper save, string replacement)
+        {
+            var orginalLength = Globals.ThisAddIn.Application.Selection.Text.Length;
+            // adjust saved selection range 
+            save.End += (replacement.Length - orginalLength);
+            Globals.ThisAddIn.Application.Selection.TypeText(replacement);
+            return save;
         }
 
         private static void SelectAndAction(int start, ApplyFormatCommand command, System.Action action)
