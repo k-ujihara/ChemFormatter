@@ -20,20 +20,24 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace ChemFormatter
 {
     public static class NMRSpectrumQuery
     {
-        const string RepShift = @"(?<shift>[\-\+]?\d+(\.\d*)?)";
+        const string RepShift = @"(?<shift>[\-\+]?\d+(\.\d*)?(\-[\-\+]?\d+(\.\d*)?)?)";
         const string Rep3H = @"(?<counts>\d+(\.\d+)?[A-Z][a-z]?)";
         const string RepPattern = @"(?<pattern>(br )?[a-z]+)";
         const string RepJvalues = @"(?<JValue>\d+(\.\d+)?\s*(Hz)?)(\s*\,\s*(?<JValue>\d+(\.\d+)?\s*(Hz)?))*";
-        const string RepComment = @"(?<comment>.+)";
-        public static Regex ReTabSpec = new Regex($"^{RepShift}\\t{Rep3H}(\\t{RepPattern}(\\t{RepJvalues})?)?(\\t{RepComment})?$", RegexOptions.Compiled);
+        const string RepComment = @"(?<comment>[^\t]+)";
+
+        // ACS style
+        public static Regex ReTabSpecSIPJ = new Regex($"^{RepShift}(\\t({Rep3H})?)?(\\t({RepPattern})?)?(\\t({RepJvalues})?)?(\\t{RepComment})?$", RegexOptions.Compiled);
+        // Science style
+        public static Regex ReTabSpecSPJI = new Regex($"^{RepShift}(\\t({RepPattern})?)?(\\t({RepJvalues})?)?(\\t({Rep3H})?)?(\\t{RepComment})?$", RegexOptions.Compiled);
 
         public class Range
         {
@@ -49,58 +53,83 @@ namespace ChemFormatter
 
         public class PeakInfo
         {
-            public string Shift { get; set; }
+            public string ChemicalShift { get; set; }
             public string Integration { get; set; }
             public string Pattern { get; set; }
             public IList<string> JValues { get; set; }
             public Range CommentRange { get; set; }
+
+            public void ShiftRange(int shift)
+            {
+                if (CommentRange != null)
+                    CommentRange.Start += shift;
+            }
+
+            public override string ToString()
+            {
+                var sb = new StringBuilder();
+                sb.Append(ChemicalShift).Append(" (").Append(Integration);
+                if (Pattern != null)
+                    sb.Append(", ").Append(Pattern);
+                if (JValues != null)
+                    sb.Append(", J = ").Append(string.Join(", ", JValues)).Append("Hz");
+                if (CommentRange != null)
+                    sb.Append(", ").Append($"from {CommentRange.Start} to {CommentRange.Start + CommentRange.Length}");
+                sb.Append(")");
+                return sb.ToString();
+            }
         }
 
-        public static List<PCommand> MakeCommand(string text)
+        public static IList<PCommand> MakeCommand(string text)
         {
             var commands = new List<PCommand>();
 
-            // add sentinel
-            text = text + "\xffff";
-            int lineStart = 0;
-            while (true)
+            commands.Add(new MoveToCommand(text.Length));
+
+            foreach (var lineInfo in new LineReader(text))
             {
-                string line = null;
-                int i = lineStart;
-                while (true)
-                {
-                    var c = text[i++];
-                    switch (c)
-                    {
-                        case '\r':
-                        case '\n':
-                            line = text.Substring(lineStart, i - lineStart);
-                            if (c == '\r' && text[i] == '\n')
-                                i++;
-                            goto L_LineFound;
-                        case '\xffff':
-                            goto L_EndOfSelection;
-                    }
-                    i++;
-                }
-                L_LineFound:
-                var match = ReTabSpec.Match(line);
+                Match match;
+                match = MatchTabSepNMRSpec(lineInfo.Text);
                 if (!match.Success)
                     return new List<PCommand>(0);
                 PeakInfo info = ExtractPeakInfo(match);
-            }
-            L_EndOfSelection:
+                info.ShiftRange(lineInfo.Index);
 
+                commands.Add(new TypeTextCommand(info.ChemicalShift));
+
+            }
 
             return commands;
+        }
+
+        public static Match MatchTabSepNMRSpec(string text)
+        {
+            Match match;
+            if (true)
+                match = ReTabSpecSIPJ.Match(text);
+            if (!match.Success || !match.Groups["counts"].Success)
+                match = ReTabSpecSPJI.Match(text);
+            if (!match.Success || !match.Groups["counts"].Success)
+                match = ReTabSpecSIPJ.Match(text);
+            if (!match.Success)
+                match = ReTabSpecSPJI.Match(text);
+            return match;
         }
 
         public static PeakInfo ExtractPeakInfo(Match match)
         {
             PeakInfo info = new PeakInfo();
-            info.Shift = match.Groups["shift"].Value;
-            info.Integration = match.Groups["counts"].Value;
-            info.Pattern = match.Groups["pattern"].Value;
+            info.ChemicalShift = match.Groups["shift"].Value;
+            {
+                var g = match.Groups["counts"];
+                if (g.Success)
+                    info.Integration = g.Value;
+            }
+            {
+                var g = match.Groups["pattern"];
+                if (g.Success)
+                    info.Pattern = g.Value;
+            }
             {
                 var jinfo = new List<string>();
                 foreach (Capture c in match.Groups["JValue"].Captures)

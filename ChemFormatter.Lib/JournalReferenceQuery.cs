@@ -38,7 +38,7 @@ namespace ChemFormatter
         static Regex ReNatureStyle { get; } = new Regex(
             $"\\b{RepName} {RepVolumeNo}\\, {RepPages} \\({RepYear}\\)", RegexOptions.Compiled);
 
-        public static List<PCommand> MakeCommand(string text)
+        public static IList<PCommand> MakeCommand(string text)
         {
             var commands = new List<PCommand>();
 

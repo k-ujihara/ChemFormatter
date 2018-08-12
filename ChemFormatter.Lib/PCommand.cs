@@ -22,7 +22,22 @@
 
 namespace ChemFormatter
 {
-    public class ReplaceStringCommand : ApplyFormatCommand
+    public class MoveToCommand : PositionCommand
+    {
+        public MoveToCommand(int position) : base(position) { }
+    }
+
+    public class TypeTextCommand : PCommand
+    {
+        public string Text { get; set; }
+
+        public TypeTextCommand(string text)
+        {
+            this.Text = text;
+        }
+    }
+
+    public class ReplaceStringCommand : RangeCommand
     {
         public string Replacement { get; set; }
 
@@ -32,45 +47,55 @@ namespace ChemFormatter
         }
     }
 
-    public class ItalicCommand : ApplyFormatCommand
+    public class ItalicCommand : RangeCommand
     {
         public ItalicCommand(int start, int length) : base(start, length) { }
     }
 
-    public class BoldCommand : ApplyFormatCommand
+    public class BoldCommand : RangeCommand
     {
         public BoldCommand(int start, int length) : base(start, length) { }
     }
 
-    public class SmallCapitalCommand : ApplyFormatCommand
+    public class SmallCapitalCommand : RangeCommand
     {
         public SmallCapitalCommand(int start, int length) : base(start, length) { }
     }    
 
-    public class ChangeScriptCommand : ApplyFormatCommand
+    public class ChangeScriptCommand : RangeCommand
     {
         public ChangeScriptCommand(int start, int length) : base(start, length) { }
     }
 
-    public class SubscriptCommand : ApplyFormatCommand
+    public class SubscriptCommand : RangeCommand
     {
         public SubscriptCommand(int start, int length) : base(start, length) { }
     }
 
-    public class SuperscriptCommand : ApplyFormatCommand
+    public class SuperscriptCommand : RangeCommand
     {
         public SuperscriptCommand(int start, int length) : base(start, length) { }
     }
 
-    public class ApplyFormatCommand : PCommand
+    public class RangeCommand : PCommand
     {
         public int Start { get; set; }
         public int Length { get; set; }
 
-        public ApplyFormatCommand(int start, int length)
+        public RangeCommand(int start, int length)
         {
             this.Start = start;
             this.Length = length;
+        }
+    }
+
+    public class PositionCommand : PCommand
+    {
+        public int Position { get; set; }
+
+        public PositionCommand(int position)
+        {
+            this.Position = position;
         }
     }
 

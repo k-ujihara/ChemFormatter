@@ -69,7 +69,7 @@ namespace ChemFormatter.WordAddIn
             Apply(commands);
         }
         
-        public static void Apply(List<PCommand> commands)
+        public static void Apply(IList<PCommand> commands)
         {
             var save = KeepSelection();
             try
@@ -150,7 +150,7 @@ namespace ChemFormatter.WordAddIn
             return save;
         }
 
-        private static void SelectAndAction(int start, ApplyFormatCommand command, System.Action action)
+        private static void SelectAndAction(int start, RangeCommand command, System.Action action)
         {
             Globals.ThisAddIn.Application.Selection.SetRange(start + command.Start, start + command.Start + command.Length);
             action();

@@ -26,7 +26,7 @@ namespace ChemFormatter
 {
     public static class IonFormulaQuery
     {        
-        public static List<PCommand> MakeCommand(string text)
+        public static IList<PCommand> MakeCommand(string text)
         {
             var commands = new List<PCommand>();
 
