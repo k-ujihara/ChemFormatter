@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace ChemFormatter.Tests
 {
@@ -8,7 +9,7 @@ namespace ChemFormatter.Tests
         [TestMethod()]
         public void MakeCommandTest()
         {
-            Assert.AreEqual(0, ChemNameQuery.MakeCommand("(II)").Count);
+            Assert.AreEqual(0, ChemNameQuery.MakeCommand("(II)").Count());
         }
     }
 }

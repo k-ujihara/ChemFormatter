@@ -80,7 +80,7 @@ namespace ChemFormatter
             }
         }
 
-        public static IList<PCommand> MakeCommand(string text)
+        public static IEnumerable<PCommand> MakeCommand(string text)
         {
             var commands = new List<PCommand>();
 
@@ -96,7 +96,6 @@ namespace ChemFormatter
                 info.ShiftRange(lineInfo.Index);
 
                 commands.Add(new TypeTextCommand(info.ChemicalShift));
-
             }
 
             return commands;

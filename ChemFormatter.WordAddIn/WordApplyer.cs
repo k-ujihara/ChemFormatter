@@ -69,7 +69,7 @@ namespace ChemFormatter.WordAddIn
             Apply(commands);
         }
         
-        public static void Apply(IList<PCommand> commands)
+        public static void Apply(IEnumerable<PCommand> commands)
         {
             var save = KeepSelection();
             try
