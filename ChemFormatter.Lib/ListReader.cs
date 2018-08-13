@@ -26,13 +26,13 @@ using System.Collections.Generic;
 
 namespace ChemFormatter
 {
-    public class LineReader : IEnumerable<IndexAndString>
+    public class ListReader : IEnumerable<IndexAndString>
     {
         string text;
         int currPosition;
         public bool ThrowExceptionOnNoEol { get; set; } = false;
 
-        public LineReader(string text)
+        public ListReader(string text)
         {
             // add sentinel
             this.text = text + '\uffff';
@@ -43,30 +43,38 @@ namespace ChemFormatter
         {
             while (true)
             {
+                while (text[currPosition] == ' ')
+                    currPosition++;
                 if (text[currPosition] == '\uFFFF')
                     yield break;
 
+                int depth = 0;
                 int i = currPosition;
                 while (true)
                 {
                     var c = text[i++];
                     switch (c)
                     {
-                        case '\r':
-                        case '\n':
+                        case '(':
+                            depth++;
+                            break;
+                        case ')':
+                            if (depth > 0)
+                                depth--;
+                            break;
+                        case ',':
                         case '\uFFFF':
+                            if (depth > 0)
+                            {
+                                if (c == '\uFFFF')
+                                    throw new Exception("Reach end of line without closing parenthesis ");
+                                else
+                                    break;
+                            }
                             var endPosition = i - 1;
                             var newPosition = i;
                             if (c == '\uFFFF')
-                            {
-                                if (ThrowExceptionOnNoEol)
-                                    throw new Exception("No end of line.");
                                 newPosition -= 1;
-                            }
-                            else if (c == '\r' && text[i] == '\n')
-                            {
-                                newPosition += 1;
-                            }
                             var line = text.Substring(currPosition, endPosition - currPosition);
                             var ret = new IndexAndString(currPosition, line);
                             currPosition = newPosition;

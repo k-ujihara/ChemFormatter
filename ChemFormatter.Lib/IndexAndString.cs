@@ -20,17 +20,22 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-namespace ChemFormatter.WordAddIn
+namespace ChemFormatter
 {
-    public struct SelectionKeeper
+    public class IndexAndString
     {
-        public int Start { get; set; }
-        public int End { get; set; }
+        public int Index { get; set; }
+        public string Text { get; set; }
 
-        public SelectionKeeper(int start, int end)
+        public IndexAndString(int index, string text)
         {
-            this.Start = start;
-            this.End = end;
+            this.Index = index;
+            this.Text = text;
+        }
+
+        public override string ToString()
+        {
+            return $"{Index}: {Text}";
         }
     }
 }

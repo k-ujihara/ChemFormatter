@@ -71,7 +71,8 @@ namespace ChemFormatter.WordAddIn
 
         public static void ButtonNMRSpec_Click(object sender, RibbonControlEventArgs e)
         {
-            var text = Globals.ThisAddIn.Application.Selection.Text;
+            var app = Globals.ThisAddIn.Application;
+            var text = app.Selection.Text;
             text = Utility.Normalize(text);
             var commands = NMRSpectrumQuery.MakeCommand(text);
             Apply(commands);
@@ -83,54 +84,81 @@ namespace ChemFormatter.WordAddIn
             try
             {
                 var app = Globals.ThisAddIn.Application;
-                var start = app.Selection.Start;
                 using (var saver = new AutoCorrectSaver())
                 {
                     foreach (var command in commands)
                     {
                         switch (command)
                         {
+                            case ChangeSelectionCommand cmd:
+                                save.Start = save.Start + cmd.Start;
+                                save.Length = cmd.Length;
+                                break;
+                            case TypeParagraphCommand cmd:
+                                app.Selection.TypeParagraph();
+                                save.Length += 1;
+                                break;
+                            case TypeBackspaceCommand cmd:
+                                app.Selection.TypeBackspace();
+                                if (app.Selection.Start < save.Start)
+                                    save.Start--;
+                                else
+                                    save.Length--;
+                                break;
                             case FontResetCommand cmd:
                                 app.Selection.Font.Reset();
                                 break;
-                            case CopyAndPasteCommand cpc:
+                            case SetItalicCommand cmd:
+                                app.Selection.Font.Italic = (int)Office.MsoTriState.msoTrue;
+                                break;
+                            case CopyAndPasteCommand cmd:
                                 var keepSelection = KeepSelection();
-                                app.Selection.SetRange(start + cpc.Start, start + cpc.Start + cpc.Length);
+                                app.Selection.SetRange(save.Start + cmd.Start, save.Start + cmd.Start + cmd.Length);
                                 app.Selection.Copy();
                                 RestoreSelection(keepSelection);
                                 app.Selection.Paste();
+                                save.Length += cmd.Length;
                                 break;
-                            case MoveToCommand mtc:
-                                app.Selection.SetRange(start + mtc.Position, start + mtc.Position);
+                            case MoveToCommand cmd:
+                                app.Selection.SetRange(save.Start + cmd.Position, save.Start + cmd.Position);
                                 break;
-                            case TypeTextCommand ttc:
+                            case TypeTextCommand cmd:
                                 app.Selection.End = app.Selection.Start;
-                                app.Selection.TypeText(ttc.Text);
+                                app.Selection.TypeText(cmd.Text);
+                                save.Length += cmd.Text.Length;
                                 break;
-                            case ReplaceStringCommand rsc:
-                                SelectAndAction(start, rsc, () => ReplaceText(save, rsc.Replacement));
+                            case ReplaceStringCommand cmd:
+                                SelectAndAction(save.Start, cmd, () =>
+                                    {
+                                        save.Length += (cmd.Replacement.Length - cmd.Length);
+                                        if (cmd.Replacement.Length == 0)
+                                            app.Selection.Delete();
+                                        else
+                                            app.Selection.TypeText(cmd.Replacement);
+                                    });
                                 break;
-                            case ItalicCommand ic:
-                                SelectAndAction(start, ic, () => app.Selection.Font.Italic = (int)Office.MsoTriState.msoTrue);
+                            case ItalicCommand cmd:
+                                SelectAndAction(save.Start, cmd, () => app.Selection.Font.Italic = (int)Office.MsoTriState.msoTrue);
                                 break;
-                            case BoldCommand ic:
-                                SelectAndAction(start, ic, () => app.Selection.Font.Bold = (int)Office.MsoTriState.msoTrue);
+                            case BoldCommand cmd:
+                                SelectAndAction(save.Start, cmd, () => app.Selection.Font.Bold = (int)Office.MsoTriState.msoTrue);
                                 break;
-                            case SmallCapitalCommand ic:
-                                SelectAndAction(start, ic, () =>
-                                {
-                                    app.Selection.Font.SmallCaps = (int)Office.MsoTriState.msoTrue;
-                                    ReplaceText(save, app.Selection.Text.ToLower(CultureInfo.InvariantCulture));
-                                });
+                            case SmallCapitalCommand cmd:
+                                SelectAndAction(save.Start, cmd, () =>
+                                    {
+                                        app.Selection.Font.SmallCaps = (int)Office.MsoTriState.msoTrue;
+                                        var lower = app.Selection.Text.ToLower(CultureInfo.InvariantCulture);
+                                        app.Selection.TypeText(lower);
+                                    });
                                 break;
-                            case SubscriptCommand sbsc:
-                                SelectAndAction(start, sbsc, () => app.Selection.Font.Subscript = (int)Office.MsoTriState.msoTrue);
+                            case SubscriptCommand cmd:
+                                SelectAndAction(save.Start, cmd, () => app.Selection.Font.Subscript = (int)Office.MsoTriState.msoTrue);
                                 break;
-                            case SuperscriptCommand spsc:
-                                SelectAndAction(start, spsc, () => app.Selection.Font.Superscript = (int)Office.MsoTriState.msoTrue);
+                            case SuperscriptCommand cmd:
+                                SelectAndAction(save.Start, cmd, () => app.Selection.Font.Superscript = (int)Office.MsoTriState.msoTrue);
                                 break;
-                            case ChangeScriptCommand ssc:
-                                SelectAndAction(start, ssc, () =>
+                            case ChangeScriptCommand cmd:
+                                SelectAndAction(save.Start, cmd, () =>
                                 {
                                     ScriptMode next;
                                     if (app.Selection.Font.Subscript == (int)Office.MsoTriState.msoTrue)
@@ -166,30 +194,21 @@ namespace ChemFormatter.WordAddIn
             }
         }
 
-        private static SelectionKeeper ReplaceText(SelectionKeeper save, string replacement)
-        {
-            var orginalLength = Globals.ThisAddIn.Application.Selection.Text.Length;
-            // adjust saved selection range 
-            save.End += (replacement.Length - orginalLength);
-            Globals.ThisAddIn.Application.Selection.TypeText(replacement);
-            return save;
-        }
-
         private static void SelectAndAction(int start, RangeCommand command, System.Action action)
         {
             Globals.ThisAddIn.Application.Selection.SetRange(start + command.Start, start + command.Start + command.Length);
             action();
         }
 
-        public static SelectionKeeper KeepSelection()
+        public static Range KeepSelection()
         {
             var sel = Globals.ThisAddIn.Application.Selection;
             var start = sel.Start;
             var end = sel.End;
-            return new SelectionKeeper(start, end);
+            return new Range(start, end - start);
         }
 
-        public static void RestoreSelection(SelectionKeeper selection)
+        public static void RestoreSelection(Range selection)
         {
             Globals.ThisAddIn.Application.Selection.SetRange(selection.Start, selection.End);
         }

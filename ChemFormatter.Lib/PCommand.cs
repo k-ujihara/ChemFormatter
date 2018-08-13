@@ -22,12 +22,26 @@
 
 namespace ChemFormatter
 {
+    public class ChangeSelectionCommand : RangeCommand
+    {
+        public ChangeSelectionCommand(int start, int length) : base(start, length) { }
+    }
+
     public class FontResetCommand : PCommand
-    { }
+    {
+    }
 
     public class MoveToCommand : PositionCommand
     {
         public MoveToCommand(int position) : base(position) { }
+    }
+
+    public class TypeParagraphCommand : PCommand
+    {
+    }
+
+    public class TypeBackspaceCommand : PCommand
+    {
     }
 
     public class TypeTextCommand : PCommand
@@ -53,6 +67,10 @@ namespace ChemFormatter
         {
             this.Replacement = replacement;
         }
+    }
+
+    public class SetItalicCommand : PCommand
+    {
     }
 
     public class ItalicCommand : RangeCommand
@@ -85,7 +103,7 @@ namespace ChemFormatter
         public SuperscriptCommand(int start, int length) : base(start, length) { }
     }
 
-    public class RangeCommand : PCommand
+    public abstract class RangeCommand : PCommand
     {
         public int Start { get; set; }
         public int Length { get; set; }
@@ -97,7 +115,7 @@ namespace ChemFormatter
         }
     }
 
-    public class PositionCommand : PCommand
+    public abstract class PositionCommand : PCommand
     {
         public int Position { get; set; }
 

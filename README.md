@@ -1,7 +1,6 @@
 # ChemFormatter
 
 ChemFormatter is a chemical formatter add-in for Microsoft Office. It is implemented using VSTO.
-The Microsoft Word template version also available at [SourceForge](https://sourceforge.net/projects/chemformatter/), which is works on both Windows and Mac.
 
 Currently Microsoft Word version is implemented.
 
@@ -37,7 +36,7 @@ tert-butyldimethylsilane ⇒ <i>tert</i>-butyldimethylsilane
 
 (E)-olefine ⇒ (<i>E</i>)-olefine
 
-(2E,4Z)-hexadiene ⇒ (2<i>E</i>,4<i>Z</i>)-hexadiene
+(2E,4Z)-hexa-2,4-diene ⇒ (2<i>E</i>,4<i>Z</i>)-hexa-2,4-diene
 
 L-phenylalanine ⇒ <span style="font-variant: small-caps;">l</span>-phenylalanine
 
@@ -65,11 +64,18 @@ dichloro(N,N,N',N'-tetramethylethylenediamine)zinc(II) ⇒ dichloro(<i>N</i>,<i>
 
 ### <img src="ChemFormatter.Lib/Resources/NMRSpectrum.png?raw=true" width="32" height="32" border="1" /> Format NMR spectrum specification.
 
-1.45&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s
-1.55&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.3
-1.95&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.4H&nbsp;&nbsp;&nbsp;dd&nbsp;&nbsp;&nbsp;&nbsp;7.3, 2.3&nbsp;&nbsp;CH<sub>3</sub>
-2.2-3.2&nbsp;15H&nbsp;&nbsp;&nbsp;m
-↓
-1.45 (1H, s), 1.55 (3H, d, J = 1.3 Hz), 1.95 (1.4H, dd, J = 7.3, 2.3 Hz, CH<sub>3</sub>), 2.2-3.2 (15H, m).
+1.45&nbsp;<font color="gray">→</font>&nbsp;&nbsp;1H&nbsp;<font color="gray">→</font>&nbsp;&nbsp;s&nbsp;<font color="gray">→</font>&nbsp;&nbsp;&nbsp;<font color="gray">→</font>&nbsp;&nbsp;
 
+1.55&nbsp;<font color="gray">→</font>&nbsp;&nbsp;3H&nbsp;<font color="gray">→</font>&nbsp;&nbsp;d&nbsp;<font color="gray">→</font>&nbsp;&nbsp;1.3&nbsp;<font color="gray">→</font>&nbsp;&nbsp;
 
+1.95&nbsp;<font color="gray">→</font>&nbsp;&nbsp;1.4H&nbsp;<font color="gray">→</font>&nbsp;&nbsp;t&nbsp;<font color="gray">→</font>&nbsp;&nbsp;7.3, 2.3&nbsp;<font color="gray">→</font>&nbsp;&nbsp;CH<sub>3</sub>
+
+2.2-3.2&nbsp;<font color="gray">→</font>&nbsp;&nbsp;15H&nbsp;<font color="gray">→</font>&nbsp;&nbsp;m&nbsp;<font color="gray">→</font>&nbsp;&nbsp;&nbsp;<font color="gray">→</font>&nbsp;&nbsp;
+
+&nbsp;↓&nbsp;↑
+
+1.45 (1H, s), 1.55 (3H, d, <i>J</i> = 1.3 Hz), 1.95 (1.4H, dd, <i>J</i> = 7.3, 2.3 Hz, CH<sub>3</sub>), 2.2-3.2 (15H, m).
+
+## Old versions
+
+The old versions are available at [SourceForge](https://sourceforge.net/projects/chemformatter/). The Microsoft Word template version works on both Windows and Mac. Very old COM add-in version implemented written by Visual Basic 6.0 works on Word, Excel, PowerPoint, Publisher, and Visio.

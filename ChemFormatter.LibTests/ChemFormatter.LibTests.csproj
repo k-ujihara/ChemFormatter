@@ -57,6 +57,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ChemNameQueryTests.cs" />
+    <Compile Include="ListReaderTests.cs" />
     <Compile Include="LineReaderTests.cs" />
     <Compile Include="NMRSpectrumQueryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
