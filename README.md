@@ -1,6 +1,6 @@
 # ChemFormatter
 
-ChemFormatter is a chemical formatter add-in for Microsoft Office. It is implemented using VSTO. 
+ChemFormatter is a chemical formatter add-in for Microsoft Office. It is implemented using VSTO.
 The Microsoft Word template version also available at [SourceForge](https://sourceforge.net/projects/chemformatter/), which is works on both Windows and Mac.
 
 Currently Microsoft Word version is implemented.
@@ -12,36 +12,64 @@ Select text to format and click one of the below button in ChemFormatter tab wit
 ### <img src="ChemFormatter.Lib/Resources/RDigitChanger.png?raw=true" width="32" height="32" border="1" /> Change sub-digit style to subscript/superscript.
 
 R1 ⇒ R<sub>1</sub> ⇒ R<sup>1</sup>
+
 R1-3 ⇒ R<sub>1-3</sub> ⇒ R<sup>1-3</sup>
 
 ### <img src="ChemFormatter.Lib/Resources/ChemFormula.png?raw=true" width="32" height="32" border="1" /> Set style as chemical formula.
 
 CH3OH ⇒ CH<sub>3</sub>OH
+
 HC#CCH2OH ⇒ HC≡CCH<sub>2</sub>OH
+
 (CH3)2CHOH ⇒ (CH<sub>3</sub>)<sub>2</sub>CHOH
+
 t-BuOH ⇒ <i>t</i>-BuOH
 
 ### <img src="ChemFormatter.Lib/Resources/IonFormula.png?raw=true" width="32" height="32" border="1" /> Set style as chemical ion formula.
 
 Na+ + Cl- → NaCl ⇒ Na<sup>+</sup> + Cl<sup>-</sup> → NaCl
+
 Ca2+ + SO42- → CaSO4 ⇒ Ca<sup>2+</sup> + SO<sub>4</sub><sup>2-</sup> → CaSO<sub>4</sub>
 
 ### <img src="ChemFormatter.Lib/Resources/ChemName.png?raw=true" width="32" height="32" border="1" /> Set style as chemical name.
 
 tert-butyldimethylsilane ⇒ <i>tert</i>-butyldimethylsilane
+
 (E)-olefine ⇒ (<i>E</i>)-olefine
+
 (2E,4Z)-hexadiene ⇒ (2<i>E</i>,4<i>Z</i>)-hexadiene
+
 L-phenylalanine ⇒ <span style="font-variant: small-caps;">l</span>-phenylalanine
+
 acetone O-ethyl S-methyl monothioketal ⇒ acetone <i>O</i>-ethyl <i>S</i>-methyl monothioketal
+
 dichloro(N,N,N',N'-tetramethylethylenediamine)zinc(II) ⇒ dichloro(<i>N</i>,<i>N</i>,<i>N</i>',<i>N</i>'-tetramethylethylenediamine)zinc(II)
 
 ### <img src="ChemFormatter.Lib/Resources/Journal.png?raw=true" width="32" height="32" border="1" /> Set style as a journal reference.
 
 <i>J. Am. Chem. Soc.</i> <b>2017</b>, <i>123</i>, 1.
+
 <i>J. Am. Chem. Soc.</i> <b>2017</b>, <i>123</i>, 1-10.
+
 <i>J. Am. Chem. Soc.</i> <b>2017</b>, <i>123</i>(1), 1.
+
 <i>J. Am. Chem. Soc.</i> <b>2017</b>, <i>123</i>(1), 1-10.
+
 <i>Proc. Natl. Acad. Sci. USA</i> <b>104</b>, 1234-1235 (2007).
+
 <i>Proc. Natl. Acad. Sci. USA</i> <b>104</b>, 1234 (2007).
+
 <i>Proc. Natl. Acad. Sci. USA</i> <b>104</b>(10), 1234-1235 (2007).
+
 <i>Proc. Natl. Acad. Sci. USA</i> <b>104</b>, 1234–1235 (2007).
+
+### <img src="ChemFormatter.Lib/Resources/NMRSpectrum.png?raw=true" width="32" height="32" border="1" /> Format NMR spectrum specification.
+
+1.45&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s
+1.55&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.3
+1.95&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.4H&nbsp;&nbsp;&nbsp;dd&nbsp;&nbsp;&nbsp;&nbsp;7.3, 2.3&nbsp;&nbsp;CH<sub>3</sub>
+2.2-3.2&nbsp;15H&nbsp;&nbsp;&nbsp;m
+↓
+1.45 (1H, s), 1.55 (3H, d, J = 1.3 Hz), 1.95 (1.4H, dd, J = 7.3, 2.3 Hz, CH<sub>3</sub>), 2.2-3.2 (15H, m).
+
+
