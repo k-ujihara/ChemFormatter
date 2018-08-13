@@ -21,59 +21,60 @@
 // SOFTWARE.
 
 
-
 namespace ChemFormatter.WordAddIn
 {
     public class AutoCorrectSaver : System.IDisposable
     {
-		public bool CorrectInitialCaps { get; set; }
-		public bool CorrectSentenceCaps { get; set; }
-		public bool CorrectTableCells { get; set; }
-		public bool CorrectDays { get; set; }
-		public bool CorrectCapsLock { get; set; }
-		public bool ReplaceText { get; set; }
-		public bool ReplaceTextFromSpellingChecker { get; set; }
-		public bool DisplayAutoCorrectOptions { get; set; }
+        public bool Overtype { get; set; }
+        public bool CorrectInitialCaps { get; set; }
+        public bool CorrectSentenceCaps { get; set; }
+        public bool CorrectTableCells { get; set; }
+        public bool CorrectDays { get; set; }
+        public bool CorrectCapsLock { get; set; }
+        public bool ReplaceText { get; set; }
+        public bool ReplaceTextFromSpellingChecker { get; set; }
+        public bool DisplayAutoCorrectOptions { get; set; }
         public AutoCorrectSaver()
         {
             var app = Globals.ThisAddIn.Application;
-            var ac = app.AutoCorrect;
-			this.CorrectInitialCaps = ac.CorrectInitialCaps;
-			this.CorrectSentenceCaps = ac.CorrectSentenceCaps;
-			this.CorrectTableCells = ac.CorrectTableCells;
-			this.CorrectDays = ac.CorrectDays;
-			this.CorrectCapsLock = ac.CorrectCapsLock;
-			this.ReplaceText = ac.ReplaceText;
-			this.ReplaceTextFromSpellingChecker = ac.ReplaceTextFromSpellingChecker;
-			this.DisplayAutoCorrectOptions = ac.DisplayAutoCorrectOptions;
+            this.Overtype = app.Options.Overtype;
+            this.CorrectInitialCaps = app.AutoCorrect.CorrectInitialCaps;
+            this.CorrectSentenceCaps = app.AutoCorrect.CorrectSentenceCaps;
+            this.CorrectTableCells = app.AutoCorrect.CorrectTableCells;
+            this.CorrectDays = app.AutoCorrect.CorrectDays;
+            this.CorrectCapsLock = app.AutoCorrect.CorrectCapsLock;
+            this.ReplaceText = app.AutoCorrect.ReplaceText;
+            this.ReplaceTextFromSpellingChecker = app.AutoCorrect.ReplaceTextFromSpellingChecker;
+            this.DisplayAutoCorrectOptions = app.AutoCorrect.DisplayAutoCorrectOptions;
         }
 
         public void DisableAll()
-		{
+        {
             var app = Globals.ThisAddIn.Application;
-            var ac = app.AutoCorrect;
-			ac.CorrectInitialCaps = false;
-			ac.CorrectSentenceCaps = false;
-			ac.CorrectTableCells = false;
-			ac.CorrectDays = false;
-			ac.CorrectCapsLock = false;
-			ac.ReplaceText = false;
-			ac.ReplaceTextFromSpellingChecker = false;
-			ac.DisplayAutoCorrectOptions = false;
-		}
+            app.Options.Overtype = false;
+            app.AutoCorrect.CorrectInitialCaps = false;
+            app.AutoCorrect.CorrectSentenceCaps = false;
+            app.AutoCorrect.CorrectTableCells = false;
+            app.AutoCorrect.CorrectDays = false;
+            app.AutoCorrect.CorrectCapsLock = false;
+            app.AutoCorrect.ReplaceText = false;
+            app.AutoCorrect.ReplaceTextFromSpellingChecker = false;
+            app.AutoCorrect.DisplayAutoCorrectOptions = false;
+        }
 
         public void Dispose()
         {
             var app = Globals.ThisAddIn.Application;
-            var ac = app.AutoCorrect;
-			ac.CorrectInitialCaps = this.CorrectInitialCaps;
-			ac.CorrectSentenceCaps = this.CorrectSentenceCaps;
-			ac.CorrectTableCells = this.CorrectTableCells;
-			ac.CorrectDays = this.CorrectDays;
-			ac.CorrectCapsLock = this.CorrectCapsLock;
-			ac.ReplaceText = this.ReplaceText;
-			ac.ReplaceTextFromSpellingChecker = this.ReplaceTextFromSpellingChecker;
-			ac.DisplayAutoCorrectOptions = this.DisplayAutoCorrectOptions;
+            app.Options.Overtype = this.Overtype;
+            app.AutoCorrect.CorrectInitialCaps = this.CorrectInitialCaps;
+            app.AutoCorrect.CorrectSentenceCaps = this.CorrectSentenceCaps;
+            app.AutoCorrect.CorrectTableCells = this.CorrectTableCells;
+            app.AutoCorrect.CorrectDays = this.CorrectDays;
+            app.AutoCorrect.CorrectCapsLock = this.CorrectCapsLock;
+            app.AutoCorrect.ReplaceText = this.ReplaceText;
+            app.AutoCorrect.ReplaceTextFromSpellingChecker = this.ReplaceTextFromSpellingChecker;
+            app.AutoCorrect.DisplayAutoCorrectOptions = this.DisplayAutoCorrectOptions;
         }
     }
 }
+

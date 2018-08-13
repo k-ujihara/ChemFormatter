@@ -27,52 +27,62 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
 
-<#
-	string[] propsAutoCorrect = new string[]
-	{
-		"CorrectInitialCaps",
-		"CorrectSentenceCaps",
-		"CorrectTableCells",
-		"CorrectDays",
-		"CorrectCapsLock",
-		"ReplaceText",
-		"ReplaceTextFromSpellingChecker",
-		"DisplayAutoCorrectOptions",
-	};
-#>
-
 namespace ChemFormatter.WordAddIn
 {
     public class AutoCorrectSaver : System.IDisposable
     {
-<# foreach (var s in propsAutoCorrect) { #>
-		public bool <#= s #> { get; set; }
+<# foreach (var prop in props) { #>
+        public bool <#= prop.Name #> { get; set; }
 <# } #>
         public AutoCorrectSaver()
         {
             var app = Globals.ThisAddIn.Application;
-            var ac = app.AutoCorrect;
-<# foreach (var s in propsAutoCorrect) { #>
-			this.<#= s #> = ac.<#= s #>;
+<# foreach (var prop in props) { #>
+            this.<#= prop.Name #> = app.<#= prop.Container #>.<#= prop.Name #>;
 <# } #>
         }
 
         public void DisableAll()
-		{
+        {
             var app = Globals.ThisAddIn.Application;
-            var ac = app.AutoCorrect;
-<# foreach (var s in propsAutoCorrect) { #>
-			ac.<#= s #> = false;
+<# foreach (var prop in props) { #>
+            app.<#= prop.Container #>.<#= prop.Name #> = false;
 <# } #>
-		}
+        }
 
         public void Dispose()
         {
             var app = Globals.ThisAddIn.Application;
-            var ac = app.AutoCorrect;
-<# foreach (var s in propsAutoCorrect) { #>
-			ac.<#= s #> = this.<#= s #>;
+<# foreach (var prop in props) { #>
+            app.<#= prop.Container #>.<#= prop.Name #> = this.<#= prop.Name #>;
 <# } #>
         }
     }
 }
+
+<#+
+    public class PropertyInfo
+    {
+        public string Container { get; set; }
+        public string Name { get; set; }
+
+        public PropertyInfo(string container, string name)
+        {
+            this.Container = container;
+            this.Name = name;
+        }
+    }
+
+    public PropertyInfo[] props = new PropertyInfo[]
+    {
+        new PropertyInfo("Options", "Overtype"),
+        new PropertyInfo("AutoCorrect", "CorrectInitialCaps"),
+        new PropertyInfo("AutoCorrect", "CorrectSentenceCaps"),
+        new PropertyInfo("AutoCorrect", "CorrectTableCells"),
+        new PropertyInfo("AutoCorrect", "CorrectDays"),
+        new PropertyInfo("AutoCorrect", "CorrectCapsLock"),
+        new PropertyInfo("AutoCorrect", "ReplaceText"),
+        new PropertyInfo("AutoCorrect", "ReplaceTextFromSpellingChecker"),
+        new PropertyInfo("AutoCorrect", "DisplayAutoCorrectOptions"),
+    };
+#>

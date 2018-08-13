@@ -90,7 +90,6 @@ namespace ChemFormatter
                             yield return ret;
                             goto L_Next;
                         default:
-                            i++;
                             break;
                     }
                 }

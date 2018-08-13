@@ -32,13 +32,14 @@
 namespace ChemFormatter.WordAddIn
 {
 <# 
-	ribbonType = "Microsoft.Word.Document";
-	RDigitChangerEnabled = true;
-	ChemFormulaEnabled = true;
-	IonFormulaEnabled = true;
-	ChemNameEnabled = true;
-	JournalReferenceEnabled = true;
+    ribbonType = "Microsoft.Word.Document";
+    RDigitChangerEnabled = true;
+    ChemFormulaEnabled = true;
+    IonFormulaEnabled = true;
+    ChemNameEnabled = true;
+    JournalReferenceEnabled = true;
+    NMRSpecEnabled = true;
 
-	WriteRibbonClass();
+    WriteRibbonClass();
 #>
 }

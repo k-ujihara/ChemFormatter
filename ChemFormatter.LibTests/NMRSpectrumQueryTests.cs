@@ -33,6 +33,7 @@ namespace ChemFormatter.Tests
         [TestMethod()]
         public void MakeCommandTest()
         {
+            TestLine("1.23\t1H\ts", "1.23", "1H", "s", null, 0);
             // ACS style
             TestLine("1.23", "1.23", null, null, null, 0);
             TestLine("1.23\t1H", "1.23", "1H", null, null, 0);

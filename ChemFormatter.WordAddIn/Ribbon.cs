@@ -80,6 +80,7 @@ namespace ChemFormatter.WordAddIn
             this.buttonIonFormula = this.Factory.CreateRibbonButton();
             this.buttonChemName = this.Factory.CreateRibbonButton();
             this.buttonJournalReference = this.Factory.CreateRibbonButton();
+            this.buttonNMRSpec = this.Factory.CreateRibbonButton();
             this.tabAddIns.SuspendLayout();
             this.groupChemFormatter.SuspendLayout();
             this.SuspendLayout();
@@ -98,6 +99,7 @@ namespace ChemFormatter.WordAddIn
             this.groupChemFormatter.Items.Add(this.buttonIonFormula);
             this.groupChemFormatter.Items.Add(this.buttonChemName);
             this.groupChemFormatter.Items.Add(this.buttonJournalReference);
+            this.groupChemFormatter.Items.Add(this.buttonNMRSpec);
             this.groupChemFormatter.Label = "ChemFormatter";
             this.groupChemFormatter.Name = "groupChemFormatter";
 
@@ -166,6 +168,19 @@ namespace ChemFormatter.WordAddIn
             this.buttonJournalReference.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler((sender, e) => Applyer.ButtonJournalReference_Click(sender, e));
             this.buttonJournalReference.ShowLabel = true;
             this.buttonJournalReference.ShowImage = true;
+            // 
+            // buttonNMRSpec
+            // 
+            {
+                var im = CommonResourceManager.GetImage(CommonResourceManager.NMRSpecImage);
+                if (im != null)
+                    this.buttonNMRSpec.Image = im;
+            }
+            this.buttonNMRSpec.Label = "NMR Spec";
+            this.buttonNMRSpec.Name = "buttonNMRSpec";
+            this.buttonNMRSpec.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler((sender, e) => Applyer.ButtonNMRSpec_Click(sender, e));
+            this.buttonNMRSpec.ShowLabel = true;
+            this.buttonNMRSpec.ShowImage = true;
 
             // 
             // Ribbon
@@ -188,6 +203,7 @@ namespace ChemFormatter.WordAddIn
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonIonFormula;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonChemName;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonJournalReference;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonNMRSpec;
     }
     
     partial class ThisRibbonCollection

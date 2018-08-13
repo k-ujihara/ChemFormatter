@@ -67,8 +67,16 @@ namespace ChemFormatter.WordAddIn
             text = Utility.Normalize(text);
             var commands = JournalReferenceQuery.MakeCommand(text);
             Apply(commands);
+        }        
+
+        public static void ButtonNMRSpec_Click(object sender, RibbonControlEventArgs e)
+        {
+            var text = Globals.ThisAddIn.Application.Selection.Text;
+            text = Utility.Normalize(text);
+            var commands = NMRSpectrumQuery.MakeCommand(text);
+            Apply(commands);
         }
-        
+
         public static void Apply(IEnumerable<PCommand> commands)
         {
             var save = KeepSelection();
@@ -82,6 +90,23 @@ namespace ChemFormatter.WordAddIn
                     {
                         switch (command)
                         {
+                            case FontResetCommand cmd:
+                                app.Selection.Font.Reset();
+                                break;
+                            case CopyAndPasteCommand cpc:
+                                var keepSelection = KeepSelection();
+                                app.Selection.SetRange(start + cpc.Start, start + cpc.Start + cpc.Length);
+                                app.Selection.Copy();
+                                RestoreSelection(keepSelection);
+                                app.Selection.Paste();
+                                break;
+                            case MoveToCommand mtc:
+                                app.Selection.SetRange(start + mtc.Position, start + mtc.Position);
+                                break;
+                            case TypeTextCommand ttc:
+                                app.Selection.End = app.Selection.Start;
+                                app.Selection.TypeText(ttc.Text);
+                                break;
                             case ReplaceStringCommand rsc:
                                 SelectAndAction(start, rsc, () => ReplaceText(save, rsc.Replacement));
                                 break;

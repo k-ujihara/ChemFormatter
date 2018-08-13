@@ -102,5 +102,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\Journal.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\NMRSpectrum.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

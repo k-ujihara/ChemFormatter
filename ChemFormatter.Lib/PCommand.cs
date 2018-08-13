@@ -22,6 +22,9 @@
 
 namespace ChemFormatter
 {
+    public class FontResetCommand : PCommand
+    { }
+
     public class MoveToCommand : PositionCommand
     {
         public MoveToCommand(int position) : base(position) { }
@@ -35,6 +38,11 @@ namespace ChemFormatter
         {
             this.Text = text;
         }
+    }
+
+    public class CopyAndPasteCommand : RangeCommand
+    {
+        public CopyAndPasteCommand(int start, int length) : base(start, length) { }
     }
 
     public class ReplaceStringCommand : RangeCommand

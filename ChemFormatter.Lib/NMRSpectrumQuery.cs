@@ -82,12 +82,20 @@ namespace ChemFormatter
 
         public static IEnumerable<PCommand> MakeCommand(string text)
         {
-            var commands = new List<PCommand>();
+            var commands = new List<PCommand>
+            {
+                new MoveToCommand(text.Length),
+                new FontResetCommand(),
+            };
 
-            commands.Add(new MoveToCommand(text.Length));
-
+            bool isFirst = true;
             foreach (var lineInfo in new LineReader(text))
             {
+                if (isFirst)
+                    isFirst = false;
+                else
+                    commands.Add(new TypeTextCommand(", "));
+
                 Match match;
                 match = MatchTabSepNMRSpec(lineInfo.Text);
                 if (!match.Success)
@@ -96,7 +104,36 @@ namespace ChemFormatter
                 info.ShiftRange(lineInfo.Index);
 
                 commands.Add(new TypeTextCommand(info.ChemicalShift));
+                bool needComma = false;
+                if (info.Integration != null || info.Pattern != null || info.JValues != null || info.CommentRange != null)
+                {
+                    commands.Add(new TypeTextCommand(" ("));
+                    if (info.Integration != null)
+                    {
+                        if (needComma) commands.Add(new TypeTextCommand(", ")); else needComma = true;
+                        commands.Add(new TypeTextCommand(info.Integration));
+                    }
+                    if (info.Pattern != null)
+                    {
+                        if (needComma) commands.Add(new TypeTextCommand(", ")); else needComma = true;
+                        commands.Add(new TypeTextCommand(info.Pattern));
+                    }
+                    if (info.JValues != null)
+                    {
+                        if (needComma) commands.Add(new TypeTextCommand(", ")); else needComma = true;
+                        commands.Add(new TypeTextCommand("J"));
+                        commands.Add(new TypeTextCommand($" = {string.Join(", ", info.JValues)} Hz"));
+                    }
+                    if (info.CommentRange != null)
+                    {
+                        if (needComma) commands.Add(new TypeTextCommand(", ")); else needComma = true;
+                        commands.Add(new CopyAndPasteCommand(info.CommentRange.Start, info.CommentRange.Length));
+                        commands.Add(new FontResetCommand());
+                    }
+                    commands.Add(new TypeTextCommand(")"));
+                }
             }
+            commands.Add(new TypeTextCommand(". "));
 
             return commands;
         }
@@ -104,14 +141,14 @@ namespace ChemFormatter
         public static Match MatchTabSepNMRSpec(string text)
         {
             Match match;
-            if (true)
-                match = ReTabSpecSIPJ.Match(text);
-            if (!match.Success || !match.Groups["counts"].Success)
-                match = ReTabSpecSPJI.Match(text);
-            if (!match.Success || !match.Groups["counts"].Success)
-                match = ReTabSpecSIPJ.Match(text);
-            if (!match.Success)
-                match = ReTabSpecSPJI.Match(text);
+            match = ReTabSpecSIPJ.Match(text);
+            if (match.Success && match.Groups["counts"].Success) goto L_Return;
+            match = ReTabSpecSPJI.Match(text);
+            if (match.Success && match.Groups["counts"].Success) goto L_Return;
+            match = ReTabSpecSIPJ.Match(text);
+            if (match.Success) goto L_Return;
+            match = ReTabSpecSPJI.Match(text);
+            L_Return:
             return match;
         }
 
