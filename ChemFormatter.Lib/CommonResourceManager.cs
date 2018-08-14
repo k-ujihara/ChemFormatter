@@ -30,6 +30,10 @@ namespace ChemFormatter
         public const string ChemNameImage = "ChemName.png";
         public const string JournalReferenceImage = "Journal.png";
         public const string NMRSpecImage = "NMRSpectrum.png";
+        public const string NMRFormat_IPJC = "NMR_IPJC.png";
+        public const string NMRFormat_PJIC = "NMR_PJIC.png";
+        public const string NMRFormat_PlainIPJC = "NMR_PlainIPJC.png";
+        public const string NMRFormat_PlainPJIC = "NMR_PlainPJIC.png";
 
         public static System.Drawing.Image GetImage(string name)
         {

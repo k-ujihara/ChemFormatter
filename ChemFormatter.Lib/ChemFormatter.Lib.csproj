@@ -70,9 +70,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DocumentProperties.cs" />
     <Compile Include="IndexAndString.cs" />
     <Compile Include="ListReader.cs" />
     <Compile Include="LineReader.cs" />
+    <Compile Include="NMRFormat.cs" />
     <Compile Include="NMRSpectrumQuery.cs" />
     <Compile Include="JournalReferenceQuery.cs" />
     <Compile Include="ChemNameQuery.cs" />
@@ -84,6 +86,7 @@
     <Compile Include="ChemFormulaQuery.cs" />
     <Compile Include="Range.cs" />
     <Compile Include="RDigitQuery.cs" />
+    <Compile Include="ReadOnlyList.cs" />
     <Compile Include="ScriptMode.cs" />
     <Compile Include="Utility.cs" />
   </ItemGroup>
@@ -107,6 +110,14 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\NMRSpectrum.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\NMR_IPJC.png" />
+    <EmbeddedResource Include="Resources\NMR_PJIC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\NMR_PlainIPJC.png" />
+    <EmbeddedResource Include="Resources\NMR_PlainPJIC.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

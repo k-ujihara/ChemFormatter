@@ -189,15 +189,9 @@
     </Compile>
     <Compile Include="Ribbon.cs">
       <DependentUpon>Ribbon.tt</DependentUpon>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Include="RibbonNMR.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="RibbonNMR.Designer.cs">
-      <DependentUpon>RibbonNMR.cs</DependentUpon>
     </Compile>
     <Compile Include="WordApplyer.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -209,9 +203,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="RibbonNMR.resx">
-      <DependentUpon>RibbonNMR.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="ChemFormatterWord_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

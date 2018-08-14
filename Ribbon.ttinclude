@@ -1,3 +1,4 @@
+<#+
 // MIT License
 // 
 // Copyright (c) 2018 Kazuya Ujihara
@@ -20,7 +21,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-<#+     
     class RibbonButtonInfo
     {
         public RibbonButtonInfo(string name, string handler, string label, string image)
@@ -37,6 +37,21 @@
         public string Image { get; set; }
     }
 
+    class NMRFormatItemInfo
+    {
+        public NMRFormatItemInfo(string name, string format, string image)
+        {
+            Name = name;
+            Format = format;
+            Image = image;
+        }
+
+        public string Name { get; set; }
+        public string Format { get; set; }
+        public string Image { get; set; }
+    }
+
+    string handlerObject = "this";
     string ribbonType;
     bool RDigitChangerEnabled = false;
     bool ChemFormulaEnabled = false;
@@ -49,19 +64,28 @@
     {
         var ribbonButtons = new List<RibbonButtonInfo>();
         if (RDigitChangerEnabled)
-            ribbonButtons.Add(new RibbonButtonInfo("buttonRDigitChanger", "Applyer.ButtonRDigitChanger_Click(sender, e)", "Sub-digits Change", "CommonResourceManager.RDigitChangerImage"));
+            ribbonButtons.Add(new RibbonButtonInfo("buttonRDigitChanger", handlerObject + ".ButtonRDigitChanger_Click", "Sub-digits Change", "CommonResourceManager.RDigitChangerImage"));
         if (ChemFormulaEnabled)
-            ribbonButtons.Add(new RibbonButtonInfo("buttonChemFormula", "Applyer.ButtonChemFormular_Click(sender, e)", "Chem Formula", "CommonResourceManager.ChemFormulaImage"));
+            ribbonButtons.Add(new RibbonButtonInfo("buttonChemFormula", handlerObject + ".ButtonChemFormular_Click", "Chem Formula", "CommonResourceManager.ChemFormulaImage"));
         if (IonFormulaEnabled)
-            ribbonButtons.Add(new RibbonButtonInfo("buttonIonFormula", "Applyer.ButtonIonFormular_Click(sender, e)", "Ion Formula", "CommonResourceManager.IonFormulaImage"));
+            ribbonButtons.Add(new RibbonButtonInfo("buttonIonFormula", handlerObject + ".ButtonIonFormular_Click", "Ion Formula", "CommonResourceManager.IonFormulaImage"));
         if (ChemNameEnabled)
-            ribbonButtons.Add(new RibbonButtonInfo("buttonChemName", "Applyer.ButtonChemName_Click(sender, e)", "Chem Name", "CommonResourceManager.ChemNameImage"));
+            ribbonButtons.Add(new RibbonButtonInfo("buttonChemName", handlerObject + ".ButtonChemName_Click", "Chem Name", "CommonResourceManager.ChemNameImage"));
         if (JournalReferenceEnabled)
-            ribbonButtons.Add(new RibbonButtonInfo("buttonStyleCitation", "Applyer.ButtonStyleCitation_Click(sender, e)", "Citation", "CommonResourceManager.JournalReferenceImage"));
+            ribbonButtons.Add(new RibbonButtonInfo("buttonStyleCitation", handlerObject + ".ButtonStyleCitation_Click", "Citation", "CommonResourceManager.JournalReferenceImage"));
         if (NMRSpecEnabled)
-            ribbonButtons.Add(new RibbonButtonInfo("buttonNMRSpec", "Applyer.ButtonNMRSpec_Click(sender, e)", "NMR Spec", "CommonResourceManager.NMRSpecImage"));
+            ribbonButtons.Add(new RibbonButtonInfo("buttonNMRSpec", handlerObject + ".ButtonNMRSpec_Click", "NMR Spec", "CommonResourceManager.NMRSpecImage"));
+
+        var itemsNMRFormat = new List<NMRFormatItemInfo>();
+        if (NMRSpecEnabled)
+        {
+            itemsNMRFormat.Add(new NMRFormatItemInfo("dropDownItem_NMRIPJC", "ChemFormatter.NMRFormat.IPJC", "CommonResourceManager.NMRFormat_IPJC"));
+            itemsNMRFormat.Add(new NMRFormatItemInfo("dropDownItem_NMRPJIC", "ChemFormatter.NMRFormat.PJIC", "CommonResourceManager.NMRFormat_PJIC"));
+            itemsNMRFormat.Add(new NMRFormatItemInfo("dropDownItem_NMRIPJC_N", "ChemFormatter.NMRFormat.PlainIPJC", "CommonResourceManager.NMRFormat_PlainIPJC"));
+            itemsNMRFormat.Add(new NMRFormatItemInfo("dropDownItem_NMRPJIC_N", "ChemFormatter.NMRFormat.PlainPJIC", "CommonResourceManager.NMRFormat_PlainPJIC"));
+        }
 #>
-    public class Ribbon : Microsoft.Office.Tools.Ribbon.RibbonBase
+    public partial class Ribbon : Microsoft.Office.Tools.Ribbon.RibbonBase
     {
         private void Ribbon_Load(object sender, Microsoft.Office.Tools.Ribbon.RibbonUIEventArgs e)
         {
@@ -86,12 +110,18 @@
 
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ribbon));
             this.tabAddIns = this.Factory.CreateRibbonTab();
             this.groupChemFormatter = this.Factory.CreateRibbonGroup();
 <#+ foreach (var e in ribbonButtons) { #>
             this.<#= e.Name #> = this.Factory.CreateRibbonButton();
 <#+ } #>
+<#+ if (NMRSpecEnabled) { #>
+            this.dropDownNMRFormat = this.Factory.CreateRibbonDropDown();
+<#+ foreach (var e in itemsNMRFormat) { #>
+            this.<#= e.Name #> = this.Factory.CreateRibbonDropDownItem();
+<#+ } #>
+<#+ } #>
+
             this.tabAddIns.SuspendLayout();
             this.groupChemFormatter.SuspendLayout();
             this.SuspendLayout();
@@ -108,6 +138,9 @@
 <#+ foreach (var e in ribbonButtons) { #>
             this.groupChemFormatter.Items.Add(this.<#= e.Name #>);
 <#+ } #>
+<#+ if (NMRSpecEnabled) { #>
+            this.groupChemFormatter.Items.Add(this.dropDownNMRFormat);
+<#+ } #>
             this.groupChemFormatter.Label = "ChemFormatter";
             this.groupChemFormatter.Name = "groupChemFormatter";
 
@@ -122,18 +155,40 @@
             }
             this.<#= e.Name #>.Label = "<#= e.Label #>";
             this.<#= e.Name #>.Name = "<#= e.Name #>";
-            this.<#= e.Name #>.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler((sender, e) => <#= e.Handler #>);
+            this.<#= e.Name #>.Click += (sender, e) => <#= e.Handler #>(sender, e);
             this.<#= e.Name #>.ShowLabel = true;
             this.<#= e.Name #>.ShowImage = true;
 <#+ } #>
-
+<#+ if (NMRSpecEnabled) { #>
+            // 
+            // dropDownNMRFormat
+            // 
+            this.dropDownNMRFormat.Label = "NMR Format";
+            this.dropDownNMRFormat.Name = "dropDownNMRFormat";
+			this.dropDownNMRFormat.SelectionChanged += (sender, e) => Globals.ThisAddIn.DropDownNMRFormat_SelectionChanged(sender, e);
+            this.dropDownNMRFormat.ShowLabel = true;
+            this.dropDownNMRFormat.ShowImage = false;
+            this.dropDownNMRFormat.ShowItemLabel = false;
+            this.dropDownNMRFormat.ShowItemImage = true;
+<#+ foreach (var e in itemsNMRFormat) { #>
+            {
+                var im = CommonResourceManager.GetImage(<#= e.Image #>);
+                if (im != null)
+                    this.<#= e.Name #>.Image = im;
+                var f = <#= e.Format #>;
+                this.<#= e.Name #>.Label = f.Label;
+                this.<#= e.Name #>.Tag = f;
+                this.dropDownNMRFormat.Items.Add(this.<#= e.Name #>);
+            }
+<#+ } #>
+<#+ } #>
             // 
             // Ribbon
             // 
             this.Name = "Ribbon";
             this.RibbonType = "<#= ribbonType #>";
             this.Tabs.Add(this.tabAddIns);
-            this.Load += new Microsoft.Office.Tools.Ribbon.RibbonUIEventHandler(this.Ribbon_Load);
+            this.Load += new Microsoft.Office.Tools.Ribbon.RibbonUIEventHandler((sender, e) => Ribbon_Load(sender, e));
             this.tabAddIns.ResumeLayout(false);
             this.tabAddIns.PerformLayout();
             this.groupChemFormatter.ResumeLayout(false);
@@ -145,6 +200,12 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup groupChemFormatter;
 <#+ foreach (var e in ribbonButtons) { #>
         internal Microsoft.Office.Tools.Ribbon.RibbonButton <#= e.Name #>;
+<#+ } #>
+<#+ if (NMRSpecEnabled) { #>
+        internal Microsoft.Office.Tools.Ribbon.RibbonDropDown dropDownNMRFormat;
+<#+ foreach (var e in itemsNMRFormat) { #>
+        internal Microsoft.Office.Tools.Ribbon.RibbonDropDownItem <#= e.Name #>;
+<#+ } #>
 <#+ } #>
     }
     

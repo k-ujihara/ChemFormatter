@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace ChemFormatter.Tests
@@ -75,6 +76,26 @@ namespace ChemFormatter.Tests
             TestList("1.00 (1H, s, comment)", "1.00", "1H", "s", null, 7);
             TestList("1.00 (1H, d, J = 1.0, comment)", "1.00", "1H", "d", "1.0", 7);
             TestList("1.00 (1H, d, J = 7.3, 1.0, comment)", "1.00", "1H", "d", "7.3, 1.0", 7);
+        }
+
+        [TestMethod()]
+        public void MakeRCommandTest2()
+        {
+            TestList("1.00 (s, 1H)", "1.00", "1H", "s", null, 0);
+            TestList("1.00 (d, J = 1.0, 1H)", "1.00", "1H", "d", "1.0", 0);
+            TestList("1.00 (d, J = 7.3, 1.0, 1H)", "1.00", "1H", "d", "7.3, 1.0", 0);
+            TestList("1.00 (d, J = 7.3, 1.0 Hz, 1H)", "1.00", "1H", "d", "7.3, 1.0", 0);
+            TestList("1.00 (s, 1H, comment)", "1.00", "1H", "s", null, 7);
+            TestList("1.00 (d, J = 1.0, 1H, comment)", "1.00", "1H", "d", "1.0", 7);
+            TestList("1.00 (d, J = 7.3, 1.0, 1H, comment)", "1.00", "1H", "d", "7.3, 1.0", 7);
+        }
+
+        [TestMethod()]
+        public void MakeCommandsTest()
+        {
+            var o = new NMRSpectrumQuery();
+            var cmds = o.MakeCommand("1.45 (s, 1H), 1.55 (d, J = 1.3 Hz, 3H), 1.95 (dd, J = 7.3, 2.3 Hz, 1.4H, CH3), 2.2-3.2 (m, 15H)");
+            Assert.AreNotEqual(0, cmds.Count());
         }
     }
 }

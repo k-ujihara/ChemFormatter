@@ -27,69 +27,70 @@ using System.Text.RegularExpressions;
 
 namespace ChemFormatter
 {
-    public static class NMRSpectrumQuery
+    public class NMRSpectrumQuery
     {
+        public static NMRFormat DefaultFormat = NMRFormat.IPJC;
+        
         const string RepShift = @"(?<shift>[\-\+]?\d+(?:\.\d*)?(?:\-[\-\+]?\d+(?:\.\d*)?)?)";
         const string Rep3H = @"(?<integration>\d+(?:\.\d+)?[A-Z][a-z]?)";
         const string RepPattern = @"(?<pattern>(br )?(?:m|s|d|t|q|quin|sext|sep|oct|dd|dt|dq|td|tt|tq|qd|qt|qq))";
         const string RepJvalues = @"(?<JValue>\d+(?:\.\d+)?)(?:\s+Hz)?(?:\s*\,\s*(?<JValue>\d+(?:\.\d+)?)(?:\s+Hz)?)*";
         const string RepComment = @"(?<comment>[^\s]*)";
 
-        // ACS style
+        /// <summary>
+        /// Regular expression for '1.23\td\t7.3\t1H\tC<i>H</i><sub>3</sub>.'
+        /// </summary>
         public static Regex ReTabSpecSIPJ = new Regex("^" + RepShift + @"(\t(?:" + Rep3H + ")?)?(?:\t(?:" + RepPattern + @")?)?(?:\t(?:" + RepJvalues + @")?)?(?:\t" + RepComment + ")?$", RegexOptions.Compiled);
-        // Science style
+
+        /// <summary>
+        /// Regular expression for '1.23\t1H\td\t7.3\tC<i>H</i><sub>3</sub>.'
+        /// </summary>
         public static Regex ReTabSpecSPJI = new Regex("^" + RepShift + "(\t(" + RepPattern + ")?)?(\t(" + RepJvalues + @")?)?(\t(" + Rep3H + ")?)?(\t" + RepComment + ")?$", RegexOptions.Compiled);
 
+        /// <summary>
+        /// Regular expression for '14.6 (<i>C</i>H<sub>3</sub>).'
+        /// </summary>
         public static Regex ReRsSC = new Regex("^" + RepShift + @"( \(" + RepComment + @"\))?$", RegexOptions.Compiled);
-        // ACS style
+
+        /// <summary>
+        /// Regular expression for '1.23 (1H, d, <i>J</i> = 7.3 Hz).'
+        /// </summary>
         public static Regex ReRsSIPJC = new Regex("^" + RepShift + @"( \(" + Rep3H + @"(\, " + RepPattern + @"(\, J \= " + RepJvalues + @")?)?(\, " + RepComment + @")?\))?$", RegexOptions.Compiled);
 
-        public class PeakInfo
-        {
-            public string ChemicalShift { get; set; }
-            public string Integration { get; set; }
-            public string Pattern { get; set; }
-            public IList<string> JValues { get; set; }
-            public Range CommentRange { get; set; }
+        /// <summary>
+        /// Regular expression for '1.23 (d, <i>J</i> = 7.3 Hz, 1H).'
+        /// </summary>
+        public static Regex ReRsSPJIC = new Regex("^" + RepShift + @"( \((" + RepPattern + @"(\, J \= " + RepJvalues + @")?\, )?" + Rep3H + @"(\, " + RepComment + @")?\))?$", RegexOptions.Compiled);
 
-            public override string ToString()
-            {
-                var sb = new StringBuilder();
-                sb.Append(ChemicalShift).Append(" (").Append(Integration);
-                if (Pattern != null)
-                    sb.Append(", ").Append(Pattern);
-                if (JValues != null)
-                    sb.Append(", J = ").Append(string.Join(", ", JValues)).Append("Hz");
-                if (CommentRange != null)
-                    sb.Append(", ").Append($"from {CommentRange.Start} to {CommentRange.Start + CommentRange.Length}");
-                sb.Append(")");
-                return sb.ToString();
-            }
+        public NMRSpectrumQuery()
+        {
         }
 
-        public static List<PCommand> TryMakeCommandTabToSpec(string text)
+        public NMRFormat Format { get; set; } = DefaultFormat;
+
+        public List<PCommand> MakeSpecCommandFromTab(string tabText)
         {
             var commands = new List<PCommand>();
 
             int removeStart = 0;
-            UnselectDelta(ref removeStart, ref text);
-            if (text.StartsWith("\r"))
+            UnselectDelta(ref removeStart, ref tabText);
+            if (tabText.StartsWith("\r"))
             {
-                text = text.Substring(1);
+                tabText = tabText.Substring(1);
                 removeStart += 1;
             }
             {
-                var trim = text.TrimEnd();
+                var trim = tabText.TrimEnd();
                 if (trim.EndsWith("\r."))
-                    text = trim.Substring(0, trim.Length - 1);
+                    tabText = trim.Substring(0, trim.Length - 1);
             }
-            commands.Add(new ChangeSelectionCommand(removeStart, text.Length));
+            commands.Add(new ChangeSelectionCommand(removeStart, tabText.Length));
 
-            commands.Add(new MoveToCommand(text.Length));
+            commands.Add(new MoveToCommand(tabText.Length));
             commands.Add(new FontResetCommand());
 
             bool isFirst = true;
-            foreach (var lineInfo in new LineReader(text))
+            foreach (var lineInfo in new LineReader(tabText))
             {
                 if (isFirst)
                     isFirst = false;
@@ -103,97 +104,140 @@ namespace ChemFormatter
                 PeakInfo info = CreatePeakInfo(match, lineInfo.Index);
 
                 commands.Add(new TypeTextCommand(info.ChemicalShift));
-                bool needComma = false;
-                if (info.Integration != null || info.Pattern != null || info.JValues != null || info.CommentRange != null)
-                {
-                    commands.Add(new TypeTextCommand(" ("));
-                    if (info.Integration != null)
-                    {
-                        if (needComma)
-                            commands.Add(new TypeTextCommand(", "));
-                        else
-                            needComma = true;
-                        commands.Add(new TypeTextCommand(info.Integration));
-                    }
-                    if (info.Pattern != null)
-                    {
-                        if (needComma)
-                            commands.Add(new TypeTextCommand(", "));
-                        else
-                            needComma = true;
-                        commands.Add(new TypeTextCommand(info.Pattern));
-                    }
-                    if (info.JValues != null)
-                    {
-                        if (needComma)
-                            commands.Add(new TypeTextCommand(", "));
-                        else
-                            needComma = true;
-                        commands.Add(new SetItalicCommand());
-                        commands.Add(new TypeTextCommand("J"));
-                        commands.Add(new FontResetCommand());
-                        commands.Add(new TypeTextCommand($" = {string.Join(", ", info.JValues)} Hz"));
-                    }
-                    if (info.CommentRange != null)
-                    {
-                        if (needComma)
-                            commands.Add(new TypeTextCommand(", "));
-                        else
-                            needComma = true;
-                        commands.Add(new CopyAndPasteCommand(info.CommentRange.Start, info.CommentRange.Length));
-                        commands.Add(new FontResetCommand());
-                    }
-                    commands.Add(new TypeTextCommand(")"));
-                }
+                AddSpecIPJC(commands, info);
             }
-            commands.Add(new ReplaceStringCommand(0, text.Length, ""));
+            commands.Add(new ReplaceStringCommand(0, tabText.Length, ""));
             commands.Add(new MoveToCommand(0));
             commands.Add(new TypeBackspaceCommand());
 
             return commands;
         }
 
-        public static List<PCommand> TryMakeCommandSpecToTab(string text)
+        internal void AddSpecIPJC(List<PCommand> commands, PeakInfo info)
+        {
+            bool isFirst = true;
+            if (info.Integration != null || info.Pattern != null || info.JValues != null || info.CommentRange != null)
+            {
+                commands.Add(new TypeTextCommand(" ("));
+
+                foreach (var action in Format.ActionsToSpec)
+                    isFirst = action(commands, info, isFirst);
+
+                if (info.CommentRange != null)
+                {
+                    if (isFirst)
+                        isFirst = false;
+                    else
+                        commands.Add(new TypeTextCommand(", "));
+                    commands.Add(new CopyAndPasteCommand(info.CommentRange.Start, info.CommentRange.Length));
+                    commands.Add(new FontResetCommand());
+                }
+                commands.Add(new TypeTextCommand(")"));
+            }
+        }
+
+        internal static bool AddSpecI(List<PCommand> commands, PeakInfo info, bool isFirst)
+        {
+            if (info.Integration != null)
+            {
+                if (isFirst)
+                    isFirst = false;
+                else
+                    commands.Add(new TypeTextCommand(", "));
+                commands.Add(new TypeTextCommand(info.Integration));
+            }
+
+            return isFirst;
+        }
+
+        internal static bool AddSpecPJ_I(List<PCommand> commands, PeakInfo info, bool isFirst)
+            => AddSpecPJ(commands, info, isFirst, true);
+
+        internal static bool AddSpecPJ_N(List<PCommand> commands, PeakInfo info, bool isFirst)
+            => AddSpecPJ(commands, info, isFirst, false);
+
+        internal static bool AddSpecPJ(List<PCommand> commands, PeakInfo info, bool isFirst, bool italic)
+        {
+            if (info.Pattern != null)
+            {
+                if (isFirst)
+                    isFirst = false;
+                else
+                    commands.Add(new TypeTextCommand(", "));
+                commands.Add(new TypeTextCommand(info.Pattern));
+            }
+            if (info.JValues != null)
+            {
+                if (isFirst)
+                    isFirst = false;
+                else
+                    commands.Add(new TypeTextCommand(", "));
+                if (italic)
+                    commands.Add(new SetItalicCommand());
+                commands.Add(new TypeTextCommand("J"));
+                if (italic)
+                    commands.Add(new FontResetCommand());
+                commands.Add(new TypeTextCommand($" = {string.Join(", ", info.JValues)} Hz"));
+            }
+
+            return isFirst;
+        }
+
+        public List<PCommand> MakeTabCommandFromSpec(string specText)
         {
             var commands = new List<PCommand>();
 
             int removeStart = 0;
-            UnselectDelta(ref removeStart, ref text);
-            text = text.TrimEnd();
-            if (text.EndsWith("."))
-                text = text.Substring(0, text.Length - 1);
+            UnselectDelta(ref removeStart, ref specText);
+            specText = specText.TrimEnd();
+            if (specText.EndsWith("."))
+                specText = specText.Substring(0, specText.Length - 1);
 
-            commands.Add(new ChangeSelectionCommand(removeStart, text.Length));
-            commands.Add(new MoveToCommand(text.Length));
+            commands.Add(new ChangeSelectionCommand(removeStart, specText.Length));
+            commands.Add(new MoveToCommand(specText.Length));
 
-            foreach (var lineInfo in new ListReader(text))
+            foreach (var lineInfo in new ListReader(specText))
             {
                 Match match;
                 match = MatchNMRSpec(lineInfo.Text);
                 if (!match.Success)
                     return null;
                 PeakInfo info = CreatePeakInfo(match, lineInfo.Index);
-
-                commands.Add(new TypeParagraphCommand());
-                commands.Add(new FontResetCommand());
-                commands.Add(new TypeTextCommand(info.ChemicalShift));
-                commands.Add(new TypeTextCommand("\t"));
-                if (info.Integration != null)
-                    commands.Add(new TypeTextCommand(info.Integration));
-                commands.Add(new TypeTextCommand("\t"));
-                if (info.Pattern != null)
-                    commands.Add(new TypeTextCommand(info.Pattern));
-                commands.Add(new TypeTextCommand("\t"));
-                if (info.JValues != null)
-                    commands.Add(new TypeTextCommand(string.Join(", ", info.JValues)));
-                commands.Add(new TypeTextCommand("\t"));
-                if (info.CommentRange != null)
-                    commands.Add(new CopyAndPasteCommand(info.CommentRange.Start, info.CommentRange.Length));
+                AddTabIPJC(commands, info);
             }
             commands.Add(new TypeParagraphCommand());
-            commands.Add(new ReplaceStringCommand(0, text.Length, ""));
+            commands.Add(new ReplaceStringCommand(0, specText.Length, ""));
 
             return commands;
+        }
+
+        internal void AddTabIPJC(List<PCommand> commands, PeakInfo info)
+        {
+            commands.Add(new TypeParagraphCommand());
+            commands.Add(new FontResetCommand());
+            commands.Add(new TypeTextCommand(info.ChemicalShift));
+            foreach (var action in Format.ActionsToTab)
+                action(commands, info);
+            commands.Add(new TypeTextCommand("\t"));
+            if (info.CommentRange != null)
+                commands.Add(new CopyAndPasteCommand(info.CommentRange.Start, info.CommentRange.Length));
+        }
+
+        internal static void AddTabI(List<PCommand> commands, PeakInfo info)
+        {
+            commands.Add(new TypeTextCommand("\t"));
+            if (info.Integration != null)
+                commands.Add(new TypeTextCommand(info.Integration));
+        }
+
+        internal static void AddTabPJ(List<PCommand> commands, PeakInfo info)
+        {
+            commands.Add(new TypeTextCommand("\t"));
+            if (info.Pattern != null)
+                commands.Add(new TypeTextCommand(info.Pattern));
+            commands.Add(new TypeTextCommand("\t"));
+            if (info.JValues != null)
+                commands.Add(new TypeTextCommand(string.Join(", ", info.JValues)));
         }
 
         private static void UnselectDelta(ref int removeStart, ref string text)
@@ -210,15 +254,15 @@ namespace ChemFormatter
             }
         }
 
-        public static IEnumerable<PCommand> MakeCommand(string text)
+        public IEnumerable<PCommand> MakeCommand(string text)
         {
             List<PCommand> commands;
 
-            commands = TryMakeCommandTabToSpec(text);
+            commands = MakeSpecCommandFromTab(text);
             if (commands != null)
                 return commands;
 
-            commands = TryMakeCommandSpecToTab(text);
+            commands = MakeTabCommandFromSpec(text);
             if (commands != null)
                 return commands;
 
@@ -229,6 +273,8 @@ namespace ChemFormatter
         {
             Match match;
             match = ReRsSIPJC.Match(text);
+            if (match.Success) goto L_Return;
+            match = ReRsSPJIC.Match(text);
             if (match.Success) goto L_Return;
             match = ReRsSC.Match(text);
             L_Return:
@@ -296,6 +342,29 @@ namespace ChemFormatter
             }
 
             return info;
+        }
+    }
+
+    public class PeakInfo
+    {
+        public string ChemicalShift { get; set; }
+        public string Integration { get; set; }
+        public string Pattern { get; set; }
+        public IList<string> JValues { get; set; }
+        public Range CommentRange { get; set; }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            sb.Append(ChemicalShift).Append(" (").Append(Integration);
+            if (Pattern != null)
+                sb.Append(", ").Append(Pattern);
+            if (JValues != null)
+                sb.Append(", J = ").Append(string.Join(", ", JValues)).Append("Hz");
+            if (CommentRange != null)
+                sb.Append(", ").Append($"from {CommentRange.Start} to {CommentRange.Start + CommentRange.Length}");
+            sb.Append(")");
+            return sb.ToString();
         }
     }
 }

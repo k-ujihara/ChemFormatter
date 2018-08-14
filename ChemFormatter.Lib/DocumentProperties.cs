@@ -20,27 +20,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-<#@ template debug="false" hostspecific="false" language="C#" #>
-<#@ assembly name="System.Core" #>
-<#@ import namespace="System.Linq" #>
-<#@ import namespace="System.Text" #>
-<#@ import namespace="System.Collections.Generic" #>
-<#@ output extension=".cs" #>
-
-<#@ include file="..\Ribbon.ttinclude" #>
-
-namespace ChemFormatter.WordAddIn
+namespace ChemFormatter
 {
-<# 
-    handlerObject = "Globals.ThisAddIn";
-    ribbonType = "Microsoft.Word.Document";
-    RDigitChangerEnabled = true;
-    ChemFormulaEnabled = true;
-    IonFormulaEnabled = true;
-    ChemNameEnabled = true;
-    JournalReferenceEnabled = true;
-    NMRSpecEnabled = true;
-
-    WriteRibbonClass();
-#>
+    public static class DocumentProperties
+    {
+        public const string NMRFormatKey = "NMR Format";
+    }
 }

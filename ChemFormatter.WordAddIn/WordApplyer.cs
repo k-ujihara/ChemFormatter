@@ -20,64 +20,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using Microsoft.Office.Tools.Ribbon;
 using System.Collections.Generic;
 using System.Globalization;
 using Office = Microsoft.Office.Core;
 
 namespace ChemFormatter.WordAddIn
 {
-    public static class Applyer
+    public static class WordApplyer
     {
-        public static void ButtonRDigitChanger_Click(object sender, RibbonControlEventArgs e)
-        {
-            var text = Globals.ThisAddIn.Application.Selection.Text;
-            text = Utility.Normalize(text);
-            var commands = RDigitQuery.MakeCommand(text);
-            Apply(commands);
-        }
-
-        public static void ButtonChemFormular_Click(object sender, RibbonControlEventArgs e)
-        {
-            var text = Globals.ThisAddIn.Application.Selection.Text;
-            text = Utility.Normalize(text);
-            var commands = ChemFormulaQuery.MakeCommand(text);
-            Apply(commands);
-        }
-
-        public static void ButtonIonFormular_Click(object sender, RibbonControlEventArgs e)
-        {
-            var text = Globals.ThisAddIn.Application.Selection.Text;
-            text = Utility.Normalize(text);
-            var commands = IonFormulaQuery.MakeCommand(text);
-            Apply(commands);
-        }
-
-        public static void ButtonChemName_Click(object sender, RibbonControlEventArgs e)
-        {
-            var text = Globals.ThisAddIn.Application.Selection.Text;
-            text = Utility.Normalize(text);
-            var commands = ChemNameQuery.MakeCommand(text);
-            Apply(commands);
-        }
-
-        public static void ButtonStyleCitation_Click(object sender, RibbonControlEventArgs e)
-        {
-            var text = Globals.ThisAddIn.Application.Selection.Text;
-            text = Utility.Normalize(text);
-            var commands = JournalReferenceQuery.MakeCommand(text);
-            Apply(commands);
-        }        
-
-        public static void ButtonNMRSpec_Click(object sender, RibbonControlEventArgs e)
-        {
-            var app = Globals.ThisAddIn.Application;
-            var text = app.Selection.Text;
-            text = Utility.Normalize(text);
-            var commands = NMRSpectrumQuery.MakeCommand(text);
-            Apply(commands);
-        }
-
         public static void Apply(IEnumerable<PCommand> commands)
         {
             var save = KeepSelection();
