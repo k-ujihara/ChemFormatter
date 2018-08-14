@@ -29,14 +29,23 @@ namespace ChemFormatter
     {
         const string RepName = @"(?<name>(\w+\.?)( \w+\.?)*)";
         const string RepYear = @"(?<year>\d\d\d\d)";
-        const string RepVolumeNo = @"(?<volume>\d+)(?<no>\(\d+\))?";
-        const string RepPages = @"(?<pages>\d+(\-\d+)?)";
+        const string RepMonth = @"(?<month>(January|February|March|April|May|June|July|August|September|October|November|December|Jan.|Feb.|Mar.|Apr.|May.|Jun.|Jul.|Aug.|Sept.|Oct.|Nov.|Dec.))";
+        const string RepVolume = @"(?<volume>(ED\-)?\d+)";
+        const string RepNo = @"(?<no>\d+)";
+        const string RepPages = @"(?<pages>(A|e)?\d+(\-(A|e)?\d+)?)";
 
+        // <i>J. Am. Chem. Soc.</i> <b>2001</b>, <i>123</i>, 4567-4569.
         static Regex ReACSStyle { get; } = new Regex(
-            $"\\b{RepName} {RepYear}\\, {RepVolumeNo}\\, {RepPages}\\b", RegexOptions.Compiled);
+            @"\b" + RepName + " " + RepYear + @"\, " + RepVolume + @"(\(" + RepNo + @"\))?" + @"\, " + RepPages + @"\.", RegexOptions.Compiled);
 
+        // <i>J. Am. Chem. Soc.</i> <b>123</b>, 4567-4569, (2001).
         static Regex ReNatureStyle { get; } = new Regex(
-            $"\\b{RepName} {RepVolumeNo}\\, {RepPages} \\({RepYear}\\)", RegexOptions.Compiled);
+            @"\b" + RepName+ " " + RepVolume + @"(\(" + RepNo + @"\))?" + @"\, " + RepPages + @" \(" + RepYear + @"\)\.", RegexOptions.Compiled);
+
+        // IEEE: http://libguides.murdoch.edu.au/IEEE/journal
+        // <i>IEEE Transactions on Image Processing</i>, vol. 19, no. 9, pp. 2265-77, 2010.
+        static Regex ReIEEEStyle { get; } = new Regex(
+            @"\b" + RepName + @"\, " + "(" + @"[Vv]ol\. " + RepVolume + @"\, " + @"([Nn]o\. " + RepNo + @"\, )?" + @"pp\. " + RepPages + @"\, " + @"(" + RepMonth + @" )?" + RepYear + "|to be published)" + @"\.", RegexOptions.Compiled); 
 
         public static IEnumerable<PCommand> MakeCommand(string text)
         {
@@ -60,6 +69,13 @@ namespace ChemFormatter
                 commands.Add(new ItalicCommand(g.Index, g.Length));
                 g = match.Groups["volume"];
                 commands.Add(new BoldCommand(g.Index, g.Length));
+            }
+
+            foreach (Match match in ReIEEEStyle.Matches(text))
+            {
+                Group g;
+                g = match.Groups["name"];
+                commands.Add(new ItalicCommand(g.Index, g.Length));
             }
 
             return commands;

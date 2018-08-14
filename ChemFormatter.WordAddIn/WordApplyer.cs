@@ -61,7 +61,7 @@ namespace ChemFormatter.WordAddIn
             Apply(commands);
         }
 
-        public static void ButtonJournalReference_Click(object sender, RibbonControlEventArgs e)
+        public static void ButtonStyleCitation_Click(object sender, RibbonControlEventArgs e)
         {
             var text = Globals.ThisAddIn.Application.Selection.Text;
             text = Utility.Normalize(text);

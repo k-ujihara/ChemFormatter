@@ -49,7 +49,7 @@
     {
         var ribbonButtons = new List<RibbonButtonInfo>();
         if (RDigitChangerEnabled)
-            ribbonButtons.Add(new RibbonButtonInfo("buttonRDigitChanger", "Applyer.ButtonRDigitChanger_Click(sender, e)", "Sub-digits Changer", "CommonResourceManager.RDigitChangerImage"));
+            ribbonButtons.Add(new RibbonButtonInfo("buttonRDigitChanger", "Applyer.ButtonRDigitChanger_Click(sender, e)", "Sub-digits Change", "CommonResourceManager.RDigitChangerImage"));
         if (ChemFormulaEnabled)
             ribbonButtons.Add(new RibbonButtonInfo("buttonChemFormula", "Applyer.ButtonChemFormular_Click(sender, e)", "Chem Formula", "CommonResourceManager.ChemFormulaImage"));
         if (IonFormulaEnabled)
@@ -57,7 +57,7 @@
         if (ChemNameEnabled)
             ribbonButtons.Add(new RibbonButtonInfo("buttonChemName", "Applyer.ButtonChemName_Click(sender, e)", "Chem Name", "CommonResourceManager.ChemNameImage"));
         if (JournalReferenceEnabled)
-            ribbonButtons.Add(new RibbonButtonInfo("buttonJournalReference", "Applyer.ButtonJournalReference_Click(sender, e)", "Journal Ref", "CommonResourceManager.JournalReferenceImage"));
+            ribbonButtons.Add(new RibbonButtonInfo("buttonStyleCitation", "Applyer.ButtonStyleCitation_Click(sender, e)", "Citation", "CommonResourceManager.JournalReferenceImage"));
         if (NMRSpecEnabled)
             ribbonButtons.Add(new RibbonButtonInfo("buttonNMRSpec", "Applyer.ButtonNMRSpec_Click(sender, e)", "NMR Spec", "CommonResourceManager.NMRSpecImage"));
 #>

@@ -44,7 +44,7 @@ acetone O-ethyl S-methyl monothioketal ⇒ acetone <i>O</i>-ethyl <i>S</i>-methy
 
 dichloro(N,N,N',N'-tetramethylethylenediamine)zinc(II) ⇒ dichloro(<i>N</i>,<i>N</i>,<i>N</i>',<i>N</i>'-tetramethylethylenediamine)zinc(II)
 
-### <img src="ChemFormatter.Lib/Resources/Journal.png?raw=true" width="32" height="32" border="1" /> Set style as a journal reference.
+### <img src="ChemFormatter.Lib/Resources/Journal.png?raw=true" width="32" height="32" border="1" /> Style journal references.
 
 <i>J. Am. Chem. Soc.</i> <b>2017</b>, <i>123</i>, 1.
 
@@ -62,6 +62,18 @@ dichloro(N,N,N',N'-tetramethylethylenediamine)zinc(II) ⇒ dichloro(<i>N</i>,<i>
 
 <i>Proc. Natl. Acad. Sci. USA</i> <b>104</b>, 1234–1235 (2007).
 
+<i>Phys. Rev.</i>, vol. 134, pp. A635-A646, Dec. 1965.
+
+<i>IEEE Trans. Electron. Devices</i>, vol. ED-11, pp. 34-39, Jan. 1959.
+
+<i>IEEE Trans. Comp.</i>, vol. 46, pp. 695-701, June 1997.
+
+<i>IEEE Transactions on Pattern Analysis and Machine Intelligence</i>, vol. 19, pp. 564-579, June 1997.
+
+<i>Microelectronics Reliability</i>, vol. 33, no. 9, pp. 1387-1395, Dec. 1993.
+
+<i>IEEE Transactions on Antennas and Propagation</i>, to be published.
+
 ### <img src="ChemFormatter.Lib/Resources/NMRSpectrum.png?raw=true" width="32" height="32" border="1" /> Format NMR spectrum specification.
 
 1.45&nbsp;<font color="gray">→</font>&nbsp;&nbsp;1H&nbsp;<font color="gray">→</font>&nbsp;&nbsp;s&nbsp;<font color="gray">→</font>&nbsp;&nbsp;&nbsp;<font color="gray">→</font>&nbsp;&nbsp;
@@ -78,4 +90,4 @@ dichloro(N,N,N',N'-tetramethylethylenediamine)zinc(II) ⇒ dichloro(<i>N</i>,<i>
 
 ## Old versions
 
-The old versions are available at [SourceForge](https://sourceforge.net/projects/chemformatter/). The Microsoft Word template version works on both Windows and Mac. Very old COM add-in version implemented written by Visual Basic 6.0 works on Word, Excel, PowerPoint, Publisher, and Visio.
+The old versions are available at [SourceForge](https://sourceforge.net/projects/chemformatter/). The Microsoft Word template version works on both Windows and Mac. Very old COM add-in version implemented by Visual Basic 6.0 works on Word, Excel, PowerPoint, Publisher, and Visio.

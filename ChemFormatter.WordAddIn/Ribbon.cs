@@ -79,7 +79,7 @@ namespace ChemFormatter.WordAddIn
             this.buttonChemFormula = this.Factory.CreateRibbonButton();
             this.buttonIonFormula = this.Factory.CreateRibbonButton();
             this.buttonChemName = this.Factory.CreateRibbonButton();
-            this.buttonJournalReference = this.Factory.CreateRibbonButton();
+            this.buttonStyleCitation = this.Factory.CreateRibbonButton();
             this.buttonNMRSpec = this.Factory.CreateRibbonButton();
             this.tabAddIns.SuspendLayout();
             this.groupChemFormatter.SuspendLayout();
@@ -98,7 +98,7 @@ namespace ChemFormatter.WordAddIn
             this.groupChemFormatter.Items.Add(this.buttonChemFormula);
             this.groupChemFormatter.Items.Add(this.buttonIonFormula);
             this.groupChemFormatter.Items.Add(this.buttonChemName);
-            this.groupChemFormatter.Items.Add(this.buttonJournalReference);
+            this.groupChemFormatter.Items.Add(this.buttonStyleCitation);
             this.groupChemFormatter.Items.Add(this.buttonNMRSpec);
             this.groupChemFormatter.Label = "ChemFormatter";
             this.groupChemFormatter.Name = "groupChemFormatter";
@@ -111,7 +111,7 @@ namespace ChemFormatter.WordAddIn
                 if (im != null)
                     this.buttonRDigitChanger.Image = im;
             }
-            this.buttonRDigitChanger.Label = "Sub-digits Changer";
+            this.buttonRDigitChanger.Label = "Sub-digits Change";
             this.buttonRDigitChanger.Name = "buttonRDigitChanger";
             this.buttonRDigitChanger.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler((sender, e) => Applyer.ButtonRDigitChanger_Click(sender, e));
             this.buttonRDigitChanger.ShowLabel = true;
@@ -156,18 +156,18 @@ namespace ChemFormatter.WordAddIn
             this.buttonChemName.ShowLabel = true;
             this.buttonChemName.ShowImage = true;
             // 
-            // buttonJournalReference
+            // buttonStyleCitation
             // 
             {
                 var im = CommonResourceManager.GetImage(CommonResourceManager.JournalReferenceImage);
                 if (im != null)
-                    this.buttonJournalReference.Image = im;
+                    this.buttonStyleCitation.Image = im;
             }
-            this.buttonJournalReference.Label = "Journal Ref";
-            this.buttonJournalReference.Name = "buttonJournalReference";
-            this.buttonJournalReference.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler((sender, e) => Applyer.ButtonJournalReference_Click(sender, e));
-            this.buttonJournalReference.ShowLabel = true;
-            this.buttonJournalReference.ShowImage = true;
+            this.buttonStyleCitation.Label = "Citation";
+            this.buttonStyleCitation.Name = "buttonStyleCitation";
+            this.buttonStyleCitation.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler((sender, e) => Applyer.ButtonStyleCitation_Click(sender, e));
+            this.buttonStyleCitation.ShowLabel = true;
+            this.buttonStyleCitation.ShowImage = true;
             // 
             // buttonNMRSpec
             // 
@@ -202,7 +202,7 @@ namespace ChemFormatter.WordAddIn
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonChemFormula;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonIonFormula;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonChemName;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonJournalReference;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonStyleCitation;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonNMRSpec;
     }
     
