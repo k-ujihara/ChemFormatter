@@ -10,8 +10,8 @@ using System.Security;
 [assembly: AssemblyDescription("ChemFormatter")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Kazuya Ujihara")]
-[assembly: AssemblyProduct("ChemFormatter for Office")]
-[assembly: AssemblyCopyright("Copyright © Kazuya Ujihara 2018")]
+[assembly: AssemblyProduct("ChemFormatter for Office (Microsoft Word)")]
+[assembly: AssemblyCopyright("Copyright © 2018 Kazuya Ujihara")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

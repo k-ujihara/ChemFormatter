@@ -74,7 +74,20 @@ dichloro(N,N,N',N'-tetramethylethylenediamine)zinc(II) ⇒ dichloro(<i>N</i>,<i>
 
 <i>IEEE Transactions on Antennas and Propagation</i>, to be published.
 
-### <img src="ChemFormatter.Lib/Resources/NMRSpectrum.png?raw=true" width="32" height="32" border="1" /> Format NMR spectrum specification.
+### <img src="ChemFormatter.Lib/Resources/alphaD.png?raw=true" width="32" height="32" border="1" /> Format optical rotation.
+
+[a]D +25.5 ⇒ [α]<sub>D</sub> +25.5
+
+[a]D20 +25.5 ⇒ [α]<sub>D</sub><sup>20</sup> +25.5
+
+[a]D20 +25.5 (c 1.5) ⇒ [α]<sub>D</sub><sup>20</sup> +25.5 (c 1.5)
+
+[a]D20 +25.5 (c 1.5, CHCl<sub>3</sub>) ⇒ [α]<sub>D</sub><sup>20</sup> +25.5 (c 1.5, CHCl<sub>3</sub>)
+
+[a]D20 -25.5 (c 1.5, CHCl<sub>3</sub>) ⇒ [α]<sub>D</sub><sup>20</sup> -25.5 (c 1.5, CHCl<sub>3</sub>)
+
+
+### <img src="ChemFormatter.Lib/Resources/NMRSpectrum.png?raw=true" width="32" height="32" border="1" /> Format NMR spectrum specification from tab separated table.
 
 1.45&nbsp;<font color="gray">→</font>&nbsp;&nbsp;1H&nbsp;<font color="gray">→</font>&nbsp;&nbsp;s&nbsp;<font color="gray">→</font>&nbsp;&nbsp;&nbsp;<font color="gray">→</font>&nbsp;&nbsp;
 

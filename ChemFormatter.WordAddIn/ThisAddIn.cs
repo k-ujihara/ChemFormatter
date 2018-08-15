@@ -149,6 +149,15 @@ namespace ChemFormatter.WordAddIn
             WordApplyer.Apply(commands);
         }
 
+        public void ButtonAlphaD_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
+        {
+            var app = Globals.ThisAddIn.Application;
+            var text = app.Selection.Text;
+            text = Utility.Normalize(text);
+            var commands = AlphaDQuery.MakeCommand(text);
+            WordApplyer.Apply(commands);
+        }
+
         internal void DropDownNMRFormat_SelectionChanged(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
         {
             var ribbon = Globals.Ribbons.GetRibbon<Ribbon>();

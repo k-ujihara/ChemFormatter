@@ -242,6 +242,11 @@ namespace ChemFormatter
 
         private static void UnselectDelta(ref int removeStart, ref string text)
         {
+            {
+                var trim = text.TrimStart();
+                removeStart += (text.Length - trim.Length);
+                text = trim;
+            }
             if (text.StartsWith("δ"))
             {
                 text = text.Substring(1);

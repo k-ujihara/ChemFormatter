@@ -59,6 +59,7 @@
     bool ChemNameEnabled = false;
     bool JournalReferenceEnabled = false;
     bool NMRSpecEnabled = false;
+    bool AlphaDEnabled = false;
 
     public void WriteRibbonClass()
     {
@@ -73,6 +74,8 @@
             ribbonButtons.Add(new RibbonButtonInfo("buttonChemName", handlerObject + ".ButtonChemName_Click", "Chem Name", "CommonResourceManager.ChemNameImage"));
         if (JournalReferenceEnabled)
             ribbonButtons.Add(new RibbonButtonInfo("buttonStyleCitation", handlerObject + ".ButtonStyleCitation_Click", "Citation", "CommonResourceManager.JournalReferenceImage"));
+        if (AlphaDEnabled)
+            ribbonButtons.Add(new RibbonButtonInfo("buttonAlphaD", handlerObject + ".ButtonAlphaD_Click", "Optical Rotation", "CommonResourceManager.AlphaDImage"));
         if (NMRSpecEnabled)
             ribbonButtons.Add(new RibbonButtonInfo("buttonNMRSpec", handlerObject + ".ButtonNMRSpec_Click", "NMR Spec", "CommonResourceManager.NMRSpecImage"));
 

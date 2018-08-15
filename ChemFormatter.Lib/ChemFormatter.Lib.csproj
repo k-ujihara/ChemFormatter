@@ -70,6 +70,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlphaDQuery.cs" />
     <Compile Include="DocumentProperties.cs" />
     <Compile Include="IndexAndString.cs" />
     <Compile Include="ListReader.cs" />
@@ -118,6 +119,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\NMR_PlainIPJC.png" />
     <EmbeddedResource Include="Resources\NMR_PlainPJIC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\alphaD.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

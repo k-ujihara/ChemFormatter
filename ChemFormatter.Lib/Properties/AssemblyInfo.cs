@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ChemFormatter.Lib")]
+[assembly: AssemblyTitle("Common Library of ChemFormatter")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ChemFormatter.Lib")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
+[assembly: AssemblyProduct("ChemFormatter for Office")]
+[assembly: AssemblyCopyright("Copyright © 2018 Kazuya Ujihara")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

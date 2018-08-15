@@ -56,6 +56,7 @@ namespace ChemFormatter.WordAddIn
             this.buttonIonFormula = this.Factory.CreateRibbonButton();
             this.buttonChemName = this.Factory.CreateRibbonButton();
             this.buttonStyleCitation = this.Factory.CreateRibbonButton();
+            this.buttonAlphaD = this.Factory.CreateRibbonButton();
             this.buttonNMRSpec = this.Factory.CreateRibbonButton();
             this.dropDownNMRFormat = this.Factory.CreateRibbonDropDown();
             this.dropDownItem_NMRIPJC = this.Factory.CreateRibbonDropDownItem();
@@ -81,6 +82,7 @@ namespace ChemFormatter.WordAddIn
             this.groupChemFormatter.Items.Add(this.buttonIonFormula);
             this.groupChemFormatter.Items.Add(this.buttonChemName);
             this.groupChemFormatter.Items.Add(this.buttonStyleCitation);
+            this.groupChemFormatter.Items.Add(this.buttonAlphaD);
             this.groupChemFormatter.Items.Add(this.buttonNMRSpec);
             this.groupChemFormatter.Items.Add(this.dropDownNMRFormat);
             this.groupChemFormatter.Label = "ChemFormatter";
@@ -151,6 +153,19 @@ namespace ChemFormatter.WordAddIn
             this.buttonStyleCitation.Click += (sender, e) => Globals.ThisAddIn.ButtonStyleCitation_Click(sender, e);
             this.buttonStyleCitation.ShowLabel = true;
             this.buttonStyleCitation.ShowImage = true;
+            // 
+            // buttonAlphaD
+            // 
+            {
+                var im = CommonResourceManager.GetImage(CommonResourceManager.AlphaDImage);
+                if (im != null)
+                    this.buttonAlphaD.Image = im;
+            }
+            this.buttonAlphaD.Label = "Optical Rotation";
+            this.buttonAlphaD.Name = "buttonAlphaD";
+            this.buttonAlphaD.Click += (sender, e) => Globals.ThisAddIn.ButtonAlphaD_Click(sender, e);
+            this.buttonAlphaD.ShowLabel = true;
+            this.buttonAlphaD.ShowImage = true;
             // 
             // buttonNMRSpec
             // 
@@ -231,6 +246,7 @@ namespace ChemFormatter.WordAddIn
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonIonFormula;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonChemName;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonStyleCitation;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonAlphaD;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonNMRSpec;
         internal Microsoft.Office.Tools.Ribbon.RibbonDropDown dropDownNMRFormat;
         internal Microsoft.Office.Tools.Ribbon.RibbonDropDownItem dropDownItem_NMRIPJC;
