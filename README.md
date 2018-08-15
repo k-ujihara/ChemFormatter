@@ -80,11 +80,11 @@ dichloro(N,N,N',N'-tetramethylethylenediamine)zinc(II) ⇒ dichloro(<i>N</i>,<i>
 
 [a]D20 +25.5 ⇒ [α]<sub>D</sub><sup>20</sup> +25.5
 
-[a]D20 +25.5 (c 1.5) ⇒ [α]<sub>D</sub><sup>20</sup> +25.5 (c 1.5)
+[a]D20 +25.5 (c 1.5) ⇒ [α]<sub>D</sub><sup>20</sup> +25.5 (<i>c</i> 1.5)
 
-[a]D20 +25.5 (c 1.5, CHCl<sub>3</sub>) ⇒ [α]<sub>D</sub><sup>20</sup> +25.5 (c 1.5, CHCl<sub>3</sub>)
+[a]D20 +25.5 (c 1.5, CHCl<sub>3</sub>) ⇒ [α]<sub>D</sub><sup>20</sup> +25.5 (<i>c</i> 1.5, CHCl<sub>3</sub>)
 
-[a]D20 -25.5 (c 1.5, CHCl<sub>3</sub>) ⇒ [α]<sub>D</sub><sup>20</sup> -25.5 (c 1.5, CHCl<sub>3</sub>)
+[a]D20 -25.5 (c 1.5, CHCl<sub>3</sub>) ⇒ [α]<sub>D</sub><sup>20</sup> -25.5 (<i>c</i> 1.5, CHCl<sub>3</sub>)
 
 
 ### <img src="ChemFormatter.Lib/Resources/NMRSpectrum.png?raw=true" width="32" height="32" border="1" /> Format NMR spectrum specification from tab separated table.
