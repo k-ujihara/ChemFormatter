@@ -1,8 +1,6 @@
 # ChemFormatter
 
-ChemFormatter is a chemical formatter add-in for Microsoft Office. It is implemented using VSTO.
-
-Currently Microsoft Word version is implemented.
+ChemFormatter is a chemical formatter add-in for Microsoft Word and Excel. It is implemented using VSTO.
 
 ## How to Use
 
@@ -38,7 +36,7 @@ tert-butyldimethylsilane ⇒ <i>tert</i>-butyldimethylsilane
 
 (2E,4Z)-hexa-2,4-diene ⇒ (2<i>E</i>,4<i>Z</i>)-hexa-2,4-diene
 
-L-phenylalanine ⇒ <span style="font-variant: small-caps;">l</span>-phenylalanine
+L-phenylalanine ⇒ <small>L</small>-phenylalanine
 
 acetone O-ethyl S-methyl monothioketal ⇒ acetone <i>O</i>-ethyl <i>S</i>-methyl monothioketal
 
@@ -86,16 +84,17 @@ dichloro(N,N,N',N'-tetramethylethylenediamine)zinc(II) ⇒ dichloro(<i>N</i>,<i>
 
 [a]D20 -25.5 (c 1.5, CHCl<sub>3</sub>) ⇒ [α]<sub>D</sub><sup>20</sup> -25.5 (<i>c</i> 1.5, CHCl<sub>3</sub>)
 
+[a]D20 -25.5° (c 1.5, CHCl<sub>3</sub>) ⇒ [α]<sub>D</sub><sup>20</sup> -25.5° (<i>c</i> 1.5, CHCl<sub>3</sub>)
 
 ### <img src="ChemFormatter.Lib/Resources/NMRSpectrum.png?raw=true" width="32" height="32" border="1" /> Format NMR spectrum specification from tab separated table.
 
-1.45&nbsp;<font color="gray">→</font>&nbsp;&nbsp;1H&nbsp;<font color="gray">→</font>&nbsp;&nbsp;s&nbsp;<font color="gray">→</font>&nbsp;&nbsp;&nbsp;<font color="gray">→</font>&nbsp;&nbsp;
+1.45&nbsp;<font color="gray">␉</font>&nbsp;&nbsp;1H
 
-1.55&nbsp;<font color="gray">→</font>&nbsp;&nbsp;3H&nbsp;<font color="gray">→</font>&nbsp;&nbsp;d&nbsp;<font color="gray">→</font>&nbsp;&nbsp;1.3&nbsp;<font color="gray">→</font>&nbsp;&nbsp;
+1.55&nbsp;<font color="gray">␉</font>&nbsp;&nbsp;3H&nbsp;<font color="gray">␉</font>&nbsp;&nbsp;d&nbsp;<font color="gray">␉</font>&nbsp;&nbsp;1.3
 
-1.95&nbsp;<font color="gray">→</font>&nbsp;&nbsp;1.4H&nbsp;<font color="gray">→</font>&nbsp;&nbsp;t&nbsp;<font color="gray">→</font>&nbsp;&nbsp;7.3, 2.3&nbsp;<font color="gray">→</font>&nbsp;&nbsp;CH<sub>3</sub>
+1.95&nbsp;<font color="gray">␉</font>&nbsp;&nbsp;1.4H&nbsp;<font color="gray">␉</font>&nbsp;&nbsp;t&nbsp;<font color="gray">␉</font>&nbsp;&nbsp;7.3, 2.3&nbsp;<font color="gray">␉</font>&nbsp;&nbsp;CH<sub>3</sub>
 
-2.2-3.2&nbsp;<font color="gray">→</font>&nbsp;&nbsp;15H&nbsp;<font color="gray">→</font>&nbsp;&nbsp;m&nbsp;<font color="gray">→</font>&nbsp;&nbsp;&nbsp;<font color="gray">→</font>&nbsp;&nbsp;
+2.2-3.2&nbsp;<font color="gray">␉</font>&nbsp;&nbsp;15H&nbsp;<font color="gray">␉</font>&nbsp;&nbsp;m
 
 &nbsp;↓&nbsp;↑
 
