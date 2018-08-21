@@ -21,11 +21,11 @@
     <ProjectTypeGuids>{BAA0C2D2-18E2-41B9-852F-F413020CAA33};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BDD48BDE-191F-42E8-901D-A73B2267C5C4}</ProjectGuid>
+    <ProjectGuid>{3EDE7602-77AD-4DE3-9772-6108C672CB40}</ProjectGuid>
     <OutputType>Library</OutputType>
     <NoStandardLibraries>false</NoStandardLibraries>
-    <RootNamespace>ChemFormatter.WordAddIn</RootNamespace>
-    <AssemblyName>ChemFormatter.WordAddIn</AssemblyName>
+    <RootNamespace>ChemFormatter.ExcelAddIn</RootNamespace>
+    <AssemblyName>ChemFormatter.ExcelAddIn</AssemblyName>
     <LoadBehavior>3</LoadBehavior>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <DefineConstants>VSTO40</DefineConstants>
@@ -44,7 +44,7 @@
       OfficeApplication
         Add-in host application
     -->
-    <OfficeApplication>Word</OfficeApplication>
+    <OfficeApplication>Excel</OfficeApplication>
   </PropertyGroup>
   <!--
     This section defines properties that are set when the "Debug" configuration is selected.
@@ -123,7 +123,7 @@
     <Reference Include="Microsoft.Office.Tools.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>
-    <Reference Include="Microsoft.Office.Tools.Word, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Office.Tools.Excel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -137,7 +137,7 @@
       <Private>False</Private>
       <EmbedInteropTypes>true</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <Private>False</Private>
       <EmbedInteropTypes>true</EmbedInteropTypes>
     </Reference>
@@ -156,21 +156,10 @@
     can be found.
   -->
   <ItemGroup>
-    <Compile Include="AutoCorrectSaver.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AutoCorrectSaver.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Applyer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Ribbon.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Ribbon.tt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="WordApplyer.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -180,7 +169,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="ChemFormatter.WordAddIn_TemporaryKey.pfx" />
+    <None Include="ChemFormatter.ExcelAddIn_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -188,6 +177,12 @@
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ribbon.tt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
@@ -201,16 +196,6 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AutoCorrectSaver.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AutoCorrectSaver.cs</LastGenOutput>
-    </Content>
-    <None Include="Ribbon.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Ribbon.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +203,12 @@
       <Project>{712011d8-7a97-4e63-8d40-3e238a1e8a91}</Project>
       <Name>ChemFormatter.Lib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Ribbon.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Ribbon.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -227,10 +218,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>ChemFormatter.WordAddIn_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>ChemFormatter.ExcelAddIn_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>872282244894C3E0A45D437478FA38161A4A13D7</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>0CA9FBC135D7D718613F0C62F99FC34348063621</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -240,8 +231,8 @@
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{BAA0C2D2-18E2-41B9-852F-F413020CAA33}">
-        <ProjectProperties HostName="Word" HostPackage="{29A7B9D7-A7F1-4328-8EF0-6B2D1A56B2C1}" OfficeVersion="15.0" VstxVersion="4.0" ApplicationType="Word" Language="cs" TemplatesPath="" DebugInfoExeName="#Software\Microsoft\Office\16.0\Word\InstallRoot\Path#WINWORD.EXE" DebugInfoCommandLine="/x" AddItemTemplatesGuid="{51063C3A-E220-4D12-8922-BDA915ACD783}" />
-        <Host Name="Word" GeneratedCodeNamespace="ChemFormatter.WordAddIn" IconIndex="0">
+        <ProjectProperties HostName="Excel" HostPackage="{29A7B9D7-A7F1-4328-8EF0-6B2D1A56B2C1}" OfficeVersion="15.0" VstxVersion="4.0" ApplicationType="Excel" Language="cs" TemplatesPath="" DebugInfoExeName="#Software\Microsoft\Office\16.0\Excel\InstallRoot\Path#excel.exe" DebugInfoCommandLine="/x" AddItemTemplatesGuid="{51063C3A-E220-4D12-8922-BDA915ACD783}" />
+        <Host Name="Excel" GeneratedCodeNamespace="ChemFormatter.ExcelAddIn" IconIndex="0">
           <HostItem Name="ThisAddIn" Code="ThisAddIn.cs" CanonicalName="AddIn" CanActivate="false" IconIndex="1" Blueprint="ThisAddIn.Designer.xml" GeneratedCode="ThisAddIn.Designer.cs" />
         </Host>
       </FlavorProperties>

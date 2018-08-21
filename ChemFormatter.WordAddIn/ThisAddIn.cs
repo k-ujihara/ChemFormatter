@@ -49,7 +49,7 @@ namespace ChemFormatter.WordAddIn
         {
             var ribbon = Globals.Ribbons.GetRibbon<Ribbon>();
 
-            Microsoft.Office.Tools.Ribbon.RibbonDropDownItem find(string label) 
+            Microsoft.Office.Tools.Ribbon.RibbonDropDownItem find(string label)
                 => ribbon.dropDownNMRFormat.Items.Where(n => n.Label == format).FirstOrDefault();
 
             var item = find(format);
@@ -89,7 +89,7 @@ namespace ChemFormatter.WordAddIn
                 {
                 }
                 try
-                { 
+                {
                     doc.CustomDocumentProperties.Add(NMRFormatKey, false, Microsoft.Office.Core.MsoDocProperties.msoPropertyTypeString, CurrentNMRFormat.Label, missing);
                 }
                 catch (Exception e)
@@ -186,7 +186,7 @@ namespace ChemFormatter.WordAddIn
             this.Startup += new System.EventHandler(ThisAddIn_Startup);
             this.Shutdown += new System.EventHandler(ThisAddIn_Shutdown);
         }
-        
+
         #endregion
     }
 }
