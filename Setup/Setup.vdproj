@@ -22,6 +22,12 @@
         "Entry"
         {
         "MsmKey" = "8:_09A5CEFF1683F073EBA6D467CD8DBFD6"
+        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_09A5CEFF1683F073EBA6D467CD8DBFD6"
         "OwnerKey" = "8:_9EBBA6FA8BECE2DF8C0564BFB54C202F"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -41,6 +47,12 @@
         {
         "MsmKey" = "8:_1F5621EF11B405BC0CB5873FE6444A4C"
         "OwnerKey" = "8:_2AC4EF9301284041A198D7DF7271D838"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_1F5621EF11B405BC0CB5873FE6444A4C"
+        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -70,13 +82,37 @@
         "Entry"
         {
         "MsmKey" = "8:_2B5889FCD37869A78DE942254EA2944C"
+        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2B5889FCD37869A78DE942254EA2944C"
         "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3E78AEE8FF734048BBB837F4500A8219"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_61983BAA8F4C0FC1A98A19E581159DDE"
         "OwnerKey" = "8:_2AC4EF9301284041A198D7DF7271D838"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_61983BAA8F4C0FC1A98A19E581159DDE"
+        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -118,6 +154,12 @@
         "Entry"
         {
         "MsmKey" = "8:_B053EDA92F51E40F8DEF6D61E3293C3A"
+        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B053EDA92F51E40F8DEF6D61E3293C3A"
         "OwnerKey" = "8:_9EBBA6FA8BECE2DF8C0564BFB54C202F"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -148,6 +190,12 @@
         "Entry"
         {
         "MsmKey" = "8:_B597309F2D3C67FF77A60D504D9DC563"
+        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B597309F2D3C67FF77A60D504D9DC563"
         "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -159,8 +207,20 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B71832CC6FC54DD19139422A73E8D230"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_BD658C0735957CA638BE2656DCEC159D"
         "OwnerKey" = "8:_2AC4EF9301284041A198D7DF7271D838"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BD658C0735957CA638BE2656DCEC159D"
+        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -184,13 +244,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BD658C0735957CA638BE2656DCEC159D"
+        "OwnerKey" = "8:_2AC4EF9301284041A198D7DF7271D838"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2B5889FCD37869A78DE942254EA2944C"
+        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -208,7 +268,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2AC4EF9301284041A198D7DF7271D838"
+        "OwnerKey" = "8:_2B5889FCD37869A78DE942254EA2944C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -245,6 +305,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_B053EDA92F51E40F8DEF6D61E3293C3A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_BD658C0735957CA638BE2656DCEC159D"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -421,6 +487,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3E78AEE8FF734048BBB837F4500A8219"
+            {
+            "SourcePath" = "8:..\\ChemFormatter.PowerPointAddIn\\bin\\Release\\ChemFormatter.PowerPointAddIn.dll.manifest"
+            "TargetName" = "8:ChemFormatter.PowerPointAddIn.dll.manifest"
+            "Tag" = "8:"
+            "Folder" = "8:_1FE76C275A2C48D3BA0A938B9EDA6719"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_61983BAA8F4C0FC1A98A19E581159DDE"
@@ -618,6 +704,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B71832CC6FC54DD19139422A73E8D230"
+            {
+            "SourcePath" = "8:..\\ChemFormatter.PowerPointAddIn\\bin\\Release\\ChemFormatter.PowerPointAddIn.vsto"
+            "TargetName" = "8:ChemFormatter.PowerPointAddIn.vsto"
+            "Tag" = "8:"
+            "Folder" = "8:_1FE76C275A2C48D3BA0A938B9EDA6719"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BD658C0735957CA638BE2656DCEC159D"
             {
             "AssemblyRegister" = "3:1"
@@ -737,7 +843,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ChemFormatter for Office"
         "ProductCode" = "8:{FBC12B11-16AF-4A48-9950-13B8D84DE6F0}"
-        "PackageCode" = "8:{9E0A836B-D4CD-48D5-AA9E-C668C3D7A804}"
+        "PackageCode" = "8:{0D3C2A60-E7FB-4DA0-8E55-F3047EF63A71}"
         "UpgradeCode" = "8:{27FCD77B-7336-4827-9CB9-32B558333476}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -857,6 +963,80 @@
                                                                     "Transitive" = "11:FALSE"
                                                                     "ValueTypes" = "3:1"
                                                                     "Value" = "8:ChemFormatter.WordAddIn"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        "Values"
+                                                        {
+                                                        }
+                                                    }
+                                                }
+                                                "Values"
+                                                {
+                                                }
+                                            }
+                                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_CF658DA559264B72B5C6E4F6CBD262A1"
+                                            {
+                                            "Name" = "8:PowerPoint"
+                                            "Condition" = "8:"
+                                            "AlwaysCreate" = "11:FALSE"
+                                            "DeleteAtUninstall" = "11:FALSE"
+                                            "Transitive" = "11:FALSE"
+                                                "Keys"
+                                                {
+                                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_D6E17D623A55486381B3EC4087E3A59C"
+                                                    {
+                                                    "Name" = "8:Addins"
+                                                    "Condition" = "8:"
+                                                    "AlwaysCreate" = "11:FALSE"
+                                                    "DeleteAtUninstall" = "11:FALSE"
+                                                    "Transitive" = "11:FALSE"
+                                                        "Keys"
+                                                        {
+                                                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_B9BEAD3D9B4E4435988624AF9050FE16"
+                                                            {
+                                                            "Name" = "8:ChemFormatter.PowerPointAddIn"
+                                                            "Condition" = "8:"
+                                                            "AlwaysCreate" = "11:FALSE"
+                                                            "DeleteAtUninstall" = "11:FALSE"
+                                                            "Transitive" = "11:FALSE"
+                                                                "Keys"
+                                                                {
+                                                                }
+                                                                "Values"
+                                                                {
+                                                                    "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_17AF2F798D30472789A5A2B97F135F5F"
+                                                                    {
+                                                                    "Name" = "8:FriendlyName"
+                                                                    "Condition" = "8:"
+                                                                    "Transitive" = "11:FALSE"
+                                                                    "ValueTypes" = "3:1"
+                                                                    "Value" = "8:ChemFormatter for Office"
+                                                                    }
+                                                                    "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_341925F66524419591C07C0D50A5BD24"
+                                                                    {
+                                                                    "Name" = "8:Manifest"
+                                                                    "Condition" = "8:"
+                                                                    "Transitive" = "11:FALSE"
+                                                                    "ValueTypes" = "3:1"
+                                                                    "Value" = "8:file:///[TARGETDIR]ChemFormatter.PowerPointAddIn.vsto|vstolocal"
+                                                                    }
+                                                                    "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_6C712F81F3F84D339E410F50944C08C0"
+                                                                    {
+                                                                    "Name" = "8:LoadBehavior"
+                                                                    "Condition" = "8:"
+                                                                    "Transitive" = "11:FALSE"
+                                                                    "ValueTypes" = "3:3"
+                                                                    "Value" = "3:3"
+                                                                    }
+                                                                    "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_A565B7CF69D241DF942D8FBE5C9BA749"
+                                                                    {
+                                                                    "Name" = "8:Description"
+                                                                    "Condition" = "8:"
+                                                                    "Transitive" = "11:FALSE"
+                                                                    "ValueTypes" = "3:1"
+                                                                    "Value" = "8:ChemFormatter.PowerPointAddIn"
                                                                     }
                                                                 }
                                                             }
@@ -1413,6 +1593,34 @@
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{BDD48BDE-191F-42E8-901D-A73B2267C5C4}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
+            {
+            "SourcePath" = "8:..\\ChemFormatter.PowerPointAddIn\\obj\\Release\\ChemFormatter.PowerPointAddIn.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_1FE76C275A2C48D3BA0A938B9EDA6719"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{0BE9C140-45AE-4C43-8BDE-95026A0E0624}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {

@@ -75,6 +75,7 @@ namespace ChemFormatter.ExcelAddIn
                         case SmallCapitalCommand cmd:
                             try
                             {
+                                
                                 double size = app.ActiveCell.Font.Size;
                                 SelectAndAction(save.Start, cmd, (chars) => chars.Font.Size = size * 0.8);
                             }
