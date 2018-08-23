@@ -103,10 +103,54 @@ namespace ChemFormatter.WordAddIn
 
         internal void Fire(Func<string, IEnumerable<PCommand>> makeCommand)
         {
-            var text = Globals.ThisAddIn.Application.Selection.Text;
-            text = Utility.Normalize(text);
-            var commands = makeCommand(text);
-            WordApplyer.Apply(commands);
+            var sel = Globals.ThisAddIn.Application.Selection;
+            switch (sel.Type)
+            {
+                case wdSelectionInlineShape:
+                case wdSelectionShape:
+                    foreach (Microsoft.Office.Interop.Word.Shape shape in sel.ChildShapeRange)
+                    {
+                        try
+                        {
+                            shape.TextFrame.TextRange.Select();
+                            Fire(makeCommand);
+                        }
+                        catch (Exception)
+                        {
+                        }
+                    }
+                    break;
+                case wdSelectionColumn:
+                    var cells = sel.Cells;
+                    if (cells.Count == 1)
+                        goto default;
+                    Microsoft.Office.Interop.Word.Cell firstCell = null;
+                    Microsoft.Office.Interop.Word.Cell lastCell = null;
+                    foreach (Microsoft.Office.Interop.Word.Cell cell in cells)
+                    {
+                        if (firstCell == null)
+                            firstCell = cell;
+                        lastCell = cell;
+
+                        sel.SetRange(cell.Range.Start, cell.Range.End);
+                        sel.Select();
+                        Fire(makeCommand);
+                    }
+                    if (firstCell != null)
+                        sel.SetRange(firstCell.Range.Start, lastCell.Range.End);
+                    break;
+                default:
+                    var text = sel.Text;
+                    if (text == null)
+                        break;
+                    // remove cell separator, which is '\a' in MS-Word
+                    if (text[text.Length - 1] == '\a')
+                        text = text.Substring(0, text.Length - 1);
+                    text = Utility.Normalize(text);
+                    var commands = makeCommand(text);
+                    WordApplyer.Apply(commands);
+                    break;
+            }
         }
 
         internal void ButtonRDigitChanger_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)

@@ -35,23 +35,26 @@ namespace ChemFormatter
         const string RepPages = @"(?<pages>(A|e)?\d+(\-(A|e)?\d+)?)";
 
         // <i>J. Am. Chem. Soc.</i> <b>2001</b>, <i>123</i>, 4567-4569.
-        static Regex ReACSStyle { get; } = new Regex(
-            @"\b" + RepName + " " + RepYear + @"\, " + RepVolume + @"(\(" + RepNo + @"\))?" + @"\, " + RepPages + @"\.", RegexOptions.Compiled);
+        const string RepACSStyle = RepName + " " + RepYear + @"\, " + RepVolume + @"(\(" + RepNo + @"\))?" + @"\, " + RepPages;
+        static Regex ReACSStyle { get; } = new Regex("^" + RepACSStyle + @"\.?\s*$", RegexOptions.Compiled);
+        static Regex ReACSStyleP { get; } = new Regex(@"\b" + RepACSStyle + @"\.", RegexOptions.Compiled);
 
         // <i>J. Am. Chem. Soc.</i> <b>123</b>, 4567-4569, (2001).
-        static Regex ReNatureStyle { get; } = new Regex(
-            @"\b" + RepName+ " " + RepVolume + @"(\(" + RepNo + @"\))?" + @"\, " + RepPages + @" \(" + RepYear + @"\)\.", RegexOptions.Compiled);
+        const string RepNatureStyle = RepName + " " + RepVolume + @"(\(" + RepNo + @"\))?" + @"\, " + RepPages + @" \(" + RepYear + @"\)";
+        static Regex ReNatureStyle { get; } = new Regex("^" + RepNatureStyle + @"\.?\s*$", RegexOptions.Compiled);
+        static Regex ReNatureStyleP { get; } = new Regex(@"\b" + RepNatureStyle + @"\.", RegexOptions.Compiled);
 
         // IEEE: http://libguides.murdoch.edu.au/IEEE/journal
         // <i>IEEE Transactions on Image Processing</i>, vol. 19, no. 9, pp. 2265-77, 2010.
-        static Regex ReIEEEStyle { get; } = new Regex(
-            @"\b" + RepName + @"\, " + "(" + @"[Vv]ol\. " + RepVolume + @"\, " + @"([Nn]o\. " + RepNo + @"\, )?" + @"pp\. " + RepPages + @"\, " + @"(" + RepMonth + @" )?" + RepYear + "|to be published)" + @"\.", RegexOptions.Compiled); 
+        const string RepIEEEStyle = RepName + @"\, " + "(" + @"[Vv]ol\. " + RepVolume + @"\, " + @"([Nn]o\. " + RepNo + @"\, )?" + @"pp\. " + RepPages + @"\, " + @"(" + RepMonth + @" )?" + RepYear + "|to be published)";
+        static Regex ReIEEEStyle { get; } = new Regex("^" + RepIEEEStyle + @"\.?\s*$", RegexOptions.Compiled);
+        static Regex ReIEEEStyleP { get; } = new Regex(@"\b" + RepIEEEStyle + @"\.", RegexOptions.Compiled);
 
         public static IEnumerable<PCommand> MakeCommand(string text)
         {
             var commands = new List<PCommand>();
 
-            foreach (Match match in ReACSStyle.Matches(text))
+            void ProcessACSStyle(Match match)
             {
                 Group g;
                 g = match.Groups["name"];
@@ -60,24 +63,56 @@ namespace ChemFormatter
                 commands.Add(new BoldCommand(g.Index, g.Length));
                 g = match.Groups["volume"];
                 commands.Add(new ItalicCommand(g.Index, g.Length));
-            }
+            };
 
-            foreach (Match match in ReNatureStyle.Matches(text))
+            void ProcessNatureStyle(Match match)
             {
                 Group g;
                 g = match.Groups["name"];
                 commands.Add(new ItalicCommand(g.Index, g.Length));
                 g = match.Groups["volume"];
                 commands.Add(new BoldCommand(g.Index, g.Length));
-            }
+            };
 
-            foreach (Match match in ReIEEEStyle.Matches(text))
+            void ProcessIEEEStyle(Match match)
             {
                 Group g;
                 g = match.Groups["name"];
                 commands.Add(new ItalicCommand(g.Index, g.Length));
+            };
+
+            {
+                Match match;
+                match = ReACSStyle.Match(text);
+                if (match.Success)
+                {
+                    ProcessACSStyle(match);
+                    goto L_Exit;
+                }
+                match = ReNatureStyle.Match(text);
+                if (match.Success)
+                {
+                    ProcessNatureStyle(match);
+                    goto L_Exit;
+                }
+                match = ReIEEEStyle.Match(text);
+                if (match.Success)
+                {
+                    ProcessIEEEStyle(match);
+                    goto L_Exit;
+                }
             }
 
+            foreach (Match match in ReACSStyleP.Matches(text))
+                ProcessACSStyle(match);
+
+            foreach (Match match in ReNatureStyleP.Matches(text))
+                ProcessNatureStyle(match);
+
+            foreach (Match match in ReIEEEStyleP.Matches(text))
+                ProcessIEEEStyle(match);
+
+            L_Exit:
             return commands;
         }
     }
