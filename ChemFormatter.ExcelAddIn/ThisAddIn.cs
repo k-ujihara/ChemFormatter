@@ -53,13 +53,13 @@ namespace ChemFormatter.ExcelAddIn
             }
         }
 
-        internal void ButtonRDigitChanger_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
+        internal void Fire(Func<string, IEnumerable<PCommand>> makeCommand)
         {
             Excel.Range keep = null;
             try
             {
                 keep = Globals.ThisAddIn.Application.Selection;
-                FormatThem(keep, text => RDigitQuery.MakeCommand(text));
+                FormatThem(keep, text => makeCommand(text));
             }
             catch (Exception)
             {
@@ -69,96 +69,36 @@ namespace ChemFormatter.ExcelAddIn
                 if (keep != null)
                     keep.Select();
             }
+        }
+
+        internal void ButtonRDigitChanger_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
+        {
+            Fire(RDigitQuery.MakeCommand);
         }
 
         internal void ButtonChemFormular_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
         {
-            Excel.Range keep = null;
-            try
-            {
-                keep = Globals.ThisAddIn.Application.Selection;
-                FormatThem(keep, text => ChemFormulaQuery.MakeCommand(text));
-            }
-            catch (Exception)
-            {
-            }
-            finally
-            {
-                if (keep != null)
-                    keep.Select();
-            }
+            Fire(ChemFormulaQuery.MakeCommand);
         }
 
         internal void ButtonIonFormular_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
         {
-            Excel.Range keep = null;
-            try
-            {
-                keep = Globals.ThisAddIn.Application.Selection;
-                FormatThem(keep, text => IonFormulaQuery.MakeCommand(text));
-            }
-            catch (Exception)
-            {
-            }
-            finally
-            {
-                if (keep != null)
-                    keep.Select();
-            }
+            Fire(IonFormulaQuery.MakeCommand);
         }
 
         internal void ButtonChemName_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
         {
-            Excel.Range keep = null;
-            try
-            {
-                keep = Globals.ThisAddIn.Application.Selection;
-                FormatThem(keep, text => ChemNameQuery.MakeCommand(text));
-            }
-            catch (Exception)
-            {
-            }
-            finally
-            {
-                if (keep != null)
-                    keep.Select();
-            }
+            Fire(ChemNameQuery.MakeCommand);
         }
 
         internal void ButtonStyleCitation_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
         {
-            Excel.Range keep = null;
-            try
-            {
-                keep = Globals.ThisAddIn.Application.Selection;
-                FormatThem(keep, text => JournalReferenceQuery.MakeCommand(text));
-            }
-            catch (Exception)
-            {
-            }
-            finally
-            {
-                if (keep != null)
-                    keep.Select();
-            }
+            Fire(JournalReferenceQuery.MakeCommand);
         }
 
         public void ButtonAlphaD_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
         {
-            Excel.Range keep = null;
-            try
-            {
-                keep = Globals.ThisAddIn.Application.Selection;
-                FormatThem(keep, text => AlphaDQuery.MakeCommand(text));
-            }
-            catch (Exception)
-            {
-            }
-            finally
-            {
-                if (keep != null)
-                    keep.Select();
-            }
+            Fire(AlphaDQuery.MakeCommand);
         }
 
         private void ThisAddIn_Startup(object sender, System.EventArgs e)

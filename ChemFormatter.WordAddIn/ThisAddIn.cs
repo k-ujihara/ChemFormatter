@@ -21,9 +21,11 @@
 // SOFTWARE.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using static ChemFormatter.DocumentProperties;
+using static Microsoft.Office.Interop.Word.WdSelectionType;
 
 namespace ChemFormatter.WordAddIn
 {
@@ -99,44 +101,37 @@ namespace ChemFormatter.WordAddIn
             }
         }
 
-        internal void ButtonRDigitChanger_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
+        internal void Fire(Func<string, IEnumerable<PCommand>> makeCommand)
         {
             var text = Globals.ThisAddIn.Application.Selection.Text;
             text = Utility.Normalize(text);
-            var commands = RDigitQuery.MakeCommand(text);
+            var commands = makeCommand(text);
             WordApplyer.Apply(commands);
+        }
+
+        internal void ButtonRDigitChanger_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
+        {
+            Fire(RDigitQuery.MakeCommand);
         }
 
         internal void ButtonChemFormular_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
         {
-            var text = Globals.ThisAddIn.Application.Selection.Text;
-            text = Utility.Normalize(text);
-            var commands = ChemFormulaQuery.MakeCommand(text);
-            WordApplyer.Apply(commands);
+            Fire(ChemFormulaQuery.MakeCommand);
         }
 
         internal void ButtonIonFormular_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
         {
-            var text = Globals.ThisAddIn.Application.Selection.Text;
-            text = Utility.Normalize(text);
-            var commands = IonFormulaQuery.MakeCommand(text);
-            WordApplyer.Apply(commands);
+            Fire(IonFormulaQuery.MakeCommand);
         }
 
         internal void ButtonChemName_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
         {
-            var text = Globals.ThisAddIn.Application.Selection.Text;
-            text = Utility.Normalize(text);
-            var commands = ChemNameQuery.MakeCommand(text);
-            WordApplyer.Apply(commands);
+            Fire(ChemNameQuery.MakeCommand);
         }
 
         internal void ButtonStyleCitation_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
         {
-            var text = Globals.ThisAddIn.Application.Selection.Text;
-            text = Utility.Normalize(text);
-            var commands = JournalReferenceQuery.MakeCommand(text);
-            WordApplyer.Apply(commands);
+            Fire(JournalReferenceQuery.MakeCommand);
         }
 
         public void ButtonNMRSpec_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
@@ -151,11 +146,7 @@ namespace ChemFormatter.WordAddIn
 
         public void ButtonAlphaD_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
         {
-            var app = Globals.ThisAddIn.Application;
-            var text = app.Selection.Text;
-            text = Utility.Normalize(text);
-            var commands = AlphaDQuery.MakeCommand(text);
-            WordApplyer.Apply(commands);
+            Fire(AlphaDQuery.MakeCommand);
         }
 
         internal void DropDownNMRFormat_SelectionChanged(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)

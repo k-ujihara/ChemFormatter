@@ -1,53 +1,46 @@
-﻿namespace ChemFormatter.PowerPointAddIn
+﻿using System;
+using System.Collections.Generic;
+
+namespace ChemFormatter.PowerPointAddIn
 {
     public partial class ThisAddIn
     {
-        internal void ButtonRDigitChanger_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
+        internal void Fire(Func<string, IEnumerable<PCommand>> makeCommand)
         {
             var text = Globals.ThisAddIn.Application.ActiveWindow.Selection.TextRange.Text;
             text = Utility.Normalize(text);
-            var commands = RDigitQuery.MakeCommand(text);
+            var commands = makeCommand(text);
             Applyer.Apply(commands);
+        }
+
+        internal void ButtonRDigitChanger_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
+        {
+            Fire(RDigitQuery.MakeCommand);
         }
 
         internal void ButtonChemFormular_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
         {
-            var text = Globals.ThisAddIn.Application.ActiveWindow.Selection.TextRange.Text;
-            text = Utility.Normalize(text);
-            var commands = ChemFormulaQuery.MakeCommand(text);
-            Applyer.Apply(commands);
+            Fire(ChemFormulaQuery.MakeCommand);
         }
 
         internal void ButtonIonFormular_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
         {
-            var text = Globals.ThisAddIn.Application.ActiveWindow.Selection.TextRange.Text;
-            text = Utility.Normalize(text);
-            var commands = IonFormulaQuery.MakeCommand(text);
-            Applyer.Apply(commands);
+            Fire(IonFormulaQuery.MakeCommand);
         }
 
         internal void ButtonChemName_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
         {
-            var text = Globals.ThisAddIn.Application.ActiveWindow.Selection.TextRange.Text;
-            text = Utility.Normalize(text);
-            var commands = ChemNameQuery.MakeCommand(text);
-            Applyer.Apply(commands);
+            Fire(ChemNameQuery.MakeCommand);
         }
 
         internal void ButtonStyleCitation_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
         {
-            var text = Globals.ThisAddIn.Application.ActiveWindow.Selection.TextRange.Text;
-            text = Utility.Normalize(text);
-            var commands = JournalReferenceQuery.MakeCommand(text);
-            Applyer.Apply(commands);
+            Fire(JournalReferenceQuery.MakeCommand);
         }
 
         public void ButtonAlphaD_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
         {
-            var text = Globals.ThisAddIn.Application.ActiveWindow.Selection.TextRange.Text;
-            text = Utility.Normalize(text);
-            var commands = AlphaDQuery.MakeCommand(text);
-            Applyer.Apply(commands);
+            Fire(AlphaDQuery.MakeCommand);
         }
 
         private void ThisAddIn_Startup(object sender, System.EventArgs e)

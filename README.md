@@ -1,6 +1,6 @@
 # ChemFormatter
 
-ChemFormatter is a chemical formatter add-in for Microsoft Word and Excel. It is implemented using VSTO.
+ChemFormatter is a chemical formatter add-in for Microsoft Word, Excel, and PowerPoint. It is implemented using VSTO.
 
 ## How to Use
 
