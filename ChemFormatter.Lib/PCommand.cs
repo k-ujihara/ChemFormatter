@@ -69,7 +69,7 @@ namespace ChemFormatter
         }
     }
 
-    public class SetItalicCommand : PCommand
+    public class EnableItalicCommand : PCommand
     {
     }
 

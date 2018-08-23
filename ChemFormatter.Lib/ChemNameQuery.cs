@@ -30,7 +30,7 @@ namespace ChemFormatter
         {
             var commands = new List<PCommand>();
 
-            CommandFactory.AddChemPrefixCommands(commands, text);
+            CommandFactory.AddChemNamePrefixCommands(commands, text);
 
             return commands;
         }

@@ -50,7 +50,7 @@ namespace ChemFormatter.PowerPointAddIn
                                 throw new ApplicationException();
                             case FontResetCommand cmd:
                                 throw new ApplicationException();
-                            case SetItalicCommand cmd:
+                            case EnableItalicCommand cmd:
                                 throw new ApplicationException();
                             case CopyAndPasteCommand cmd:
                                 throw new ApplicationException();

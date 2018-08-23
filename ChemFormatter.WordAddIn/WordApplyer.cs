@@ -58,7 +58,7 @@ namespace ChemFormatter.WordAddIn
                             case FontResetCommand cmd:
                                 app.Selection.Font.Reset();
                                 break;
-                            case SetItalicCommand cmd:
+                            case EnableItalicCommand cmd:
                                 app.Selection.Font.Italic = (int)Office.MsoTriState.msoTrue;
                                 break;
                             case CopyAndPasteCommand cmd:

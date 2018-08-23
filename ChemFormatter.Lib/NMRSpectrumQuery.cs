@@ -173,7 +173,7 @@ namespace ChemFormatter
                 else
                     commands.Add(new TypeTextCommand(", "));
                 if (italic)
-                    commands.Add(new SetItalicCommand());
+                    commands.Add(new EnableItalicCommand());
                 commands.Add(new TypeTextCommand("J"));
                 if (italic)
                     commands.Add(new FontResetCommand());
