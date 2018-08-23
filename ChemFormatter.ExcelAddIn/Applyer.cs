@@ -22,19 +22,32 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
+using Excel = Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 
 namespace ChemFormatter.ExcelAddIn
 {
-    public static class Applyer
+    public class Applyer
     {
-        public static void Apply(IEnumerable<PCommand> commands)
+        private dynamic range;
+
+        public dynamic Range
+        {
+            get => range;
+            set
+            {
+                if (value is Excel.Range) goto L;
+                if (value is Office.TextRange2) goto L;
+                L:
+                range = value;
+            }
+        }
+
+        public void Apply(IEnumerable<PCommand> commands)
         {
             var save = KeepSelection();
             try
             {
-                var app = Globals.ThisAddIn.Application;
                 int pos = 0;
                 foreach (var command in commands)
                 {
@@ -58,12 +71,9 @@ namespace ChemFormatter.ExcelAddIn
                             pos = cmd.Position;
                             break;
                         case TypeTextCommand cmd:
-                            app.ActiveCell.Characters[pos, 0].Insert(cmd.Text);
-                            pos += cmd.Text.Length;
-                            save.Length += cmd.Text.Length;
-                            break;
+                            throw new ApplicationException();
                         case ReplaceStringCommand cmd:
-                            app.ActiveCell.Characters[save.Start + cmd.Start, cmd.Length].Insert(cmd.Replacement);
+                            Range.Characters[save.Start + cmd.Start, cmd.Length].Text = cmd.Replacement;
                             save.Length += (cmd.Replacement.Length - cmd.Length);
                             break;
                         case ItalicCommand cmd:
@@ -75,12 +85,11 @@ namespace ChemFormatter.ExcelAddIn
                         case SmallCapitalCommand cmd:
                             try
                             {
-                                
-                                double size = app.ActiveCell.Font.Size;
+                                double size = Range.Font.Size;
                                 SelectAndAction(save.Start, cmd, (chars) => chars.Font.Size = size * 0.8);
                             }
                             catch (Exception)
-                            {  
+                            {
                             }
                             break;
                         case SubscriptCommand cmd:
@@ -131,20 +140,19 @@ namespace ChemFormatter.ExcelAddIn
             }
         }
 
-        private static void SelectAndAction(int start, RangeCommand command, Action<Microsoft.Office.Interop.Excel.Characters> action)
+        private void SelectAndAction(int start, RangeCommand command, Action<dynamic> action)
         {
-            var chars = Globals.ThisAddIn.Application.ActiveCell.Characters[start + command.Start, command.Length];
+            var chars = Range.Characters[start + command.Start, command.Length];
             action(chars);
         }
 
-        public static Range KeepSelection()
+        public Range KeepSelection()
         {
-            var sel = Globals.ThisAddIn.Application.Selection;
-            var text = sel.Text;
+            string text = Range.Text;
             return new Range(1, text.Length);
         }
 
-        public static void RestoreSelection(Range selection)
+        public void RestoreSelection(Range selection)
         {
         }
     }

@@ -22,44 +22,83 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
+using System.Diagnostics;
 using Excel = Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
-using Microsoft.Office.Tools.Excel;
 
 namespace ChemFormatter.ExcelAddIn
 {
     public partial class ThisAddIn
     {
-        private void FormatThem(Excel.Range cells, Func<string, IEnumerable<PCommand>> commandMaker)
+        private void FormatThem(dynamic range, Func<string, IEnumerable<PCommand>> commandMaker)
         {
-            switch (cells.Count)
+            switch (range)
             {
-                case 0:
-                    return;
-                case 1:
-                    string text = cells.Text;
-                    text = Utility.Normalize(text);
-                    var commands = commandMaker(text);
-                    cells.Select();
-                    Applyer.Apply(commands);
+                case Excel.Range cells:
+                    switch (cells.Count)
+                    {
+                        case 0:
+                            return;
+                        case 1:
+                            FormatIt(cells, commandMaker);
+                            break;
+                        default:
+                            foreach (Excel.Range cell in cells)
+                                FormatThem(cell, commandMaker);
+                            break;
+                    }
+                    break;
+                case Office.TextRange2 textRange:
+                    FormatIt(textRange, commandMaker);
+                    break;
+                case Excel.Shape shape:
+                    FormatThem(shape.TextFrame2.TextRange, commandMaker);
+                    break;
+                case Excel.ShapeRange shapeRange:
+                    for (int i = 1; i <= shapeRange.Count; i++)
+                        FormatThem(shapeRange.Item(i), commandMaker);
+                    break;
+                case Excel.ChartArea chartArea:
+                    Debug.Assert(chartArea.Parent is Excel.Chart);
+                    FormatThem(chartArea.Parent, commandMaker);
+                    break;
+                case Excel.Chart chart:
+                    FormatThem(chart.ChartTitle, commandMaker);
+                    break;
+                case Excel.ChartTitle chartTitle:
+                    FormatThem(chartTitle.Format.TextFrame2.TextRange, commandMaker);
                     break;
                 default:
-                    foreach (Excel.Range cell in cells)
-                        FormatThem(cell, commandMaker);
+                    try
+                    {
+                        dynamic o = Globals.ThisAddIn.Application.Selection;
+                        Excel.ShapeRange shapeRange = o.ShapeRange;
+                        FormatThem(shapeRange, commandMaker);
+                    }
+                    catch (Exception)
+                    {
+                    }
                     break;
             }
         }
 
+        private static void FormatIt(dynamic range, Func<string, IEnumerable<PCommand>> commandMaker)
+        {
+            string text = range.Text;
+            text = Utility.Normalize(text);
+            var commands = commandMaker(text);
+            //range.Select();
+            var applyer = new Applyer() { Range = range };
+            applyer.Apply(commands);
+        }
+
         internal void Fire(Func<string, IEnumerable<PCommand>> makeCommand)
         {
-            Excel.Range keep = null;
+            dynamic keep = null;
             try
             {
                 keep = Globals.ThisAddIn.Application.Selection;
-                FormatThem(keep, text => makeCommand(text));
+                FormatThem(keep, makeCommand);
             }
             catch (Exception)
             {

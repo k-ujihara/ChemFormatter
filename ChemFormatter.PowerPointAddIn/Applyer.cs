@@ -23,6 +23,7 @@
 using System;
 using System.Collections.Generic;
 using Office = Microsoft.Office.Core;
+using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 
 namespace ChemFormatter.PowerPointAddIn
 {
@@ -125,9 +126,9 @@ namespace ChemFormatter.PowerPointAddIn
             }
         }
 
-        private static void SelectAndAction(int start, RangeCommand command, Action<Microsoft.Office.Interop.PowerPoint.TextRange> action)
+        private static void SelectAndAction(int start, RangeCommand command, Action<PowerPoint.TextRange> action)
         {
-            Microsoft.Office.Interop.PowerPoint.TextFrame parent = Globals.ThisAddIn.Application.ActiveWindow.Selection.TextRange.Parent;
+            PowerPoint.TextFrame parent = Globals.ThisAddIn.Application.ActiveWindow.Selection.TextRange.Parent;
             var range = parent.TextRange.Characters(start + command.Start, command.Length);
             action(range);
         }
@@ -140,7 +141,7 @@ namespace ChemFormatter.PowerPointAddIn
 
         public static void RestoreSelection(Range selection)
         {
-            Microsoft.Office.Interop.PowerPoint.TextFrame parent = Globals.ThisAddIn.Application.ActiveWindow.Selection.TextRange.Parent;
+            PowerPoint.TextFrame parent = Globals.ThisAddIn.Application.ActiveWindow.Selection.TextRange.Parent;
             parent.TextRange.Characters(selection.Start, selection.Length).Select();
         }
     }

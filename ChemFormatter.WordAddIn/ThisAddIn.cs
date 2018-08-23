@@ -26,6 +26,7 @@ using System.Diagnostics;
 using System.Linq;
 using static ChemFormatter.DocumentProperties;
 using static Microsoft.Office.Interop.Word.WdSelectionType;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace ChemFormatter.WordAddIn
 {
@@ -33,7 +34,7 @@ namespace ChemFormatter.WordAddIn
     {
         public NMRFormat CurrentNMRFormat { get; set; } = null;
 
-        private static string GetNMRFormatProperty(Microsoft.Office.Interop.Word.Document doc)
+        private static string GetNMRFormatProperty(Word.Document doc)
         {
             string prop = null;
             try
@@ -68,12 +69,12 @@ namespace ChemFormatter.WordAddIn
             CurrentNMRFormat = NMRFormat.FromLabel(format);
         }
 
-        internal void OnDocumentOpen(Microsoft.Office.Interop.Word.Document doc)
+        internal void OnDocumentOpen(Word.Document doc)
         {
             SetNMRFormat(GetNMRFormatProperty(doc));
         }
 
-        private void OnDocumentBeforeSave(Microsoft.Office.Interop.Word.Document doc, ref bool saveAsUI, ref bool cancel)
+        private void OnDocumentBeforeSave(Word.Document doc, ref bool saveAsUI, ref bool cancel)
         {
             var prop = GetNMRFormatProperty(doc);
 
@@ -108,7 +109,7 @@ namespace ChemFormatter.WordAddIn
             {
                 case wdSelectionInlineShape:
                 case wdSelectionShape:
-                    foreach (Microsoft.Office.Interop.Word.Shape shape in sel.ChildShapeRange)
+                    foreach (Word.Shape shape in sel.ChildShapeRange)
                     {
                         try
                         {
@@ -124,9 +125,9 @@ namespace ChemFormatter.WordAddIn
                     var cells = sel.Cells;
                     if (cells.Count == 1)
                         goto default;
-                    Microsoft.Office.Interop.Word.Cell firstCell = null;
-                    Microsoft.Office.Interop.Word.Cell lastCell = null;
-                    foreach (Microsoft.Office.Interop.Word.Cell cell in cells)
+                    Word.Cell firstCell = null;
+                    Word.Cell lastCell = null;
+                    foreach (Word.Cell cell in cells)
                     {
                         if (firstCell == null)
                             firstCell = cell;
