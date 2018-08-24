@@ -30,7 +30,7 @@ namespace ChemFormatter.ExcelAddIn
 {
     public partial class ThisAddIn
     {
-        private void FormatThem(dynamic range, Func<string, IEnumerable<PCommand>> commandMaker)
+        private void FormatThem(dynamic range, Func<string, IEnumerable<PCommand>> commandMaker, bool normalize)
         {
             switch (range)
             {
@@ -40,40 +40,40 @@ namespace ChemFormatter.ExcelAddIn
                         case 0:
                             return;
                         case 1:
-                            FormatIt(cells, commandMaker);
+                            FormatIt(cells, commandMaker, normalize);
                             break;
                         default:
                             foreach (Excel.Range cell in cells)
-                                FormatThem(cell, commandMaker);
+                                FormatThem(cell, commandMaker, normalize);
                             break;
                     }
                     break;
                 case Office.TextRange2 textRange:
-                    FormatIt(textRange, commandMaker);
+                    FormatIt(textRange, commandMaker, normalize);
                     break;
                 case Excel.Shape shape:
-                    FormatThem(shape.TextFrame2.TextRange, commandMaker);
+                    FormatThem(shape.TextFrame2.TextRange, commandMaker, normalize);
                     break;
                 case Excel.ShapeRange shapeRange:
                     for (int i = 1; i <= shapeRange.Count; i++)
-                        FormatThem(shapeRange.Item(i), commandMaker);
+                        FormatThem(shapeRange.Item(i), commandMaker, normalize);
                     break;
                 case Excel.ChartArea chartArea:
                     Debug.Assert(chartArea.Parent is Excel.Chart);
-                    FormatThem(chartArea.Parent, commandMaker);
+                    FormatThem(chartArea.Parent, commandMaker, normalize);
                     break;
                 case Excel.Chart chart:
-                    FormatThem(chart.ChartTitle, commandMaker);
+                    FormatThem(chart.ChartTitle, commandMaker, normalize);
                     break;
                 case Excel.ChartTitle chartTitle:
-                    FormatThem(chartTitle.Format.TextFrame2.TextRange, commandMaker);
+                    FormatThem(chartTitle.Format.TextFrame2.TextRange, commandMaker, normalize);
                     break;
                 default:
                     try
                     {
                         dynamic o = Globals.ThisAddIn.Application.Selection;
                         Excel.ShapeRange shapeRange = o.ShapeRange;
-                        FormatThem(shapeRange, commandMaker);
+                        FormatThem(shapeRange, commandMaker, normalize);
                     }
                     catch (Exception)
                     {
@@ -82,23 +82,23 @@ namespace ChemFormatter.ExcelAddIn
             }
         }
 
-        private static void FormatIt(dynamic range, Func<string, IEnumerable<PCommand>> commandMaker)
+        private static void FormatIt(dynamic range, Func<string, IEnumerable<PCommand>> commandMaker, bool normalize)
         {
             string text = range.Text;
-            text = Utility.Normalize(text);
+            if (normalize)
+                text = Utility.Normalize(text);
             var commands = commandMaker(text);
-            //range.Select();
             var applyer = new Applyer() { Range = range };
             applyer.Apply(commands);
         }
 
-        internal void Fire(Func<string, IEnumerable<PCommand>> makeCommand)
+        internal void Fire(Func<string, IEnumerable<PCommand>> makeCommand, bool normalize = true)
         {
             dynamic keep = null;
             try
             {
                 keep = Globals.ThisAddIn.Application.Selection;
-                FormatThem(keep, makeCommand);
+                FormatThem(keep, makeCommand, normalize);
             }
             catch (Exception)
             {
@@ -138,6 +138,11 @@ namespace ChemFormatter.ExcelAddIn
         public void ButtonAlphaD_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
         {
             Fire(AlphaDQuery.MakeCommand);
+        }
+
+        internal void ButtonStyleAsChar_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
+        {
+            Fire(StyleByCharQuery.MakeCommand, normalize: false);
         }
 
         private void ThisAddIn_Startup(object sender, System.EventArgs e)

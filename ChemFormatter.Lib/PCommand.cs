@@ -73,6 +73,16 @@ namespace ChemFormatter
     {
     }
 
+    public class StyleByCharCommand : RangeCommand
+    {
+        public StyleByCharCommand(int start, int length) : base(start, length) { }
+    }
+
+    public class UnstyleByCharCommand : RangeCommand
+    {
+        public UnstyleByCharCommand(int start, int length) : base(start, length) { }
+    }
+
     public class ItalicCommand : RangeCommand
     {
         public ItalicCommand(int start, int length) : base(start, length) { }

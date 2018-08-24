@@ -40,8 +40,9 @@ namespace ChemFormatter.PowerPointAddIn
     ChemNameEnabled = true;
     JournalReferenceEnabled = true;
     NMRSpecEnabled = false;
-	AlphaDEnabled = true;
-
+    AlphaDEnabled = true;
+    StyleAsCharEnabled = true;
+    
     WriteRibbonClass();
 #>
 }

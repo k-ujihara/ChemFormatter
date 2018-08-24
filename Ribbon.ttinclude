@@ -60,6 +60,7 @@
     bool JournalReferenceEnabled = false;
     bool NMRSpecEnabled = false;
     bool AlphaDEnabled = false;
+    bool StyleAsCharEnabled = false;
 
     public void WriteRibbonClass()
     {
@@ -76,6 +77,8 @@
             ribbonButtons.Add(new RibbonButtonInfo("buttonStyleCitation", handlerObject + ".ButtonStyleCitation_Click", "Citation", "CommonResourceManager.JournalReferenceImage"));
         if (AlphaDEnabled)
             ribbonButtons.Add(new RibbonButtonInfo("buttonAlphaD", handlerObject + ".ButtonAlphaD_Click", "Optical Rotation", "CommonResourceManager.AlphaDImage"));
+        if (StyleAsCharEnabled)
+            ribbonButtons.Add(new RibbonButtonInfo("buttonStyleAsChar", handlerObject + ".ButtonStyleAsChar_Click", "Style as char", "CommonResourceManager.StyleAsCharImage"));
         if (NMRSpecEnabled)
             ribbonButtons.Add(new RibbonButtonInfo("buttonNMRSpec", handlerObject + ".ButtonNMRSpec_Click", "NMR Spec", "CommonResourceManager.NMRSpecImage"));
 
@@ -168,7 +171,7 @@
             // 
             this.dropDownNMRFormat.Label = "NMR Format";
             this.dropDownNMRFormat.Name = "dropDownNMRFormat";
-			this.dropDownNMRFormat.SelectionChanged += (sender, e) => Globals.ThisAddIn.DropDownNMRFormat_SelectionChanged(sender, e);
+            this.dropDownNMRFormat.SelectionChanged += (sender, e) => Globals.ThisAddIn.DropDownNMRFormat_SelectionChanged(sender, e);
             this.dropDownNMRFormat.ShowLabel = true;
             this.dropDownNMRFormat.ShowImage = false;
             this.dropDownNMRFormat.ShowItemLabel = false;

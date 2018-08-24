@@ -40,7 +40,8 @@ namespace ChemFormatter.WordAddIn
     ChemNameEnabled = true;
     JournalReferenceEnabled = true;
     NMRSpecEnabled = true;
-	AlphaDEnabled = true;
+    AlphaDEnabled = true;
+    StyleAsCharEnabled = true;
 
     WriteRibbonClass();
 #>

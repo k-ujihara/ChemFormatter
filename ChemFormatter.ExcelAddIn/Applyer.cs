@@ -131,6 +131,52 @@ namespace ChemFormatter.ExcelAddIn
                                 }
                             });
                             break;
+                        case StyleByCharCommand cmd:
+                            SelectAndAction(save.Start, cmd, (chars) =>
+                            {
+                                char oldChar = chars.Text[0];
+                                if (chars.Font.Subscript != false)
+                                {
+                                    if (!StyleByCharQuery.SubscriptConversionTable.TryGetValue(oldChar, out char newChar))
+                                        newChar = '\0';
+                                    if (newChar != '\0')
+                                    {
+                                        chars.Font.Superscript = false;
+                                        chars.Font.Subscript = false;
+                                        chars.Text = new string(new char[] { newChar });
+                                    }
+                                }
+                                else if (chars.Font.Superscript != false)
+                                {
+                                    if (!StyleByCharQuery.SuperscriptConversionTable.TryGetValue(oldChar, out char newChar))
+                                        newChar = '\0';
+                                    if (newChar != '\0')
+                                    {
+                                        chars.Font.Superscript = false;
+                                        chars.Font.Subscript = false;
+                                        chars.Text = new string(new char[] { newChar });
+                                    }
+                                }
+                            });
+                            break;
+                        case UnstyleByCharCommand cmd:
+                            SelectAndAction(save.Start, cmd, (chars) =>
+                            {
+                                char oldChar = chars.Text[0];
+                                if (StyleByCharQuery.SubscriptRevTable.ContainsKey(oldChar))
+                                {
+                                    char newChar = StyleByCharQuery.SubscriptRevTable[oldChar];
+                                    chars.Font.Subscript = true;
+                                    chars.Text = new string(new char[] { newChar });
+                                }
+                                else if (StyleByCharQuery.SuperscriptRevTable.ContainsKey(oldChar))
+                                {
+                                    char newChar = StyleByCharQuery.SuperscriptRevTable[oldChar];
+                                    chars.Font.Superscript = true;
+                                    chars.Text = new string(new char[] { newChar });
+                                }
+                            });
+                            break;
                     }
                 }
             }

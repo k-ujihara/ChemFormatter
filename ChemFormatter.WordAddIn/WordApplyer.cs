@@ -134,6 +134,50 @@ namespace ChemFormatter.WordAddIn
                                     }
                                 });
                                 break;
+                            case StyleByCharCommand cmd:
+                                SelectAndAction(save.Start, cmd, () =>
+                                {
+                                    char oldChar = app.Selection.Text[0];
+                                    if (app.Selection.Font.Subscript == (int)Office.MsoTriState.msoTrue)
+                                    {
+                                        if (!StyleByCharQuery.SubscriptConversionTable.TryGetValue(oldChar, out char newChar))
+                                            newChar = '\0';
+                                        if (newChar != '\0')
+                                        {
+                                            app.Selection.Font.Subscript = (int)Office.MsoTriState.msoFalse;
+                                            app.Selection.Text = new string(new char[] { newChar });
+                                        }
+                                    }
+                                    else if (app.Selection.Font.Superscript == (int)Office.MsoTriState.msoTrue)
+                                    {
+                                        if (!StyleByCharQuery.SuperscriptConversionTable.TryGetValue(oldChar, out char newChar))
+                                            newChar = '\0';
+                                        if (newChar != '\0')
+                                        {
+                                            app.Selection.Font.Superscript = (int)Office.MsoTriState.msoFalse;
+                                            app.Selection.Text = new string(new char[] { newChar });
+                                        }
+                                    }
+                                });
+                                break;
+                            case UnstyleByCharCommand cmd:
+                                SelectAndAction(save.Start, cmd, () =>
+                                {
+                                    char oldChar = app.Selection.Text[0];
+                                    if (StyleByCharQuery.SubscriptRevTable.ContainsKey(oldChar))
+                                    {
+                                        char newChar = StyleByCharQuery.SubscriptRevTable[oldChar];
+                                        app.Selection.Font.Subscript = (int)Office.MsoTriState.msoTrue;
+                                        app.Selection.Text = new string(new char[] { newChar });
+                                    }
+                                    else if (StyleByCharQuery.SuperscriptRevTable.ContainsKey(oldChar))
+                                    {
+                                        char newChar = StyleByCharQuery.SuperscriptRevTable[oldChar];
+                                        app.Selection.Font.Superscript = (int)Office.MsoTriState.msoTrue;
+                                        app.Selection.Text = new string(new char[] { newChar });
+                                    }
+                                });
+                                break;
                         }
                     }
                 }

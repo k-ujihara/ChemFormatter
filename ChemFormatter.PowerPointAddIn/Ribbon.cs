@@ -57,6 +57,7 @@ namespace ChemFormatter.PowerPointAddIn
             this.buttonChemName = this.Factory.CreateRibbonButton();
             this.buttonStyleCitation = this.Factory.CreateRibbonButton();
             this.buttonAlphaD = this.Factory.CreateRibbonButton();
+            this.buttonStyleAsChar = this.Factory.CreateRibbonButton();
 
             this.tabAddIns.SuspendLayout();
             this.groupChemFormatter.SuspendLayout();
@@ -77,6 +78,7 @@ namespace ChemFormatter.PowerPointAddIn
             this.groupChemFormatter.Items.Add(this.buttonChemName);
             this.groupChemFormatter.Items.Add(this.buttonStyleCitation);
             this.groupChemFormatter.Items.Add(this.buttonAlphaD);
+            this.groupChemFormatter.Items.Add(this.buttonStyleAsChar);
             this.groupChemFormatter.Label = "ChemFormatter";
             this.groupChemFormatter.Name = "groupChemFormatter";
 
@@ -159,6 +161,19 @@ namespace ChemFormatter.PowerPointAddIn
             this.buttonAlphaD.ShowLabel = true;
             this.buttonAlphaD.ShowImage = true;
             // 
+            // buttonStyleAsChar
+            // 
+            {
+                var im = CommonResourceManager.GetImage(CommonResourceManager.StyleAsCharImage);
+                if (im != null)
+                    this.buttonStyleAsChar.Image = im;
+            }
+            this.buttonStyleAsChar.Label = "Style as char";
+            this.buttonStyleAsChar.Name = "buttonStyleAsChar";
+            this.buttonStyleAsChar.Click += (sender, e) => Globals.ThisAddIn.ButtonStyleAsChar_Click(sender, e);
+            this.buttonStyleAsChar.ShowLabel = true;
+            this.buttonStyleAsChar.ShowImage = true;
+            // 
             // Ribbon
             // 
             this.Name = "Ribbon";
@@ -180,6 +195,7 @@ namespace ChemFormatter.PowerPointAddIn
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonChemName;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonStyleCitation;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonAlphaD;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonStyleAsChar;
     }
     
     partial class ThisRibbonCollection

@@ -102,7 +102,7 @@ namespace ChemFormatter.WordAddIn
             }
         }
 
-        internal void Fire(Func<string, IEnumerable<PCommand>> makeCommand)
+        internal void Fire(Func<string, IEnumerable<PCommand>> makeCommand, bool normalize = true)
         {
             var sel = Globals.ThisAddIn.Application.Selection;
             switch (sel.Type)
@@ -147,7 +147,8 @@ namespace ChemFormatter.WordAddIn
                     // remove cell separator, which is '\a' in MS-Word
                     if (text[text.Length - 1] == '\a')
                         text = text.Substring(0, text.Length - 1);
-                    text = Utility.Normalize(text);
+                    if (normalize)
+                        text = Utility.Normalize(text);
                     var commands = makeCommand(text);
                     WordApplyer.Apply(commands);
                     break;
@@ -177,6 +178,11 @@ namespace ChemFormatter.WordAddIn
         internal void ButtonStyleCitation_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
         {
             Fire(JournalReferenceQuery.MakeCommand);
+        }
+
+        internal void ButtonStyleAsChar_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
+        {
+            Fire(StyleByCharQuery.MakeCommand, normalize: false);
         }
 
         public void ButtonNMRSpec_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)

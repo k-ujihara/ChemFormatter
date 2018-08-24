@@ -5,10 +5,11 @@ namespace ChemFormatter.PowerPointAddIn
 {
     public partial class ThisAddIn
     {
-        internal void Fire(Func<string, IEnumerable<PCommand>> makeCommand)
+        internal void Fire(Func<string, IEnumerable<PCommand>> makeCommand, bool normalize = true)
         {
             var text = Globals.ThisAddIn.Application.ActiveWindow.Selection.TextRange.Text;
-            text = Utility.Normalize(text);
+            if (normalize)
+                text = Utility.Normalize(text);
             var commands = makeCommand(text);
             Applyer.Apply(commands);
         }
@@ -41,6 +42,11 @@ namespace ChemFormatter.PowerPointAddIn
         public void ButtonAlphaD_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
         {
             Fire(AlphaDQuery.MakeCommand);
+        }
+
+        internal void ButtonStyleAsChar_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)
+        {
+            Fire(StyleByCharQuery.MakeCommand, normalize: false);
         }
 
         private void ThisAddIn_Startup(object sender, System.EventArgs e)

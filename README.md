@@ -86,6 +86,12 @@ dichloro(N,N,N',N'-tetramethylethylenediamine)zinc(II) ⇒ dichloro(<i>N</i>,<i>
 
 [a]D20 -25.5° (c 1.5, CHCl<sub>3</sub>) ⇒ [α]<sub>D</sub><sup>20</sup> -25.5° (<i>c</i> 1.5, CHCl<sub>3</sub>)
 
+### <img src="ChemFormatter.Lib/Resources/StyleAsChar.png?raw=true" width="32" height="32" border="1" /> Convert Subscript/Superscript styled characters to Unicode charactors.
+
+<sup>13</sup>CHCl<sub>3</sub> ⇒ ¹³CHCl₃ ⇒ <sup>13</sup>CHCl<sub>3</sub>
+CH<sub>3</sub>(CH<sub>2</sub>)<sub>n</sub>OH ⇒ CH₃(CH₂)ₙOH ⇒ CH<sub>3</sub>(CH<sub>2</sub>)<sub>n</sub>OH
+
+
 ### <img src="ChemFormatter.Lib/Resources/NMRSpectrum.png?raw=true" width="32" height="32" border="1" /> Format NMR spectrum specification from tab separated table.
 
 1.45&nbsp;<font color="gray">␉</font>&nbsp;&nbsp;1H

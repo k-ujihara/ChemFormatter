@@ -31,6 +31,7 @@ namespace ChemFormatter
         public const string JournalReferenceImage = "Journal.png";
         public const string NMRSpecImage = "NMRSpectrum.png";
         public const string AlphaDImage = "alphaD.png";
+        public const string StyleAsCharImage = "StyleAsChar.png";
         public const string NMRFormat_IPJC = "NMR_IPJC.png";
         public const string NMRFormat_PJIC = "NMR_PJIC.png";
         public const string NMRFormat_PlainIPJC = "NMR_PlainIPJC.png";
