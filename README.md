@@ -89,6 +89,7 @@ dichloro(N,N,N',N'-tetramethylethylenediamine)zinc(II) ⇒ dichloro(<i>N</i>,<i>
 ### <img src="ChemFormatter.Lib/Resources/StyleAsChar.png?raw=true" width="32" height="32" border="1" /> Convert Subscript/Superscript styled characters to Unicode charactors.
 
 <sup>13</sup>CHCl<sub>3</sub> ⇒ ¹³CHCl₃ ⇒ <sup>13</sup>CHCl<sub>3</sub>
+
 CH<sub>3</sub>(CH<sub>2</sub>)<sub>n</sub>OH ⇒ CH₃(CH₂)ₙOH ⇒ CH<sub>3</sub>(CH<sub>2</sub>)<sub>n</sub>OH
 
 
