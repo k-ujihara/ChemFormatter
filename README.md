@@ -8,9 +8,9 @@ Select text to format and click one of the below button in ChemFormatter tab wit
 
 ### <img src="ChemFormatter.Lib/Resources/RDigitChanger.png?raw=true" width="32" height="32" border="1" /> Change sub-digit style to subscript/superscript.
 
-R1 ⇒ R<sub>1</sub> ⇒ R<sup>1</sup>
+R1 ⇒ R<sub>1</sub> ⇒ R<sup>1</sup> ⇒ R1
 
-R1-3 ⇒ R<sub>1-3</sub> ⇒ R<sup>1-3</sup>
+R1-3 ⇒ R<sub>1-3</sub> ⇒ R<sup>1-3</sup> ⇒ R1-3
 
 ### <img src="ChemFormatter.Lib/Resources/ChemFormula.png?raw=true" width="32" height="32" border="1" /> Set style as chemical formula.
 
@@ -86,11 +86,11 @@ dichloro(N,N,N',N'-tetramethylethylenediamine)zinc(II) ⇒ dichloro(<i>N</i>,<i>
 
 [a]D20 -25.5° (c 1.5, CHCl<sub>3</sub>) ⇒ [α]<sub>D</sub><sup>20</sup> -25.5° (<i>c</i> 1.5, CHCl<sub>3</sub>)
 
-### <img src="ChemFormatter.Lib/Resources/StyleAsChar.png?raw=true" width="32" height="32" border="1" /> Convert Subscript/Superscript styled characters to Unicode charactors.
+### <img src="ChemFormatter.Lib/Resources/StyleAsChar.png?raw=true" width="32" height="32" border="1" /> Convert Subscript/Superscript styled characters to Unicode characters.
 
-<sup>13</sup>CHCl<sub>3</sub> ⇒ ¹³CHCl₃ ⇒ <sup>13</sup>CHCl<sub>3</sub>
+<sup>13</sup>CHCl<sub>3</sub> ⇔ ¹³CHCl₃
 
-CH<sub>3</sub>(CH<sub>2</sub>)<sub>n</sub>OH ⇒ CH₃(CH₂)ₙOH ⇒ CH<sub>3</sub>(CH<sub>2</sub>)<sub>n</sub>OH
+CH<sub>3</sub>(CH<sub>2</sub>)<sub>n</sub>OH ⇔ CH₃(CH₂)ₙOH
 
 
 ### <img src="ChemFormatter.Lib/Resources/NMRSpectrum.png?raw=true" width="32" height="32" border="1" /> Format NMR spectrum specification from tab separated table.

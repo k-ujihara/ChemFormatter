@@ -70,6 +70,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Version.cs">
+      <Link>Properties\Version.cs</Link>
+    </Compile>
     <Compile Include="StyleByCharQuery.cs" />
     <Compile Include="AlphaDQuery.cs" />
     <Compile Include="DocumentProperties.cs" />

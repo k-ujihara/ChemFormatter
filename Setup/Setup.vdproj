@@ -22,12 +22,6 @@
         "Entry"
         {
         "MsmKey" = "8:_09A5CEFF1683F073EBA6D467CD8DBFD6"
-        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_09A5CEFF1683F073EBA6D467CD8DBFD6"
         "OwnerKey" = "8:_9EBBA6FA8BECE2DF8C0564BFB54C202F"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -35,6 +29,12 @@
         {
         "MsmKey" = "8:_09A5CEFF1683F073EBA6D467CD8DBFD6"
         "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_09A5CEFF1683F073EBA6D467CD8DBFD6"
+        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -52,13 +52,13 @@
         "Entry"
         {
         "MsmKey" = "8:_1F5621EF11B405BC0CB5873FE6444A4C"
-        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
+        "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_1F5621EF11B405BC0CB5873FE6444A4C"
-        "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
+        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -82,13 +82,13 @@
         "Entry"
         {
         "MsmKey" = "8:_2B5889FCD37869A78DE942254EA2944C"
-        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
+        "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_2B5889FCD37869A78DE942254EA2944C"
-        "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
+        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -112,13 +112,13 @@
         "Entry"
         {
         "MsmKey" = "8:_61983BAA8F4C0FC1A98A19E581159DDE"
-        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
+        "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_61983BAA8F4C0FC1A98A19E581159DDE"
-        "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
+        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -154,12 +154,6 @@
         "Entry"
         {
         "MsmKey" = "8:_B053EDA92F51E40F8DEF6D61E3293C3A"
-        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B053EDA92F51E40F8DEF6D61E3293C3A"
         "OwnerKey" = "8:_9EBBA6FA8BECE2DF8C0564BFB54C202F"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -167,6 +161,12 @@
         {
         "MsmKey" = "8:_B053EDA92F51E40F8DEF6D61E3293C3A"
         "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B053EDA92F51E40F8DEF6D61E3293C3A"
+        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -190,13 +190,13 @@
         "Entry"
         {
         "MsmKey" = "8:_B597309F2D3C67FF77A60D504D9DC563"
-        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
+        "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_B597309F2D3C67FF77A60D504D9DC563"
-        "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
+        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -220,13 +220,13 @@
         "Entry"
         {
         "MsmKey" = "8:_BD658C0735957CA638BE2656DCEC159D"
-        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
+        "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_BD658C0735957CA638BE2656DCEC159D"
-        "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
+        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -250,12 +250,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -263,6 +257,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_9EBBA6FA8BECE2DF8C0564BFB54C202F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -854,12 +854,12 @@
         "Manufacturer" = "8:Ujihara"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/kazuyaujihara/ChemFormatter"
-        "Title" = "8:ChemFormatter for Office"
+        "Title" = "8:ChemFormatter for Office 3.0.0"
         "Subject" = "8:ChemFormatter for Microsoft Office"
         "ARPCONTACT" = "8:Kazuya Ujihara"
         "Keywords" = "8:Microsoft Office;Chemistry;"
         "ARPCOMMENTS" = "8:ChemFormatter for Microsoft Office"
-        "ARPURLINFOABOUT" = "8:https://github.com/kazuyaujihara/ChemFormatter"
+        "ARPURLINFOABOUT" = "8:https://github.com/kazuyaujihara/"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
