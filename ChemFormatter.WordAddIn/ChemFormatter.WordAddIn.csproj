@@ -204,10 +204,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AutoCorrectSaver.tt">
+    <None Include="AutoCorrectSaver.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AutoCorrectSaver.cs</LastGenOutput>
-    </Content>
+    </None>
     <None Include="Ribbon.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Ribbon.cs</LastGenOutput>

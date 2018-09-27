@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChemFormatter.WordAddIn", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChemFormatter.PowerPointAddIn", "ChemFormatter.PowerPointAddIn\ChemFormatter.PowerPointAddIn.csproj", "{0BE9C140-45AE-4C43-8BDE-95026A0E0624}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup64", "Setup64\Setup64.vdproj", "{8F68C043-7B38-4160-BC16-C8028EDB9F2F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,6 +78,14 @@ Global
 		{0BE9C140-45AE-4C43-8BDE-95026A0E0624}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0BE9C140-45AE-4C43-8BDE-95026A0E0624}.Release|x86.ActiveCfg = Release|Any CPU
 		{0BE9C140-45AE-4C43-8BDE-95026A0E0624}.Release|x86.Build.0 = Release|Any CPU
+		{8F68C043-7B38-4160-BC16-C8028EDB9F2F}.Debug|Any CPU.ActiveCfg = Release
+		{8F68C043-7B38-4160-BC16-C8028EDB9F2F}.Debug|Any CPU.Build.0 = Release
+		{8F68C043-7B38-4160-BC16-C8028EDB9F2F}.Debug|x86.ActiveCfg = Release
+		{8F68C043-7B38-4160-BC16-C8028EDB9F2F}.Debug|x86.Build.0 = Release
+		{8F68C043-7B38-4160-BC16-C8028EDB9F2F}.Release|Any CPU.ActiveCfg = Release
+		{8F68C043-7B38-4160-BC16-C8028EDB9F2F}.Release|Any CPU.Build.0 = Release
+		{8F68C043-7B38-4160-BC16-C8028EDB9F2F}.Release|x86.ActiveCfg = Release
+		{8F68C043-7B38-4160-BC16-C8028EDB9F2F}.Release|x86.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
