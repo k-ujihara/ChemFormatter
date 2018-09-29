@@ -2,6 +2,14 @@
 
 ChemFormatter is a chemical formatter add-in for Microsoft Word, Excel, and PowerPoint. It is implemented using VSTO.
 
+## Install
+
+- Download installer from https://github.com/kazuyaujihara/ChemFormatter/releases .
+- Unzip ChemFormatter-#.#.#.zip
+- Install ChemFormatter-x86-3.0.1.msi for Microsoft Office 32-bit
+- Install ChemFormatter-x64-3.0.1.msi for Microsoft Office 64-bit
+- You can check you are using 32 or 64-bit by File --> Account --> About Word/Excel/PowerPoint and see title on the dialog.
+
 ## How to Use
 
 Select text to format and click one of the below button in ChemFormatter tab within Add-in ribbon.
@@ -95,13 +103,13 @@ CH<sub>3</sub>(CH<sub>2</sub>)<sub>n</sub>OH ⇔ CH₃(CH₂)ₙOH
 
 ### <img src="ChemFormatter.Lib/Resources/NMRSpectrum.png?raw=true" width="32" height="32" border="1" /> Format NMR spectrum specification from tab separated table.
 
-1.45&nbsp;<font color="gray">␉</font>&nbsp;&nbsp;1H
+1.45&nbsp;<font color="gray">␉</font>&nbsp;1H
 
-1.55&nbsp;<font color="gray">␉</font>&nbsp;&nbsp;3H&nbsp;<font color="gray">␉</font>&nbsp;&nbsp;d&nbsp;<font color="gray">␉</font>&nbsp;&nbsp;1.3
+1.55&nbsp;<font color="gray">␉</font>&nbsp;3H&nbsp;<font color="gray">␉</font>&nbsp;d&nbsp;<font color="gray">␉</font>&nbsp;1.3
 
-1.95&nbsp;<font color="gray">␉</font>&nbsp;&nbsp;1.4H&nbsp;<font color="gray">␉</font>&nbsp;&nbsp;t&nbsp;<font color="gray">␉</font>&nbsp;&nbsp;7.3, 2.3&nbsp;<font color="gray">␉</font>&nbsp;&nbsp;CH<sub>3</sub>
+1.95&nbsp;<font color="gray">␉</font>&nbsp;1.4H&nbsp;<font color="gray">␉</font>&nbsp;t&nbsp;<font color="gray">␉</font>&nbsp;7.3, 2.3&nbsp;<font color="gray">␉</font>&nbsp;CH<sub>3</sub>
 
-2.2-3.2&nbsp;<font color="gray">␉</font>&nbsp;&nbsp;15H&nbsp;<font color="gray">␉</font>&nbsp;&nbsp;m
+2.2-3.2&nbsp;<font color="gray">␉</font>&nbsp;15H&nbsp;<font color="gray">␉</font>&nbsp;m
 
 &nbsp;↓&nbsp;↑
 
