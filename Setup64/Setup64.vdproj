@@ -462,7 +462,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:ChemFormatter.Lib, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:ChemFormatter.Lib, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_2B5889FCD37869A78DE942254EA2944C"
@@ -783,7 +783,7 @@
         {
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_1FE76C275A2C48D3BA0A938B9EDA6719"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder]\\ChemFormatter"
+            "DefaultLocation" = "8:[ProgramFiles64Folder]\\ChemFormatter"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -842,19 +842,19 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ChemFormatter for Office (64 bit)"
-        "ProductCode" = "8:{DCE5FFF3-023D-4214-9365-78DED2063DD1}"
-        "PackageCode" = "8:{665B58D8-F304-42A7-9F96-22E3004EE7AC}"
+        "ProductCode" = "8:{1FA1DC6C-8F6A-4918-AF2F-F8FD39088C55}"
+        "PackageCode" = "8:{24C88BDB-CF99-49C7-988F-C9D2B3C61B55}"
         "UpgradeCode" = "8:{27FCD77B-7336-4827-9CB9-32B558333476}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:3.0.1"
+        "ProductVersion" = "8:3.0.2"
         "Manufacturer" = "8:Ujihara"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/kazuyaujihara/ChemFormatter"
-        "Title" = "8:ChemFormatter for Office 3.0.1 (64 bit)"
+        "Title" = "8:ChemFormatter for Office 3.0.2 (64 bit)"
         "Subject" = "8:ChemFormatter for Microsoft Office (64 bit)"
         "ARPCONTACT" = "8:Kazuya Ujihara"
         "Keywords" = "8:Microsoft Office;Chemistry;"
