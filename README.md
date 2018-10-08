@@ -96,12 +96,16 @@ dichloro(N,N,N',N'-tetramethylethylenediamine)zinc(II) ⇒ dichloro(<i>N</i>,<i>
 
 ### <img src="ChemFormatter.Lib/Resources/StyleAsChar.png?raw=true" width="32" height="32" border="1" /> Convert Subscript/Superscript styled characters to Unicode characters.
 
+It is useful for formatting places that loses format information like cell reference in Excel.
+
 <sup>13</sup>CHCl<sub>3</sub> ⇔ ¹³CHCl₃
 
 CH<sub>3</sub>(CH<sub>2</sub>)<sub>n</sub>OH ⇔ CH₃(CH₂)ₙOH
 
 
 ### <img src="ChemFormatter.Lib/Resources/NMRSpectrum.png?raw=true" width="32" height="32" border="1" /> Format NMR spectrum specification from tab separated table.
+
+Only Microsoft Word is supported.
 
 1.45&nbsp;<font color="gray">␉</font>&nbsp;1H
 
