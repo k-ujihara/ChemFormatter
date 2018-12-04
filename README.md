@@ -14,6 +14,10 @@ ChemFormatter is a chemical formatter add-in for Microsoft Word, Excel, and Powe
 
 Select text to format and click one of the below button in ChemFormatter tab within Add-in ribbon.
 
+[Demo Movie for Microsoft Word at YouTube](https://youtu.be/-__dqdZxyFU)
+
+![Snapshort in Word](https://kazuyaujihara.github.io/ChemFormatter/chemformatter-word.png)
+
 ### <img src="ChemFormatter.Lib/Resources/RDigitChanger.png?raw=true" width="32" height="32" border="1" /> Change sub-digit style to subscript/superscript.
 
 R1 ⇒ R<sub>1</sub> ⇒ R<sup>1</sup> ⇒ R1
