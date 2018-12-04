@@ -32,7 +32,24 @@ namespace ChemFormatter.WordAddIn
 {
     public partial class ThisAddIn
     {
-        public NMRFormat CurrentNMRFormat { get; set; } = null;
+        private NMRFormat currentNMRFormat;
+
+        public NMRFormat CurrentNMRFormat
+        {
+            get
+            {
+                if (currentNMRFormat == null)
+                {
+                    OnDocumentOpen(Globals.ThisAddIn.Application.ActiveDocument);
+                }
+                return currentNMRFormat;
+            }
+
+            set
+            {
+                currentNMRFormat = value;
+            }
+        }
 
         private static string GetNMRFormatProperty(Word.Document doc)
         {
@@ -50,26 +67,32 @@ namespace ChemFormatter.WordAddIn
 
         private void SetNMRFormat(string format)
         {
-            var ribbon = Globals.Ribbons.GetRibbon<Ribbon>();
-
-            Microsoft.Office.Tools.Ribbon.RibbonDropDownItem find(string label)
-                => ribbon.dropDownNMRFormat.Items.Where(n => n.Label == format).FirstOrDefault();
-
-            var item = find(format);
-            if (item == null)
+            try
             {
-                format = NMRFormat.Default.Label;
-                item = find(format);
-            }
-            if (item == null)
-                Trace.TraceError($"Default {nameof(NMRFormat)} should be contained in {ribbon.dropDownNMRFormat}.");
+                var ribbon = Globals.Ribbons.GetRibbon<Ribbon>();
 
-            Globals.Ribbons.GetRibbon<Ribbon>().dropDownNMRFormat.SelectedItem = item;
+                Microsoft.Office.Tools.Ribbon.RibbonDropDownItem find(string label)
+                    => ribbon.dropDownNMRFormat.Items.Where(n => n.Label == format).FirstOrDefault();
+
+                var item = find(format);
+                if (item == null)
+                {
+                    format = NMRFormat.Default.Label;
+                    item = find(format);
+                }
+                if (item == null)
+                    Trace.TraceError($"Default {nameof(NMRFormat)} should be contained in {ribbon.dropDownNMRFormat}.");
+
+                Globals.Ribbons.GetRibbon<Ribbon>().dropDownNMRFormat.SelectedItem = item;
+            }
+            catch (Exception)
+            {
+            }
 
             CurrentNMRFormat = NMRFormat.FromLabel(format);
         }
 
-        internal void OnDocumentOpen(Word.Document doc)
+        private void OnDocumentOpen(Word.Document doc)
         {
             SetNMRFormat(GetNMRFormatProperty(doc));
         }
