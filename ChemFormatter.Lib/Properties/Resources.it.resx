@@ -98,4 +98,31 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
+	<data name="TextChemFormula" xml:space="preserve">
+    <value>Formula chimica</value>
+  </data>
+  <data name="TextChemName" xml:space="preserve">
+    <value>Nome chimico</value>
+  </data>
+  <data name="TextCitation" xml:space="preserve">
+    <value>Citazione</value>
+  </data>
+  <data name="TextIonFormula" xml:space="preserve">
+    <value>Formula dello ione</value>
+  </data>
+  <data name="TextNMRFormat" xml:space="preserve">
+    <value>Formato NMR</value>
+  </data>
+  <data name="TextNMRSpec" xml:space="preserve">
+    <value>Specifiche NMR</value>
+  </data>
+  <data name="TextOpticalRotation" xml:space="preserve">
+    <value>Rotazione ottica</value>
+  </data>
+  <data name="TextStyleAsChar" xml:space="preserve">
+    <value>Formatta come char</value>
+  </data>
+  <data name="TextSubDigitsChange" xml:space="preserve">
+    <value>Cambia posizione del numero</value>
+  </data>
 </root>
