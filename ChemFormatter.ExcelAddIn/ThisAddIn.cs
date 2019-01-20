@@ -20,9 +20,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+using Microsoft.Office.Core;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using Excel = Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 
@@ -30,6 +32,17 @@ namespace ChemFormatter.ExcelAddIn
 {
     public partial class ThisAddIn
     {
+        protected override IRibbonExtensibility CreateRibbonExtensibilityObject()
+        {
+            // This is taken from the following.
+            // https://stackoverflow.com/questions/8523812/localize-vsto-addin-according-to-the-language-of-the-office-product
+            var app = this.GetHostItem<Excel.Application>(typeof(Excel.Application), "Application");
+            var lcid = app.LanguageSettings.LanguageID[MsoAppLanguageID.msoLanguageIDUI];
+            CommonResourceManager.Culture = new CultureInfo(lcid);
+
+            return base.CreateRibbonExtensibilityObject();
+        }
+
         private void FormatThem(dynamic range, Func<string, IEnumerable<PCommand>> commandMaker, bool normalize)
         {
             switch (range)

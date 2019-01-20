@@ -20,6 +20,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+using ChemFormatter.Properties;
+using System.Globalization;
+
 namespace ChemFormatter
 {
     public static class CommonResourceManager
@@ -48,6 +51,22 @@ namespace ChemFormatter
                 }
                 return System.Drawing.Image.FromStream(stream);
             }
+        }
+
+        public static string TextSubDigitsChange { get { return Resources.TextSubDigitsChange; } }
+        public static string TextChemFormula => Resources.TextChemFormula;
+        public static string TextChemName => Resources.TextChemName;
+        public static string TextIonFormula => Resources.TextIonFormula;
+        public static string TextCitation => Resources.TextCitation;
+        public static string TextNMRSpec => Resources.TextNMRSpec;
+        public static string TextNMRFormat => Resources.TextNMRFormat;
+        public static string TextOpticalRotation => Resources.TextOpticalRotation;
+        public static string TextStyleAsChar => Resources.TextStyleAsChar;
+
+        public static CultureInfo Culture
+        {
+            get => Resources.Culture;
+            set => Resources.Culture = value;
         }
     }
 }

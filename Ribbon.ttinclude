@@ -66,21 +66,21 @@
     {
         var ribbonButtons = new List<RibbonButtonInfo>();
         if (RDigitChangerEnabled)
-            ribbonButtons.Add(new RibbonButtonInfo("buttonRDigitChanger", handlerObject + ".ButtonRDigitChanger_Click", "Sub-digits Change", "CommonResourceManager.RDigitChangerImage"));
+            ribbonButtons.Add(new RibbonButtonInfo("buttonRDigitChanger", handlerObject + ".ButtonRDigitChanger_Click", "CommonResourceManager.TextSubDigitsChange", "CommonResourceManager.RDigitChangerImage"));
         if (ChemFormulaEnabled)
-            ribbonButtons.Add(new RibbonButtonInfo("buttonChemFormula", handlerObject + ".ButtonChemFormular_Click", "Chem Formula", "CommonResourceManager.ChemFormulaImage"));
+            ribbonButtons.Add(new RibbonButtonInfo("buttonChemFormula", handlerObject + ".ButtonChemFormular_Click", "CommonResourceManager.TextChemFormula", "CommonResourceManager.ChemFormulaImage"));
         if (IonFormulaEnabled)
-            ribbonButtons.Add(new RibbonButtonInfo("buttonIonFormula", handlerObject + ".ButtonIonFormular_Click", "Ion Formula", "CommonResourceManager.IonFormulaImage"));
+            ribbonButtons.Add(new RibbonButtonInfo("buttonIonFormula", handlerObject + ".ButtonIonFormular_Click", "CommonResourceManager.TextIonFormula", "CommonResourceManager.IonFormulaImage"));
         if (ChemNameEnabled)
-            ribbonButtons.Add(new RibbonButtonInfo("buttonChemName", handlerObject + ".ButtonChemName_Click", "Chem Name", "CommonResourceManager.ChemNameImage"));
+            ribbonButtons.Add(new RibbonButtonInfo("buttonChemName", handlerObject + ".ButtonChemName_Click", "CommonResourceManager.TextChemName", "CommonResourceManager.ChemNameImage"));
         if (JournalReferenceEnabled)
-            ribbonButtons.Add(new RibbonButtonInfo("buttonStyleCitation", handlerObject + ".ButtonStyleCitation_Click", "Citation", "CommonResourceManager.JournalReferenceImage"));
+            ribbonButtons.Add(new RibbonButtonInfo("buttonStyleCitation", handlerObject + ".ButtonStyleCitation_Click", "CommonResourceManager.TextCitation", "CommonResourceManager.JournalReferenceImage"));
         if (AlphaDEnabled)
-            ribbonButtons.Add(new RibbonButtonInfo("buttonAlphaD", handlerObject + ".ButtonAlphaD_Click", "Optical Rotation", "CommonResourceManager.AlphaDImage"));
+            ribbonButtons.Add(new RibbonButtonInfo("buttonAlphaD", handlerObject + ".ButtonAlphaD_Click", "CommonResourceManager.TextOpticalRotation", "CommonResourceManager.AlphaDImage"));
         if (StyleAsCharEnabled)
-            ribbonButtons.Add(new RibbonButtonInfo("buttonStyleAsChar", handlerObject + ".ButtonStyleAsChar_Click", "Style as char", "CommonResourceManager.StyleAsCharImage"));
+            ribbonButtons.Add(new RibbonButtonInfo("buttonStyleAsChar", handlerObject + ".ButtonStyleAsChar_Click", "CommonResourceManager.TextStyleAsChar", "CommonResourceManager.StyleAsCharImage"));
         if (NMRSpecEnabled)
-            ribbonButtons.Add(new RibbonButtonInfo("buttonNMRSpec", handlerObject + ".ButtonNMRSpec_Click", "NMR Spec", "CommonResourceManager.NMRSpecImage"));
+            ribbonButtons.Add(new RibbonButtonInfo("buttonNMRSpec", handlerObject + ".ButtonNMRSpec_Click", "CommonResourceManager.TextNMRSpec", "CommonResourceManager.NMRSpecImage"));
 
         var itemsNMRFormat = new List<NMRFormatItemInfo>();
         if (NMRSpecEnabled)
@@ -127,10 +127,10 @@
             this.<#= e.Name #> = this.Factory.CreateRibbonDropDownItem();
 <#+ } #>
 <#+ } #>
-
             this.tabAddIns.SuspendLayout();
             this.groupChemFormatter.SuspendLayout();
             this.SuspendLayout();
+
             // 
             // tabAddIns
             // 
@@ -159,7 +159,14 @@
                 if (im != null)
                     this.<#= e.Name #>.Image = im;
             }
-            this.<#= e.Name #>.Label = "<#= e.Label #>";
+<#+
+        string xlabel = e.Label;
+        if (e.Label.StartsWith("CommonResourceManager."))
+            xlabel = xlabel;
+        else
+            xlabel = "\"" + xlabel + "\"";
+#>
+            this.<#= e.Name #>.Label = <#= xlabel #>;
             this.<#= e.Name #>.Name = "<#= e.Name #>";
             this.<#= e.Name #>.Click += (sender, e) => <#= e.Handler #>(sender, e);
             this.<#= e.Name #>.ShowLabel = true;
@@ -169,7 +176,7 @@
             // 
             // dropDownNMRFormat
             // 
-            this.dropDownNMRFormat.Label = "NMR Format";
+            this.dropDownNMRFormat.Label = CommonResourceManager.TextNMRFormat;
             this.dropDownNMRFormat.Name = "dropDownNMRFormat";
             this.dropDownNMRFormat.SelectionChanged += (sender, e) => Globals.ThisAddIn.DropDownNMRFormat_SelectionChanged(sender, e);
             this.dropDownNMRFormat.ShowLabel = true;

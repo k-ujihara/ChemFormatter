@@ -64,10 +64,10 @@ namespace ChemFormatter.WordAddIn
             this.dropDownItem_NMRPJIC = this.Factory.CreateRibbonDropDownItem();
             this.dropDownItem_NMRIPJC_N = this.Factory.CreateRibbonDropDownItem();
             this.dropDownItem_NMRPJIC_N = this.Factory.CreateRibbonDropDownItem();
-
             this.tabAddIns.SuspendLayout();
             this.groupChemFormatter.SuspendLayout();
             this.SuspendLayout();
+
             // 
             // tabAddIns
             // 
@@ -98,7 +98,7 @@ namespace ChemFormatter.WordAddIn
                 if (im != null)
                     this.buttonRDigitChanger.Image = im;
             }
-            this.buttonRDigitChanger.Label = "Sub-digits Change";
+            this.buttonRDigitChanger.Label = CommonResourceManager.TextSubDigitsChange;
             this.buttonRDigitChanger.Name = "buttonRDigitChanger";
             this.buttonRDigitChanger.Click += (sender, e) => Globals.ThisAddIn.ButtonRDigitChanger_Click(sender, e);
             this.buttonRDigitChanger.ShowLabel = true;
@@ -111,7 +111,7 @@ namespace ChemFormatter.WordAddIn
                 if (im != null)
                     this.buttonChemFormula.Image = im;
             }
-            this.buttonChemFormula.Label = "Chem Formula";
+            this.buttonChemFormula.Label = CommonResourceManager.TextChemFormula;
             this.buttonChemFormula.Name = "buttonChemFormula";
             this.buttonChemFormula.Click += (sender, e) => Globals.ThisAddIn.ButtonChemFormular_Click(sender, e);
             this.buttonChemFormula.ShowLabel = true;
@@ -124,7 +124,7 @@ namespace ChemFormatter.WordAddIn
                 if (im != null)
                     this.buttonIonFormula.Image = im;
             }
-            this.buttonIonFormula.Label = "Ion Formula";
+            this.buttonIonFormula.Label = CommonResourceManager.TextIonFormula;
             this.buttonIonFormula.Name = "buttonIonFormula";
             this.buttonIonFormula.Click += (sender, e) => Globals.ThisAddIn.ButtonIonFormular_Click(sender, e);
             this.buttonIonFormula.ShowLabel = true;
@@ -137,7 +137,7 @@ namespace ChemFormatter.WordAddIn
                 if (im != null)
                     this.buttonChemName.Image = im;
             }
-            this.buttonChemName.Label = "Chem Name";
+            this.buttonChemName.Label = CommonResourceManager.TextChemName;
             this.buttonChemName.Name = "buttonChemName";
             this.buttonChemName.Click += (sender, e) => Globals.ThisAddIn.ButtonChemName_Click(sender, e);
             this.buttonChemName.ShowLabel = true;
@@ -150,7 +150,7 @@ namespace ChemFormatter.WordAddIn
                 if (im != null)
                     this.buttonStyleCitation.Image = im;
             }
-            this.buttonStyleCitation.Label = "Citation";
+            this.buttonStyleCitation.Label = CommonResourceManager.TextCitation;
             this.buttonStyleCitation.Name = "buttonStyleCitation";
             this.buttonStyleCitation.Click += (sender, e) => Globals.ThisAddIn.ButtonStyleCitation_Click(sender, e);
             this.buttonStyleCitation.ShowLabel = true;
@@ -163,7 +163,7 @@ namespace ChemFormatter.WordAddIn
                 if (im != null)
                     this.buttonAlphaD.Image = im;
             }
-            this.buttonAlphaD.Label = "Optical Rotation";
+            this.buttonAlphaD.Label = CommonResourceManager.TextOpticalRotation;
             this.buttonAlphaD.Name = "buttonAlphaD";
             this.buttonAlphaD.Click += (sender, e) => Globals.ThisAddIn.ButtonAlphaD_Click(sender, e);
             this.buttonAlphaD.ShowLabel = true;
@@ -176,7 +176,7 @@ namespace ChemFormatter.WordAddIn
                 if (im != null)
                     this.buttonStyleAsChar.Image = im;
             }
-            this.buttonStyleAsChar.Label = "Style as char";
+            this.buttonStyleAsChar.Label = CommonResourceManager.TextStyleAsChar;
             this.buttonStyleAsChar.Name = "buttonStyleAsChar";
             this.buttonStyleAsChar.Click += (sender, e) => Globals.ThisAddIn.ButtonStyleAsChar_Click(sender, e);
             this.buttonStyleAsChar.ShowLabel = true;
@@ -189,7 +189,7 @@ namespace ChemFormatter.WordAddIn
                 if (im != null)
                     this.buttonNMRSpec.Image = im;
             }
-            this.buttonNMRSpec.Label = "NMR Spec";
+            this.buttonNMRSpec.Label = CommonResourceManager.TextNMRSpec;
             this.buttonNMRSpec.Name = "buttonNMRSpec";
             this.buttonNMRSpec.Click += (sender, e) => Globals.ThisAddIn.ButtonNMRSpec_Click(sender, e);
             this.buttonNMRSpec.ShowLabel = true;
@@ -197,7 +197,7 @@ namespace ChemFormatter.WordAddIn
             // 
             // dropDownNMRFormat
             // 
-            this.dropDownNMRFormat.Label = "NMR Format";
+            this.dropDownNMRFormat.Label = CommonResourceManager.TextNMRFormat;
             this.dropDownNMRFormat.Name = "dropDownNMRFormat";
             this.dropDownNMRFormat.SelectionChanged += (sender, e) => Globals.ThisAddIn.DropDownNMRFormat_SelectionChanged(sender, e);
             this.dropDownNMRFormat.ShowLabel = true;

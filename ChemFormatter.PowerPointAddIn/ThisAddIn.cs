@@ -1,10 +1,24 @@
-﻿using System;
+﻿using Microsoft.Office.Core;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
+using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 
 namespace ChemFormatter.PowerPointAddIn
 {
     public partial class ThisAddIn
     {
+        protected override IRibbonExtensibility CreateRibbonExtensibilityObject()
+        {
+            // This is taken from the following.
+            // https://stackoverflow.com/questions/8523812/localize-vsto-addin-according-to-the-language-of-the-office-product
+            var app = this.GetHostItem<PowerPoint.Application>(typeof(PowerPoint.Application), "Application");
+            var lcid = app.LanguageSettings.LanguageID[MsoAppLanguageID.msoLanguageIDUI];
+            CommonResourceManager.Culture = new CultureInfo(lcid);
+
+            return base.CreateRibbonExtensibilityObject();
+        }
+
         internal void Fire(Func<string, IEnumerable<PCommand>> makeCommand, bool normalize = true)
         {
             var text = Globals.ThisAddIn.Application.ActiveWindow.Selection.TextRange.Text;

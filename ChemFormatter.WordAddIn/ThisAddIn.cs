@@ -20,9 +20,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+using Microsoft.Office.Core;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using static ChemFormatter.DocumentProperties;
 using static Microsoft.Office.Interop.Word.WdSelectionType;
@@ -32,6 +34,17 @@ namespace ChemFormatter.WordAddIn
 {
     public partial class ThisAddIn
     {
+        protected override IRibbonExtensibility CreateRibbonExtensibilityObject()
+        {
+            // This is taken from the following.
+            // https://stackoverflow.com/questions/8523812/localize-vsto-addin-according-to-the-language-of-the-office-product
+            var app = this.GetHostItem<Word.Application>(typeof(Word.Application), "Application");
+            var lcid = app.LanguageSettings.LanguageID[MsoAppLanguageID.msoLanguageIDUI];
+            CommonResourceManager.Culture = new CultureInfo(lcid);
+
+            return base.CreateRibbonExtensibilityObject();
+        }
+
         private NMRFormat currentNMRFormat;
 
         public NMRFormat CurrentNMRFormat

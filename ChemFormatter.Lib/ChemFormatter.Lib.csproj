@@ -73,6 +73,11 @@
     <Compile Include="..\Version.cs">
       <Link>Properties\Version.cs</Link>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="StyleByCharQuery.cs" />
     <Compile Include="AlphaDQuery.cs" />
     <Compile Include="DocumentProperties.cs" />
@@ -91,11 +96,20 @@
     <Compile Include="ChemFormulaQuery.cs" />
     <Compile Include="Range.cs" />
     <Compile Include="RDigitQuery.cs" />
-    <Compile Include="ReadOnlyList.cs" />
     <Compile Include="ScriptMode.cs" />
     <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.it.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.ja.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\RDigitChanger.png" />
   </ItemGroup>
   <ItemGroup>

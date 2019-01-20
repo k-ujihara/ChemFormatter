@@ -250,6 +250,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_2B5889FCD37869A78DE942254EA2944C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -263,12 +269,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2B5889FCD37869A78DE942254EA2944C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -462,7 +462,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:ChemFormatter.Lib, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:ChemFormatter.Lib, Version=3.0.3.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_2B5889FCD37869A78DE942254EA2944C"
@@ -841,21 +841,21 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:ChemFormatter (32 bit)"
-        "ProductCode" = "8:{921006C0-2480-41E4-B2DC-E5105216B65A}"
-        "PackageCode" = "8:{31A853C0-D3E9-435F-B58C-7B3F77BE9918}"
+        "ProductName" = "8:ChemFormatter for Office (32 bit)"
+        "ProductCode" = "8:{003DA5DF-1C96-41E4-B29E-D4087EAE8540}"
+        "PackageCode" = "8:{847535BF-2026-430F-8421-F6C8AA077916}"
         "UpgradeCode" = "8:{27FCD77B-7336-4827-9CB9-32B558333476}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:3.0.2"
+        "ProductVersion" = "8:3.0.3"
         "Manufacturer" = "8:Ujihara"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/kazuyaujihara/ChemFormatter"
-        "Title" = "8:ChemFormatter for Office 3.0.2 (32 bit)"
-        "Subject" = "8:ChemFormatter for Microsoft Office (32 bit)"
+        "Title" = "8:ChemFormatter for Office 3.0.3 (32 bit)"
+        "Subject" = "8:"
         "ARPCONTACT" = "8:Kazuya Ujihara"
         "Keywords" = "8:Microsoft Office;Chemistry;"
         "ARPCOMMENTS" = "8:ChemFormatter for Microsoft Office (32 bit)"
@@ -1649,6 +1649,34 @@
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{3EDE7602-77AD-4DE3-9772-6108C672CB40}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_F64BB790EA3E45FC9DDF6C9FFE1969B6"
+            {
+            "SourcePath" = "8:"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_1FE76C275A2C48D3BA0A938B9EDA6719"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:LocalizedResourceDlls"
+            "OutputProjectGuid" = "8:{712011D8-7A97-4E63-8D40-3E238A1E8A91}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {
