@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Kazuya Ujihara")]
 [assembly: AssemblyProduct("ChemFormatter for Office (Microsoft Excel)")]
-[assembly: AssemblyCopyright("Copyright © 2018 Kazuya Ujihara")]
+[assembly: AssemblyCopyright("Copyright © 2018-2020 Kazuya Ujihara")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]

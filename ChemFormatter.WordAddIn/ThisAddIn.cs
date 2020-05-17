@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 using Microsoft.Office.Core;
+using Parago.Windows;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -140,6 +141,11 @@ namespace ChemFormatter.WordAddIn
 
         internal void Fire(Func<string, IEnumerable<PCommand>> makeCommand, bool normalize = true)
         {
+            var result = ProgressDialog.Execute(null, "Formatting", () => _Fire(makeCommand, normalize), ProgressDialogSettings.WithSubLabelAndCancel);
+        }
+
+        private void _Fire(Func<string, IEnumerable<PCommand>> makeCommand, bool normalize)
+        {
             var sel = Globals.ThisAddIn.Application.Selection;
             switch (sel.Type)
             {
@@ -189,6 +195,7 @@ namespace ChemFormatter.WordAddIn
                     WordApplyer.Apply(commands);
                     break;
             }
+            ProgressDialog.Current.ReportWithCancellationCheck("");
         }
 
         internal void ButtonRDigitChanger_Click(object sender, Microsoft.Office.Tools.Ribbon.RibbonControlEventArgs e)

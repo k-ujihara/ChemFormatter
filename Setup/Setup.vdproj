@@ -22,13 +22,7 @@
         "Entry"
         {
         "MsmKey" = "8:_09A5CEFF1683F073EBA6D467CD8DBFD6"
-        "OwnerKey" = "8:_9EBBA6FA8BECE2DF8C0564BFB54C202F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_09A5CEFF1683F073EBA6D467CD8DBFD6"
-        "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
+        "OwnerKey" = "8:_AE79256EA8CA64CEA2D5DE382A749E06"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -40,7 +34,13 @@
         "Entry"
         {
         "MsmKey" = "8:_09A5CEFF1683F073EBA6D467CD8DBFD6"
-        "OwnerKey" = "8:_AE79256EA8CA64CEA2D5DE382A749E06"
+        "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_09A5CEFF1683F073EBA6D467CD8DBFD6"
+        "OwnerKey" = "8:_9EBBA6FA8BECE2DF8C0564BFB54C202F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -52,13 +52,13 @@
         "Entry"
         {
         "MsmKey" = "8:_1F5621EF11B405BC0CB5873FE6444A4C"
-        "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
+        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_1F5621EF11B405BC0CB5873FE6444A4C"
-        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
+        "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -82,13 +82,13 @@
         "Entry"
         {
         "MsmKey" = "8:_2B5889FCD37869A78DE942254EA2944C"
-        "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
+        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_2B5889FCD37869A78DE942254EA2944C"
-        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
+        "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -112,13 +112,13 @@
         "Entry"
         {
         "MsmKey" = "8:_61983BAA8F4C0FC1A98A19E581159DDE"
-        "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
+        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_61983BAA8F4C0FC1A98A19E581159DDE"
-        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
+        "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -154,19 +154,7 @@
         "Entry"
         {
         "MsmKey" = "8:_B053EDA92F51E40F8DEF6D61E3293C3A"
-        "OwnerKey" = "8:_9EBBA6FA8BECE2DF8C0564BFB54C202F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B053EDA92F51E40F8DEF6D61E3293C3A"
-        "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B053EDA92F51E40F8DEF6D61E3293C3A"
-        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
+        "OwnerKey" = "8:_2AC4EF9301284041A198D7DF7271D838"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -178,7 +166,19 @@
         "Entry"
         {
         "MsmKey" = "8:_B053EDA92F51E40F8DEF6D61E3293C3A"
-        "OwnerKey" = "8:_2AC4EF9301284041A198D7DF7271D838"
+        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B053EDA92F51E40F8DEF6D61E3293C3A"
+        "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B053EDA92F51E40F8DEF6D61E3293C3A"
+        "OwnerKey" = "8:_9EBBA6FA8BECE2DF8C0564BFB54C202F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -190,7 +190,7 @@
         "Entry"
         {
         "MsmKey" = "8:_B597309F2D3C67FF77A60D504D9DC563"
-        "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
+        "OwnerKey" = "8:_2AC4EF9301284041A198D7DF7271D838"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -202,7 +202,7 @@
         "Entry"
         {
         "MsmKey" = "8:_B597309F2D3C67FF77A60D504D9DC563"
-        "OwnerKey" = "8:_2AC4EF9301284041A198D7DF7271D838"
+        "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -220,13 +220,13 @@
         "Entry"
         {
         "MsmKey" = "8:_BD658C0735957CA638BE2656DCEC159D"
-        "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
+        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_BD658C0735957CA638BE2656DCEC159D"
-        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
+        "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -250,55 +250,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2B5889FCD37869A78DE942254EA2944C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9EBBA6FA8BECE2DF8C0564BFB54C202F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_AE79256EA8CA64CEA2D5DE382A749E06"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1F5621EF11B405BC0CB5873FE6444A4C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B597309F2D3C67FF77A60D504D9DC563"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_61983BAA8F4C0FC1A98A19E581159DDE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_09A5CEFF1683F073EBA6D467CD8DBFD6"
+        "OwnerKey" = "8:_BD658C0735957CA638BE2656DCEC159D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -310,7 +262,55 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BD658C0735957CA638BE2656DCEC159D"
+        "OwnerKey" = "8:_09A5CEFF1683F073EBA6D467CD8DBFD6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_61983BAA8F4C0FC1A98A19E581159DDE"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_B597309F2D3C67FF77A60D504D9DC563"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_1F5621EF11B405BC0CB5873FE6444A4C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_AE79256EA8CA64CEA2D5DE382A749E06"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_9EBBA6FA8BECE2DF8C0564BFB54C202F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_DA5FC47ABD484336B7B514BF1F0124AD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_2B5889FCD37869A78DE942254EA2944C"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -383,11 +383,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.Office.Tools.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_09A5CEFF1683F073EBA6D467CD8DBFD6"
-                    {
-                    "Name" = "8:Microsoft.Office.Tools.Common.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.Office.Tools.Common.dll"
             "TargetName" = "8:"
@@ -414,11 +409,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.Office.Tools.v4.0.Framework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_1F5621EF11B405BC0CB5873FE6444A4C"
-                    {
-                    "Name" = "8:Microsoft.Office.Tools.v4.0.Framework.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.Office.Tools.v4.0.Framework.dll"
             "TargetName" = "8:"
@@ -465,11 +455,6 @@
             "AssemblyAsmDisplayName" = "8:ChemFormatter.Lib, Version=3.0.3.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_2B5889FCD37869A78DE942254EA2944C"
-                    {
-                    "Name" = "8:ChemFormatter.Lib.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:ChemFormatter.Lib.dll"
             "TargetName" = "8:"
@@ -516,11 +501,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.Office.Tools.Common.v4.0.Utilities, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_61983BAA8F4C0FC1A98A19E581159DDE"
-                    {
-                    "Name" = "8:Microsoft.Office.Tools.Common.v4.0.Utilities.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.Office.Tools.Common.v4.0.Utilities.dll"
             "TargetName" = "8:"
@@ -587,11 +567,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.Office.Tools.Excel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_9EBBA6FA8BECE2DF8C0564BFB54C202F"
-                    {
-                    "Name" = "8:Microsoft.Office.Tools.Excel.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.Office.Tools.Excel.dll"
             "TargetName" = "8:"
@@ -618,11 +593,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.Office.Tools.Word, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_AE79256EA8CA64CEA2D5DE382A749E06"
-                    {
-                    "Name" = "8:Microsoft.Office.Tools.Word.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.Office.Tools.Word.dll"
             "TargetName" = "8:"
@@ -649,11 +619,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.Office.Tools, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_B053EDA92F51E40F8DEF6D61E3293C3A"
-                    {
-                    "Name" = "8:Microsoft.Office.Tools.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.Office.Tools.dll"
             "TargetName" = "8:"
@@ -680,11 +645,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.VisualStudio.Tools.Applications.Runtime, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_B597309F2D3C67FF77A60D504D9DC563"
-                    {
-                    "Name" = "8:Microsoft.VisualStudio.Tools.Applications.Runtime.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.VisualStudio.Tools.Applications.Runtime.dll"
             "TargetName" = "8:"
@@ -731,11 +691,6 @@
             "AssemblyAsmDisplayName" = "8:stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_BD658C0735957CA638BE2656DCEC159D"
-                    {
-                    "Name" = "8:stdole.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:stdole.dll"
             "TargetName" = "8:"
@@ -842,15 +797,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ChemFormatter for Office (32 bit)"
-        "ProductCode" = "8:{003DA5DF-1C96-41E4-B29E-D4087EAE8540}"
-        "PackageCode" = "8:{847535BF-2026-430F-8421-F6C8AA077916}"
+        "ProductCode" = "8:{64D78E85-D880-4983-8A3C-858447D4696D}"
+        "PackageCode" = "8:{7BA17284-C28A-4595-8659-DDD5E7DE4592}"
         "UpgradeCode" = "8:{27FCD77B-7336-4827-9CB9-32B558333476}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:3.0.3"
+        "ProductVersion" = "8:3.0.4"
         "Manufacturer" = "8:Ujihara"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/kazuyaujihara/ChemFormatter"
@@ -1572,7 +1527,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_2AC4EF9301284041A198D7DF7271D838"
             {
-            "SourcePath" = "8:..\\ChemFormatter.WordAddIn\\obj\\Release\\ChemFormatter.WordAddIn.dll"
+            "SourcePath" = "8:..\\ChemFormatter.WordAddIn\\obj\\Debug\\ChemFormatter.WordAddIn.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_1FE76C275A2C48D3BA0A938B9EDA6719"
@@ -1600,7 +1555,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_3E832E3EE6974D2A8E69B7EDEE2B20DA"
             {
-            "SourcePath" = "8:..\\ChemFormatter.PowerPointAddIn\\obj\\Release\\ChemFormatter.PowerPointAddIn.dll"
+            "SourcePath" = "8:..\\ChemFormatter.PowerPointAddIn\\obj\\Debug\\ChemFormatter.PowerPointAddIn.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_1FE76C275A2C48D3BA0A938B9EDA6719"
@@ -1628,7 +1583,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_DA5FC47ABD484336B7B514BF1F0124AD"
             {
-            "SourcePath" = "8:..\\ChemFormatter.ExcelAddIn\\obj\\Release\\ChemFormatter.ExcelAddIn.dll"
+            "SourcePath" = "8:..\\ChemFormatter.ExcelAddIn\\obj\\Debug\\ChemFormatter.ExcelAddIn.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_1FE76C275A2C48D3BA0A938B9EDA6719"

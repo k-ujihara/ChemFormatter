@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 using Microsoft.Office.Core;
+using Parago.Windows;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -43,8 +44,14 @@ namespace ChemFormatter.ExcelAddIn
             return base.CreateRibbonExtensibilityObject();
         }
 
-        private void FormatThem(dynamic range, Func<string, IEnumerable<PCommand>> commandMaker, bool normalize)
+        private void FormatThem(object range, Func<string, IEnumerable<PCommand>> commandMaker, bool normalize)
         {
+            var result = ProgressDialog.Execute(null, "Formatting", () => _FormatThem(range, commandMaker, normalize), ProgressDialogSettings.WithSubLabelAndCancel);
+        }
+
+        private void _FormatThem(object _range, Func<string, IEnumerable<PCommand>> commandMaker, bool normalize)
+        {
+            dynamic range = (dynamic)_range;
             switch (range)
             {
                 case Excel.Range cells:
@@ -57,7 +64,9 @@ namespace ChemFormatter.ExcelAddIn
                             break;
                         default:
                             foreach (Excel.Range cell in cells)
-                                FormatThem(cell, commandMaker, normalize);
+                            {
+                                _FormatThem(cell, commandMaker, normalize);
+                            }
                             break;
                     }
                     break;
@@ -65,34 +74,35 @@ namespace ChemFormatter.ExcelAddIn
                     FormatIt(textRange, commandMaker, normalize);
                     break;
                 case Excel.Shape shape:
-                    FormatThem(shape.TextFrame2.TextRange, commandMaker, normalize);
+                    _FormatThem(shape.TextFrame2.TextRange, commandMaker, normalize);
                     break;
                 case Excel.ShapeRange shapeRange:
                     for (int i = 1; i <= shapeRange.Count; i++)
-                        FormatThem(shapeRange.Item(i), commandMaker, normalize);
+                        _FormatThem(shapeRange.Item(i), commandMaker, normalize);
                     break;
                 case Excel.ChartArea chartArea:
                     Debug.Assert(chartArea.Parent is Excel.Chart);
-                    FormatThem(chartArea.Parent, commandMaker, normalize);
+                    _FormatThem(chartArea.Parent, commandMaker, normalize);
                     break;
                 case Excel.Chart chart:
-                    FormatThem(chart.ChartTitle, commandMaker, normalize);
+                    _FormatThem(chart.ChartTitle, commandMaker, normalize);
                     break;
                 case Excel.ChartTitle chartTitle:
-                    FormatThem(chartTitle.Format.TextFrame2.TextRange, commandMaker, normalize);
+                    _FormatThem(chartTitle.Format.TextFrame2.TextRange, commandMaker, normalize);
                     break;
                 default:
                     try
                     {
                         dynamic o = Globals.ThisAddIn.Application.Selection;
                         Excel.ShapeRange shapeRange = o.ShapeRange;
-                        FormatThem(shapeRange, commandMaker, normalize);
+                        _FormatThem(shapeRange, commandMaker, normalize);
                     }
                     catch (Exception)
                     {
                     }
                     break;
             }
+            ProgressDialog.Current.ReportWithCancellationCheck("");
         }
 
         private static void FormatIt(dynamic range, Func<string, IEnumerable<PCommand>> commandMaker, bool normalize)
